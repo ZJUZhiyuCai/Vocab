@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 基础样式重置 */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-beige-50 text-slate-700 antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #app {
+    @apply min-h-screen;
+  }
+}
+
+/* 组件样式 */
+@layer components {
+  /* 卡片样式 */
+  .card {
+    @apply bg-white rounded-lg shadow-sm p-6;
+  }
+
+  /* 按钮基础样式 */
+  .btn {
+    @apply px-6 py-3 rounded-md font-medium transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  /* 成功按钮 */
+  .btn-success {
+    @apply bg-success text-white hover:bg-success-dark;
+    @apply focus:ring-success;
+  }
+
+  /* 错误按钮 */
+  .btn-error {
+    @apply bg-error text-white hover:bg-error-dark;
+    @apply focus:ring-error;
+  }
+
+  /* 主按钮 */
+  .btn-primary {
+    @apply bg-sage-500 text-white hover:bg-sage-600;
+    @apply focus:ring-sage-500;
+  }
+
+  /* 输入框 */
+  .input {
+    @apply w-full px-4 py-3 border border-gray-200 rounded-md;
+    @apply focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent;
+    @apply transition-all duration-200;
+  }
+
+  /* 进度条 */
+  .progress-bar {
+    @apply w-full h-2 bg-gray-200 rounded-full overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-sage-500 transition-all duration-300 ease-out;
+  }
+
+  /* 动画类 */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+}
+
+/* 工具类 */
+@layer utilities {
+  /* 文本高亮 */
+  .text-highlight {
+    @apply font-bold text-sage-500;
+  }
+
+  /* 单词显示 */
+  .word-display {
+    @apply text-word font-bold text-sage-500;
+  }
+
+  /* 例句容器 */
+  .sentence-box {
+    @apply bg-beige-100 rounded-md p-4 my-4;
+  }
+
+  /* 标签 */
+  .tag {
+    @apply inline-block px-3 py-1 text-xs rounded-full bg-sage-100 text-sage-700;
+  }
+}

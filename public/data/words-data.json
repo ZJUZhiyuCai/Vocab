@@ -1,0 +1,3427 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-01-10T14:07:25.821Z",
+  "totalWords": 100,
+  "words": [
+    {
+      "id": "word_001",
+      "word": "you",
+      "ipa": "ju",
+      "partOfSpeech": "n.",
+      "meaning": "你,你们，您们,各位,大家",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": []
+    },
+    {
+      "id": "word_002",
+      "word": "i",
+      "ipa": "",
+      "partOfSpeech": "n.",
+      "meaning": "（第一人称单数代词，用作动词的主语）我,英文字母i",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_44568_1",
+          "sentence": "For more information concerning the club contact I. Coldwell.",
+          "translation": "咨询俱乐部详情，请与I.科德维尔联系。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_44568_2",
+          "sentence": "English has hurt me a thousand times, but I still regard it as my first love.",
+          "translation": "英语伤我千百遍，我待英语如初恋。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_44568_3",
+          "sentence": "I will return, find you, love you, marry you and live without shame.",
+          "translation": "我会回去，找到你，爱你，娶你，活的光明正大。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_003",
+      "word": "the",
+      "ipa": "ðə",
+      "partOfSpeech": "art.",
+      "meaning": "指已提到的人（物）,指说话人与听者已知的人（物）,用于独一无二的事物前,与形容词最高级和序数词连用",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_92272_1",
+          "sentence": "Inevitbly, thea pr 1168 ject is running into difficulties.",
+          "translation": "这个项目不可避免地遇上了困难.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_92272_2",
+          "sentence": "TheA deep sense of gloom has again descended over Asian stock markets.",
+          "translation": "低迷的气氛再一次笼罩亚洲的股票市场.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_92272_3",
+          "sentence": "THEA LEE: Our workers are in direct competition to workers overseas.",
+          "translation": "我们的工人与海外的工人处于直接的竞争当中.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_004",
+      "word": "to",
+      "ipa": "tə",
+      "partOfSpeech": "v.",
+      "meaning": "向，朝着,到,关于,属于\nadv.朝一个方向的,到某种状态,关闭",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_93346_1",
+          "sentence": "He grabbed into the ooze and came up clutching a large toad.",
+          "translation": "他把手伸进淤泥里捞摸，结果抓上来一只巨大的蟾蜍。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_93346_2",
+          "sentence": "His eyes seemed to bulge like those of a toad.",
+          "translation": "他的眼睛鼓得像癞蛤蟆。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_93346_3",
+          "sentence": "Both the toad and frog are amphibian.",
+          "translation": "蟾蜍和青蛙都是两栖动物.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_005",
+      "word": "a",
+      "ipa": "ə",
+      "partOfSpeech": "art.",
+      "meaning": "一（个）,每一（个）,任一（个）",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_1_1",
+          "sentence": "Liver and kidney are particularly rich in vitamin A.",
+          "translation": "肝脏和肾脏的维生素A含量尤其丰富。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_1_2",
+          "sentence": "Details are available from the Hon. Sec. A.R. Bushby.",
+          "translation": "详情可咨询名誉秘书A.R.布什比。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_1_3",
+          "sentence": "I was assigned to Troop A of the 10th Cavalry.",
+          "translation": "我被派往第10骑兵队的A连。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_006",
+      "word": "it",
+      "ipa": "ɪt",
+      "partOfSpeech": "n.",
+      "meaning": "它,他,正好是所需的,事实[情况]\nn.<美俚>傻瓜，笨蛋,<俚>绝妙的人,理想的东西,登峰造极",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_48701_1",
+          "sentence": "Beauty is an attitude. It has nothing to do with age.",
+          "translation": "美是一种态度，与年龄无关。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_48701_2",
+          "sentence": "English has hurt me a thousand times, but I still regard it as my first love.",
+          "translation": "英语伤我千百遍，我待英语如初恋。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_48701_3",
+          "sentence": "Success is not guaranteed. It is not handed to you. Success is earned.",
+          "translation": "成功无法保证，并非唾手可得。成功必须靠自己去争取。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_007",
+      "word": "and",
+      "ipa": "ənd",
+      "partOfSpeech": "conj.",
+      "meaning": "和，与,而且,于是，然后,因此",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_3727_1",
+          "sentence": "Remember, keep a positive attitude and good things will happen.",
+          "translation": "记住：保持乐观的心态，好事自然会发生。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_3727_2",
+          "sentence": "The world breaks everyone, and afterward, many are stronger at the broken places.",
+          "translation": "生活总是让我们遍体鳞伤，但到后来，那些受伤的地方会变得更坚强。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_3727_3",
+          "sentence": "For what do we live, but to make sport for our neighbours, and laugh at them in our turn?",
+          "translation": "我们活着是为了什么？不就是给邻居当笑柄，再反过来笑他们。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_008",
+      "word": "that",
+      "ipa": "ðæt",
+      "partOfSpeech": "n.",
+      "meaning": "det.那个，那\npron.那个，那\nconj.多么,如此…以至,用于某些动词、形容词和名词后，引出各种从句\nadv.不那么,那样",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": []
+    },
+    {
+      "id": "word_009",
+      "word": "of",
+      "ipa": "əv",
+      "partOfSpeech": "prep.",
+      "meaning": "关于,属于…的,由…制成\naux.助动词  [非标准用语、方言] =have [主用于虚拟语气]",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_63860_1",
+          "sentence": "No matter where you go in life or how old you get, there's always something new to learn about. After all, life is full of surprises.",
+          "translation": "不管你生活在哪里，你有多少岁，总有新东西要学习，毕竟，生活总是充满惊喜。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_63860_2",
+          "sentence": "Generosity is its own form of power.",
+          "translation": "别低估了慷慨的力量。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_63860_3",
+          "sentence": "Instead of complaining about what's wrong, be grateful for what's right.",
+          "translation": "别抱怨不好的事，要对美好的事心存感恩。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_010",
+      "word": "in",
+      "ipa": "ɪn",
+      "partOfSpeech": "n.",
+      "meaning": "采用（某种方式）,穿着，带着,（表示位置）在…里面，（表示领域，范围）在…以内,（表示品质、能力等）在…之中\nadv.在家,进入，到达,流行,当选\nadj.在内的，朝内的,在位的，执政的,[口语]流行的，时髦的,（车等）到站的\nn.执政党，掌权者,知情者,<美口>入口，门路,<体>（板球或棒球）攻球的一方",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_45656_1",
+          "sentence": "No matter where you go in life or how old you get, there's always something new to learn about. After all, life is full of surprises.",
+          "translation": "不管你生活在哪里，你有多少岁，总有新东西要学习，毕竟，生活总是充满惊喜。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_45656_2",
+          "sentence": "For what do we live, but to make sport for our neighbours, and laugh at them in our turn?",
+          "translation": "我们活着是为了什么？不就是给邻居当笑柄，再反过来笑他们。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_45656_3",
+          "sentence": "The turning point in the process of growing up is when you discover the core of strength within you that survives all hurt.--Max Lerner",
+          "translation": "当你从内心深处找到一种可以忍受一切痛苦的坚强力量时，你的成长历程就会出现飞跃。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_011",
+      "word": "what",
+      "ipa": "wɒt",
+      "partOfSpeech": "n.",
+      "meaning": "（用以询问某人或某事物的词）什么，多少,…的事物\nadj.…的（事物或人）\nadv.（用于感叹句中）\nint.（用以表示不相信或惊奇）,（用以表示未听清楚对方说的话）",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_101669_1",
+          "sentence": "I was allowed to do whatever I wanted with my life.",
+          "translation": "我可以自由支配自己的生活。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_101669_2",
+          "sentence": "Whatever you want to chat about, we'll do it tonight.",
+          "translation": "不管你想聊些什么，我们今晚聊个够。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_101669_3",
+          "sentence": "Whatever its obscurities, the poem was clear on at least one count.",
+          "translation": "这首诗再怎么晦涩，至少有一点是清楚的。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_012",
+      "word": "me",
+      "ipa": "mi",
+      "partOfSpeech": "n.",
+      "meaning": "（人称代词I的宾格）我\nn.自我,自我的一部分,极端自私的人,[音乐]固定唱法时的E音",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_56528_1",
+          "sentence": "English has hurt me a thousand times, but I still regard it as my first love.",
+          "translation": "英语伤我千百遍，我待英语如初恋。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_56528_2",
+          "sentence": "He finished his conversation and stood up, looking straight at me.",
+          "translation": "他说完话站起来，直视着我。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_56528_3",
+          "sentence": "Well, at any rate, let me thank you for all you did.",
+          "translation": "好吧，不管怎样，还是要感谢你所做的一切。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_013",
+      "word": "is",
+      "ipa": "ɪz",
+      "partOfSpeech": "n.",
+      "meaning": "& vi.是（be的三单形式\nn.存在",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_48442_1",
+          "sentence": "Beauty is an attitude. It has nothing to do with age.",
+          "translation": "美是一种态度，与年龄无关。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_48442_2",
+          "sentence": "The best thing to do when entering unknown territory is smile.",
+          "translation": "踏入未知地带最好的对策就是微笑。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_48442_3",
+          "sentence": "A miracle is something that seems impossible but happens anyway.",
+          "translation": "奇迹就是看似不可能，却发生了。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_014",
+      "word": "we",
+      "ipa": "wi",
+      "partOfSpeech": "n.",
+      "meaning": "我们，咱们,笔者，本人,朕,人们",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_101346_1",
+          "sentence": "His hands were too weak to cock his revolver.",
+          "translation": "他的手没劲儿，扳不动左轮手枪的扳机。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_101346_2",
+          "sentence": "Matt is weak and dependent, but you love him all the same.",
+          "translation": "马特软弱无能且依赖性强，但我们照样爱他。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_101346_3",
+          "sentence": "Despite some artful editing, the anthology is a weak one.",
+          "translation": "除了编辑上的一些巧妙之处，这本选集乏善可陈。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_015",
+      "word": "he",
+      "ipa": "hi",
+      "partOfSpeech": "n.",
+      "meaning": "他，它,一个人\nn.雄性动物",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_41100_1",
+          "sentence": "He was well acquainted with the literature of France, Germany and Holland.",
+          "translation": "他对于法国、德国和荷兰的文学了如指掌。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_41100_2",
+          "sentence": "He said they should turn their fire on the Conservative Party instead.",
+          "translation": "他说他们应该掉转枪口，向保守党开火。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_41100_3",
+          "sentence": "He knew what he wanted to do from the age of 14.",
+          "translation": "他14岁起就知道自己日后干什么了。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_016",
+      "word": "this",
+      "ipa": "ðɪs",
+      "partOfSpeech": "n.",
+      "meaning": "这，这个,这事，这人,这时,下面所说的事\nadj.这，这个,刚过去的，即将到来的,今…，本…\nadv.这样地,就是这样,这么地",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_92668_1",
+          "sentence": "Thisbe stole out and arrived first at the trysting - place.",
+          "translation": "提斯柏偷偷溜了出来,先到达了约会地点.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_92668_2",
+          "sentence": "Thisbe was a Babylonian maid.",
+          "translation": "提斯柏是一位巴比伦少女.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_017",
+      "word": "for",
+      "ipa": "fə(r)",
+      "partOfSpeech": "prep.",
+      "meaning": "为，为了,倾向于,关于,当作\nconj.因为，由于",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_35305_1",
+          "sentence": "For what do we live, but to make sport for our neighbours, and laugh at them in our turn?",
+          "translation": "我们活着是为了什么？不就是给邻居当笑柄，再反过来笑他们。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_35305_2",
+          "sentence": "Do not wait for good things to happen to you. You need to walk towards happiness.",
+          "translation": "不要等待好事降临，你要向幸福进发。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_35305_3",
+          "sentence": "Instead of complaining about what's wrong, be grateful for what's right.",
+          "translation": "别抱怨不好的事，要对美好的事心存感恩。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_018",
+      "word": "on",
+      "ipa": "ɒn",
+      "partOfSpeech": "v.",
+      "meaning": "（表示方向）向,（表示对象）对,（表示位置）在…上,（表示时间）在…之时\nadv.（放，穿，连接）上,向前，（继续）下去\nadj.活动着的情况，状态,使用着的,发生着的,计划中的",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_64175_1",
+          "sentence": "Eventually, you'll learn to cry that on the inside.",
+          "translation": "终有一天，你会学会让泪往心里流。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_64175_2",
+          "sentence": "She went directly to Simon's apartment and knocked on the door.",
+          "translation": "她直奔西蒙的房间，敲了敲门。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_64175_3",
+          "sentence": "He said they should turn their fire on the Conservative Party instead.",
+          "translation": "他说他们应该掉转枪口，向保守党开火。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_019",
+      "word": "my",
+      "ipa": "maɪ",
+      "partOfSpeech": "adj.",
+      "meaning": "我的(I的所有格形式)\nint.啊呀,天啊",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_60485_1",
+          "sentence": "The vowel in words like \"my\" and \"thigh\" is not very difficult.",
+          "translation": "单词my和thigh中的元音并不难发。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_60485_2",
+          "sentence": "English has hurt me a thousand times, but I still regard it as my first love.",
+          "translation": "英语伤我千百遍，我待英语如初恋。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_60485_3",
+          "sentence": "I feel it's done me good to get it off my chest.",
+          "translation": "我感觉吐吐苦水对我有好处。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_020",
+      "word": "m",
+      "ipa": "",
+      "partOfSpeech": "n.",
+      "meaning": "英语字母表的第13个字母",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_54868_1",
+          "sentence": "One of the wittiest exemplars of the technique was M. C. Escher.",
+          "translation": "最为巧妙地运用那种技巧的一个典型人物就是M.C.埃舍尔。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_54868_2",
+          "sentence": "The address is 2025 M Street, Northwest, Washington, DC, 20036.",
+          "translation": "地址为华盛顿特区，西北区，M大街2025号，邮政编码20036。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_54868_3",
+          "sentence": "At approxi-mately 11:30 p.m., Pollard finally gave his consent to the search.",
+          "translation": "大概晚上11点半的时候，波拉德最终同意进行搜查。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_021",
+      "word": "was",
+      "ipa": "wɒz",
+      "partOfSpeech": "v.",
+      "meaning": "用来表示某人或某物即主语本身，用来表示某人或某物属于某一群体或有某种性质（ be的过去式 ）,在，存在,不受干扰",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_101118_1",
+          "sentence": "Wash your hands thoroughly with hot soapy water before handling any food.",
+          "translation": "在拿吃的之前，用热肥皂水把手好好地洗干净。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_101118_2",
+          "sentence": "You should wash your feet and your privates every day.",
+          "translation": "应该每天洗脚，并清洗阴部。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_101118_3",
+          "sentence": "I bet you make breakfast and wash up their plates, too.",
+          "translation": "我肯定是你做的早餐并且清洗了他们的餐具。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_022",
+      "word": "your",
+      "ipa": "jɔ:(r)",
+      "partOfSpeech": "n.",
+      "meaning": "你的，你们的,尊,玉,乃",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_103385_1",
+          "sentence": "You flatter yourself. Why would we go to such ludicrous lengths?",
+          "translation": "你真自以为是。我们为什么要费那么大的力气？",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_103385_2",
+          "sentence": "It's enough to make you wet yourself, if you'll pardon the expression.",
+          "translation": "这足以吓得你尿裤子了，请原谅我这么说。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_103385_3",
+          "sentence": "I'll say you started it, that you threw yourself at me.",
+          "translation": "我觉得是你主动向我投怀送抱。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_023",
+      "word": "have",
+      "ipa": "həv",
+      "partOfSpeech": "n.",
+      "meaning": "aux.用以构成完成式及完成式的不定式，表示已经…\nvt.有，具有,拿，取得,从事,必须，不得不\nn.〈口〉有产者，有钱人,富国,〈英俚〉欺骗，诈骗",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_41017_1",
+          "sentence": "You have to do everything you can. You have to work your hardest. And if you do, if you stay positive, then you have a shot at a silver lining.",
+          "translation": "你需要尽你所能，最大限度地去努力。只要你这么做，只要你能保持乐观，你就会看见乌云背后的幸福线。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_41017_2",
+          "sentence": "Remember, happiness doesn't depend upon who you are or what you have; it depends solely upon what you think.--Dale Carnegie",
+          "translation": "请记住，幸福不在于你是谁或者你拥有什么，而仅仅取决于你的心态！",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_41017_3",
+          "sentence": "They have maintained their optimism in the face of desolating subjugation.",
+          "translation": "面对遭征服的悲惨命运，他们保持了乐观的态度。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_024",
+      "word": "don",
+      "ipa": "dɒn",
+      "partOfSpeech": "n.",
+      "meaning": "大学教师，（牛津、剑桥大学的）导师，特别研究员\nvt.穿上，披上",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_26989_1",
+          "sentence": "If you're not satisfied with the life you're living, don't just complain. Do something about it.",
+          "translation": "对于现况的不满，不能只是抱怨，要有作出改变。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_26989_2",
+          "sentence": "I don't want any more of that heavy stuff.",
+          "translation": "我再也不想碰那种麻烦事了。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_26989_3",
+          "sentence": "Don't worry. We'll have you out of here double-quick.",
+          "translation": "别担心，我们会很快把你从这儿弄出去的。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_025",
+      "word": "do",
+      "ipa": "du",
+      "partOfSpeech": "n.",
+      "meaning": "aux.构成疑问句和否定句,代替动词,用于加强语气\nvt.做,干,进行,从事\nvi.表现,进展,引起,行过\nn.社交聚会,社交活动,宴会",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_26731_1",
+          "sentence": "Beauty is an attitude. It has nothing to do with age.",
+          "translation": "美是一种态度，与年龄无关。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_26731_2",
+          "sentence": "The best thing to do when entering unknown territory is smile.",
+          "translation": "踏入未知地带最好的对策就是微笑。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_26731_3",
+          "sentence": "Failure is never quite so frightening as regret.",
+          "translation": "比失败更令人恐惧的是懊悔。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_026",
+      "word": "no",
+      "ipa": "nəʊ",
+      "partOfSpeech": "n.",
+      "meaning": "不,否,一点也没有\nadj.没有的,不许的,一点儿也没有,决不是的\nn.不,否定，否认,反对票,否决票\nabbr.数字(number),元素锘(nobelium)的符号",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_62225_1",
+          "sentence": "No matter where you go in life or how old you get, there's always something new to learn about. After all, life is full of surprises.",
+          "translation": "不管你生活在哪里，你有多少岁，总有新东西要学习，毕竟，生活总是充满惊喜。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_62225_2",
+          "sentence": "Ever tried. Ever failed. No matter. Try Again. Fail again. Fail better.",
+          "translation": "努力过，失败过，没关系，屡战屡败，屡败屡战，每一次失败都比上一次更好。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_62225_3",
+          "sentence": "I have $100m hidden away where no one will ever find it.",
+          "translation": "我把1亿美元藏到了一个永远没人会找到的地方。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_027",
+      "word": "re",
+      "ipa": "reɪ",
+      "partOfSpeech": "n.",
+      "meaning": "关于\nn.[化]元素铼（rhenium）的符号，铼",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_75689_1",
+          "sentence": "If you're not satisfied with the life you're living, don't just complain. Do something about it.",
+          "translation": "对于现况的不满，不能只是抱怨，要有作出改变。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_75689_2",
+          "sentence": "Good luck is when an opportunity comes along and you're prepared for it.",
+          "translation": "好运就是当机会来临时，你早已做好了准备。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_75689_3",
+          "sentence": "The ballot was re-run on Mr Todd's insistence after accusations of malpractice.",
+          "translation": "因被控舞弊，在托德先生的坚持下重新进行了投票。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_028",
+      "word": "not",
+      "ipa": "nɒt",
+      "partOfSpeech": "v.",
+      "meaning": "不,[用以表示否定、否认、拒绝、禁止等]不是,几乎不,未必，没有[用于否定后面的词或短语]",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_62919_1",
+          "sentence": "Success is not guaranteed. It is not handed to you. Success is earned.",
+          "translation": "成功无法保证，并非唾手可得。成功必须靠自己去争取。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_62919_2",
+          "sentence": "Do not wait for good things to happen to you. You need to walk towards happiness.",
+          "translation": "不要等待好事降临，你要向幸福进发。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_62919_3",
+          "sentence": "The happiest are not those who own all the best things, but those who can appreciate the beauty of life.",
+          "translation": "最幸福的人们并不一定什么都是最好，只是他们懂得欣赏生活的美好。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_029",
+      "word": "know",
+      "ipa": "nəʊ",
+      "partOfSpeech": "n.",
+      "meaning": "知道,了解,认识,确信\nn.知情",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_50904_1",
+          "sentence": "I know it's nothing serious and I feel quite unemotional about it.",
+          "translation": "我知道那根本没什么大不了的，所以有些无动于衷。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_50904_2",
+          "sentence": "We all know that fats spoil by becoming rancid.",
+          "translation": "我们都知道油脂变质后会发臭。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_50904_3",
+          "sentence": "Kaspar had spoken know-ledgeably about the state of agriculture in Europe.",
+          "translation": "卡斯帕对欧洲农业状况发表了一番颇有见地的见解。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_030",
+      "word": "with",
+      "ipa": "wɪð",
+      "partOfSpeech": "prep.",
+      "meaning": "和，跟,随着,关于,和…一致",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_102308_1",
+          "sentence": "This is the weapon that he used to defend himself withal.",
+          "translation": "这就是他用来自卫的武器.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_102308_2",
+          "sentence": "But, withal , a real renaissance occurred, and America recovered her poetic voice.",
+          "translation": "不过, 此外还出现一种真正的文艺复兴, 美国诗坛则有了新气象.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_102308_3",
+          "sentence": "He was hollow - chested, squint - eyed, and rather shambling, but spry enough withal.",
+          "translation": "他胸膛低陷, 眼睛斜视, 步履蹒跚, 但又着实生气勃勃.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_031",
+      "word": "all",
+      "ipa": "ɔ:l",
+      "partOfSpeech": "n.",
+      "meaning": "全部的,一切的,各种的,极度的，尽量的\npron.全部,一切,每个人，每件东西,全部情况\nadv.全部地,完全地,每个,非常\nn.全体,[常作A-]整体,[常与my, your, his, her等连用]（某人）所有的一切",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_2677_1",
+          "sentence": "No matter where you go in life or how old you get, there's always something new to learn about. After all, life is full of surprises.",
+          "translation": "不管你生活在哪里，你有多少岁，总有新东西要学习，毕竟，生活总是充满惊喜。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_2677_2",
+          "sentence": "If you wait, all that happens is that you get older.",
+          "translation": "如果你等待，发生的只有变老。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_2677_3",
+          "sentence": "The happiest are not those who own all the best things, but those who can appreciate the beauty of life.",
+          "translation": "最幸福的人们并不一定什么都是最好，只是他们懂得欣赏生活的美好。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_032",
+      "word": "are",
+      "ipa": "ɑ:(r)",
+      "partOfSpeech": "n.",
+      "meaning": "（用于第二人称单复数现在时，第一、三人称复数现在时）是\nn.公亩（等于100平方米）",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_5484_1",
+          "sentence": "The world breaks everyone, and afterward, many are stronger at the broken places.",
+          "translation": "生活总是让我们遍体鳞伤，但到后来，那些受伤的地方会变得更坚强。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_5484_2",
+          "sentence": "The happiest are not those who own all the best things, but those who can appreciate the beauty of life.",
+          "translation": "最幸福的人们并不一定什么都是最好，只是他们懂得欣赏生活的美好。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_5484_3",
+          "sentence": "The difference between who you are and who you want to be is what you do.",
+          "translation": "你是什么样的人和你想成为什么样的之间的差距就是，你做了什么。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_033",
+      "word": "can",
+      "ipa": "kæn",
+      "partOfSpeech": "n.",
+      "meaning": "aux.能,能够,可以,可能\nvt.将…装入密封罐中保存\nn.罐头,（用金属或塑料制作的）容器,（马口铁或其他金属制作的）食品罐头",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_13311_1",
+          "sentence": "The happiest are not those who own all the best things, but those who can appreciate the beauty of life.",
+          "translation": "最幸福的人们并不一定什么都是最好，只是他们懂得欣赏生活的美好。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_13311_2",
+          "sentence": "You have to do everything you can. You have to work your hardest. And if you do, if you stay positive, then you have a shot at a silver lining.",
+          "translation": "你需要尽你所能，最大限度地去努力。只要你这么做，只要你能保持乐观，你就会看见乌云背后的幸福线。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_13311_3",
+          "sentence": "You can improve your chances of profit by sensible planning.",
+          "translation": "你可以通过合理计划来提高盈利的机会。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_034",
+      "word": "just",
+      "ipa": "dʒʌst",
+      "partOfSpeech": "v.",
+      "meaning": "刚才,仅仅，只是,正好,刚要\nadj.公正的，合理的,恰当的,合法的,正确的",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_49738_1",
+          "sentence": "If you're not satisfied with the life you're living, don't just complain. Do something about it.",
+          "translation": "对于现况的不满，不能只是抱怨，要有作出改变。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_49738_2",
+          "sentence": "It was just then that I chanced to look round.",
+          "translation": "就在那时，我恰好环顾了下四周。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_49738_3",
+          "sentence": "I don't see the point in it really. It's just stupid.",
+          "translation": "我真的不理解这到底有什么意义，简直是愚蠢透顶。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_035",
+      "word": "but",
+      "ipa": "bət",
+      "partOfSpeech": "n.",
+      "meaning": "但是,而是,除了,只因为\nprep.除…以外\nadv.只,不过,只是,另一方面\nn.借口,推辞,但是,反对\npron.[关系代词，意义相当于 who…not, which…not]\nvt.对…说“但是”",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_12537_1",
+          "sentence": "A miracle is something that seems impossible but happens anyway.",
+          "translation": "奇迹就是看似不可能，却发生了。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_12537_2",
+          "sentence": "For what do we live, but to make sport for our neighbours, and laugh at them in our turn?",
+          "translation": "我们活着是为了什么？不就是给邻居当笑柄，再反过来笑他们。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_12537_3",
+          "sentence": "English has hurt me a thousand times, but I still regard it as my first love.",
+          "translation": "英语伤我千百遍，我待英语如初恋。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_036",
+      "word": "get",
+      "ipa": "get",
+      "partOfSpeech": "n.",
+      "meaning": "得到,抓住,说服,受到（惩罚等）\nvt.& vi.到达，来\nvi.成为,开始,设法对付,获得利益或财富\nn.生殖，幼兽,赢利",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_37933_1",
+          "sentence": "No matter where you go in life or how old you get, there's always something new to learn about. After all, life is full of surprises.",
+          "translation": "不管你生活在哪里，你有多少岁，总有新东西要学习，毕竟，生活总是充满惊喜。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_37933_2",
+          "sentence": "If you wait, all that happens is that you get older.",
+          "translation": "如果你等待，发生的只有变老。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_37933_3",
+          "sentence": "I feel it's done me good to get it off my chest.",
+          "translation": "我感觉吐吐苦水对我有好处。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_037",
+      "word": "here",
+      "ipa": "hɪə(r)",
+      "partOfSpeech": "n.",
+      "meaning": "在这里,这时,在这一点上,（给某人东西或指出某物时说）\nn.这里\nint.喂,嗨",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_41879_1",
+          "sentence": "Here's an inside tip: The faster you rise, the harder you fall.",
+          "translation": "给你一个小忠告：爬得越快，摔得越疼。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_41879_2",
+          "sentence": "Don't worry. We'll have you out of here double-quick.",
+          "translation": "别担心，我们会很快把你从这儿弄出去的。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_41879_3",
+          "sentence": "I try to remember all the good times I've had here.",
+          "translation": "我试着回忆在这里度过的所有美好时光。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_038",
+      "word": "there",
+      "ipa": "ðeə(r)",
+      "partOfSpeech": "n.",
+      "meaning": "在那里,那里,在那一点上\npron.表示某物或某人的存在或某事的发生（常用作be, seem或appear的主语）\nint.（表示满足、烦恼）你瞧，好啦，得啦",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_92407_1",
+          "sentence": "He lives in Beijing or thereabout ( s ).",
+          "translation": "他住北京一带.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_92407_2",
+          "sentence": "She is forty or thereabout ( s ).",
+          "translation": "她四十岁 上下.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_92407_3",
+          "sentence": "He's moved to Chicago or thereabout.",
+          "translation": "他已迁往芝加哥或其附近。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_039",
+      "word": "so",
+      "ipa": "səʊ",
+      "partOfSpeech": "n.",
+      "meaning": "这样,很,（表示程度）这么,同样\nconj.（表示因果关系）因此,（表示目的）为了,（引出下文）,（认为某事无关紧要，尤用于反驳他人的指责时）（口语）\npron.如此,这样,大约,左右\nint.[表示同意、赞成等] 好啦，就这样吧！停下！（停住）别动！,[表示惊讶、冷淡等] 哦,真的吗\nadj.真的,事实如此的,如此的,整齐的",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_85390_1",
+          "sentence": "There'll be ample opportunity to relax, swim and soak up some sun.",
+          "translation": "将会有充足的机会去放松、游泳和晒太阳。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_85390_2",
+          "sentence": "What I need is to soak in a hot tub.",
+          "translation": "我需要在热腾腾的澡盆里好好地泡一泡。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_85390_3",
+          "sentence": "I was having a long soak in the bath.",
+          "translation": "我在浴缸里泡了很长时间。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_040",
+      "word": "they",
+      "ipa": "ðeɪ",
+      "partOfSpeech": "n.",
+      "meaning": "他/她/它们,人们，大家,政府，当局,她们",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_92565_1",
+          "sentence": "Thiamin, zinc, vitamin B 12, vitamin B 6, and copper.",
+          "translation": "硫胺素, 锌, 维他命B12, 维他命B6和铜.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_92565_2",
+          "sentence": "The organism was moderately halotolerant, required thiamin. HCl and was stimulated by biotin and nicotinic acid.",
+          "translation": "这种有机体是适度耐盐的,需求盐酸硫胺, 并且易受生物素和盐酸刺激.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_041",
+      "word": "she",
+      "ipa": "ʃi",
+      "partOfSpeech": "n.",
+      "meaning": "她，它",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_83251_1",
+          "sentence": "Ingredient: Shea butter, sea salt and sweet almond oil etc.",
+          "translation": "主要成份: 乳木果、海盐、甜杏仁油 、 杏仁颗粒、溶角蛋白酶.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_83251_2",
+          "sentence": "And she was a princess and shea princess now!",
+          "translation": "小公主,是的吧,命运的虹彩总会驱散灰色的乌云的.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_83251_3",
+          "sentence": "Shea Butter - Helps heal skin irritations and gives sun protection.",
+          "translation": "乳油木树提取物 – 帮助回复轻度受刺激的皮肤并防晒.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_042",
+      "word": "like",
+      "ipa": "laɪk",
+      "partOfSpeech": "n.",
+      "meaning": "喜欢,（与 would 或 should 连用表示客气）想,想要,喜欢做\nprep.（表示属性）像,（表示方式）如同,（询问意见）…怎么样,（表示列举）比如\nadj.相似的,相同的\nn.相类似的人[事物],喜好,爱好,（尤指被视为没有某人或某物那么好的）种类，类型\nconj.像…一样,如同,好像,仿佛\nadv.（非正式口语，代替 as）和…一样,如,（非正式口语，思考说下句话、解释或举例时用）大概,可能",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_53283_1",
+          "sentence": "I thought you might like to read the enclosed.",
+          "translation": "我想你或许想要读一下信封里的内容。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_53283_2",
+          "sentence": "Three hundred million dollars will be nothing like enough.",
+          "translation": "3亿美元远远不够。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_53283_3",
+          "sentence": "He did not like to be caught out on details.",
+          "translation": "他不喜欢在细节上被人抓住把柄。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_043",
+      "word": "out",
+      "ipa": "aʊt",
+      "partOfSpeech": "n.",
+      "meaning": "出局,在外，在外部,完全，彻底,出版\nprep.（表示来源）从,（从…里）出来,（表示不在原状态）脱离,离去\nvt.使熄灭,揭露,驱逐\nadj.外面的,出局的,下台的,外围的\nn.不流行,出局",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_65067_1",
+          "sentence": "Barry had his nose put out of joint by Lucy's aloof sophistication.",
+          "translation": "露西的冷淡与世故使得巴里十分不快。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_65067_2",
+          "sentence": "He did not like to be caught out on details.",
+          "translation": "他不喜欢在细节上被人抓住把柄。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_65067_3",
+          "sentence": "Don't worry. We'll have you out of here double-quick.",
+          "translation": "别担心，我们会很快把你从这儿弄出去的。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_044",
+      "word": "right",
+      "ipa": "raɪt",
+      "partOfSpeech": "n.",
+      "meaning": "立刻，马上,向右，右边,恰当地,一直\nadj.右方的,正确的,合适的,好的，正常的\nn.正确，正当,右边,权利,右手\nvt.纠正,扶直，使正,整理,补偿\nvi.（船舶等）复正，恢复平稳",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_78552_1",
+          "sentence": "Instead of complaining about what's wrong, be grateful for what's right.",
+          "translation": "别抱怨不好的事，要对美好的事心存感恩。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_78552_2",
+          "sentence": "You'll need to get on the right side of Carmela.",
+          "translation": "你得讨卡梅拉的欢心。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_78552_3",
+          "sentence": "More people would be attracted to cycling if conditions were right.",
+          "translation": "如果天气适宜，会有更多的人被吸引到骑自行车的行列中来。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_045",
+      "word": "him",
+      "ipa": "hɪm",
+      "partOfSpeech": "n.",
+      "meaning": "(he的宾格)他",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_42394_1",
+          "sentence": "She studied him for the longest time, looking wryly amused.",
+          "translation": "她面带苦笑，盯着他看了很长时间。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_42394_2",
+          "sentence": "I would prefer him to be with us next season.",
+          "translation": "我更希望他下一个赛季和我们在一起。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_42394_3",
+          "sentence": "The blame for the Charleston fiasco did not lie with him.",
+          "translation": "查尔斯顿惨败错不在他。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_046",
+      "word": "up",
+      "ipa": "ʌp",
+      "partOfSpeech": "n.",
+      "meaning": "在上面，在高处,起床，起来,向上,由低到高\nadj.向上的,上升的,竖立的，垂直的,举起的\nvt.& vi.增加,加速,提高,举起，拿起\nprep.在…的上端,向高处,沿…而去,向…上游\nn.上升，升高,兴旺，繁荣,上坡,（价格等）上涨",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_98569_1",
+          "sentence": "The fairly long Chhandogya - upanishad develops the idea of transmigration of souls.",
+          "translation": "相当长的察汗多雅奥义书发展了灵魂轮回的观念.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_98569_2",
+          "sentence": "The Bhagavad Gita refers to itself as an Upanishad.",
+          "translation": "《博伽梵歌》指出了它自己本身就是一本“奥义书”.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_98569_3",
+          "sentence": "The Katha - upanishad, through the story of Nachiketa, discussed death and the permanence of the soul ( Atman ).",
+          "translation": "卡塔奥义书, 通过尼兹卡塔的故事, 论述了死亡与灵魂 ( 生命的本源,自我 ) 的持久性.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_047",
+      "word": "go",
+      "ipa": "gəʊ",
+      "partOfSpeech": "n.",
+      "meaning": "走,离开,去做,进行\nvt.变得,发出…声音,成为,处于…状态\nn.轮到的顺序,精力,干劲,尝试",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_38644_1",
+          "sentence": "No matter where you go in life or how old you get, there's always something new to learn about. After all, life is full of surprises.",
+          "translation": "不管你生活在哪里，你有多少岁，总有新东西要学习，毕竟，生活总是充满惊喜。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_38644_2",
+          "sentence": "We'll go to a meeting in Birmingham and come straight back.",
+          "translation": "我们将去伯明翰参加会议，然后马上回来。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_38644_3",
+          "sentence": "It's a long way to go for two people in their seventies.",
+          "translation": "对于两个七十几岁的人来说，这段路太远了。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_048",
+      "word": "about",
+      "ipa": "əˈbaʊt",
+      "partOfSpeech": "v.",
+      "meaning": "关于,大约,在…周围\nadv.大约,在附近,在四周,几乎\nadj.在附近的,四处走动的,在起作用的,在流行中的",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_247_1",
+          "sentence": "No matter where you go in life or how old you get, there's always something new to learn about. After all, life is full of surprises.",
+          "translation": "不管你生活在哪里，你有多少岁，总有新东西要学习，毕竟，生活总是充满惊喜。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_247_2",
+          "sentence": "Instead of complaining about what's wrong, be grateful for what's right.",
+          "translation": "别抱怨不好的事，要对美好的事心存感恩。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_247_3",
+          "sentence": "If you're not satisfied with the life you're living, don't just complain. Do something about it.",
+          "translation": "对于现况的不满，不能只是抱怨，要有作出改变。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_049",
+      "word": "if",
+      "ipa": "ɪf",
+      "partOfSpeech": "n.",
+      "meaning": "如果，倘若,即使,〈口〉是否,假设\nn.条件，设想",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_44887_1",
+          "sentence": "If you wait, all that happens is that you get older.",
+          "translation": "如果你等待，发生的只有变老。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_44887_2",
+          "sentence": "If you love life, life will love you back.",
+          "translation": "热爱生活，生活也会厚爱你。(Arthur Rubinstein)",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_44887_3",
+          "sentence": "If you're not satisfied with the life you're living, don't just complain. Do something about it.",
+          "translation": "对于现况的不满，不能只是抱怨，要有作出改变。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_050",
+      "word": "at",
+      "ipa": "ət",
+      "partOfSpeech": "n.",
+      "meaning": "（表示位置）在,在（某时间或时刻）,以，达, 向，朝\nn.阿特（老挝辅币单位，100 阿特 = 1 基普）",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_6470_1",
+          "sentence": "The world breaks everyone, and afterward, many are stronger at the broken places.",
+          "translation": "生活总是让我们遍体鳞伤，但到后来，那些受伤的地方会变得更坚强。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_6470_2",
+          "sentence": "For what do we live, but to make sport for our neighbours, and laugh at them in our turn?",
+          "translation": "我们活着是为了什么？不就是给邻居当笑柄，再反过来笑他们。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_6470_3",
+          "sentence": "You have to do everything you can. You have to work your hardest. And if you do, if you stay positive, then you have a shot at a silver lining.",
+          "translation": "你需要尽你所能，最大限度地去努力。只要你这么做，只要你能保持乐观，你就会看见乌云背后的幸福线。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_051",
+      "word": "her",
+      "ipa": "hə(r)",
+      "partOfSpeech": "n.",
+      "meaning": "(she的宾格)她,(she的所有格)她的,她，指某个国家，（一艘）船",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_41835_1",
+          "sentence": "Somehow Karin managed to cope with the demands of her career.",
+          "translation": "卡琳设法达到了其职业的要求。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_41835_2",
+          "sentence": "In her spare time she read books on cooking.",
+          "translation": "业余时间里她看一些烹饪方面的书籍。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_41835_3",
+          "sentence": "I recall many discussions with her on these and kindred topics.",
+          "translation": "我回想起多次同她就这些问题及类似话题进行的讨论。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_052",
+      "word": "one",
+      "ipa": "wʌn",
+      "partOfSpeech": "n.",
+      "meaning": "num.（数字）一,一个,（基数）一，第一\nn.一个人,一点钟,一体,独一\npron.一个人,任何人,本人，人家,东西\nadj.某一个的,一体的,一方的",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_64197_1",
+          "sentence": "I have $100m hidden away where no one will ever find it.",
+          "translation": "我把1亿美元藏到了一个永远没人会找到的地方。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_64197_2",
+          "sentence": "\"One thing you can never insure against is corruption among your staff.\"—\"Agreed.\"",
+          "translation": "“永远也防不胜防的就是员工内部的贪污腐败。”——“同意。”",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_64197_3",
+          "sentence": "The room was quiet; no one volunteered any further information.",
+          "translation": "房间很安静，无人主动提供更多的信息。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_053",
+      "word": "oh",
+      "ipa": "əʊ",
+      "partOfSpeech": "",
+      "meaning": "int.（表示恐惧、惊讶、疑虑等）噢,啊,哎呀,冠于人名前，起呼语作用",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_63946_1",
+          "sentence": "He goes to me: \"Oh, what do you want?\"",
+          "translation": "他问我：“哦，你想要什么？”",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_63946_2",
+          "sentence": "The policeman smiled at her. \"Pretty dog.\"— \"Oh well, thank you.\"",
+          "translation": "警察冲她笑了笑，“这狗真漂亮。”——“哦，谢谢。”",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_63946_3",
+          "sentence": "I've been here, oh, since the end of June.",
+          "translation": "我是，呃，6月底来到这里的。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_054",
+      "word": "got",
+      "ipa": "gɒt",
+      "partOfSpeech": "v.",
+      "meaning": "得到(get的过去式和过去分词),抓住,说服,受到（惩罚等）",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_38938_1",
+          "sentence": "I distinctly remember wishing I had not got involved.",
+          "translation": "我清楚地记得希望自己没有被牵扯进去。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_38938_2",
+          "sentence": "I got quite a lot of ribbing from my team-mates.",
+          "translation": "队友们经常开我的玩笑。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_38938_3",
+          "sentence": "He got out of bed and pulled on his bathrobe.",
+          "translation": "他起床后穿上了晨衣。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_055",
+      "word": "now",
+      "ipa": "naʊ",
+      "partOfSpeech": "n.",
+      "meaning": "现在,其时,立刻,（改变话题或要对方做某事前，引起对方注意）喂\nadj.现在的,当今的,现任的\nn.现在,目前,目前\nconj.由于,既然",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_63049_1",
+          "sentence": "Husband and wife are now taxed separately on their incomes.",
+          "translation": "现在夫妻双方分别按各自的收入纳税。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_63049_2",
+          "sentence": "A journalist all his life, he's now brought out a book.",
+          "translation": "他当了一辈子新闻记者，如今已出了一本书。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_63049_3",
+          "sentence": "He will now face a disciplinary hearing for having an affair.",
+          "translation": "他因有外遇而要面临纪律听证会的裁决。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_056",
+      "word": "come",
+      "ipa": "kʌm",
+      "partOfSpeech": "vi.",
+      "meaning": "来,开始,出现,发生\nvt.做,装扮…的样子,将满（…岁）\nint.嗨！",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_18287_1",
+          "sentence": "We'll go to a meeting in Birmingham and come straight back.",
+          "translation": "我们将去伯明翰参加会议，然后马上回来。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_18287_2",
+          "sentence": "Come along, lad. Time for you to get home.",
+          "translation": "来吧，小伙子。你该回家了。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_18287_3",
+          "sentence": "The news will come as a great relief to the French authorities.",
+          "translation": "这个消息会让法国当局大大松一口气。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_057",
+      "word": "how",
+      "ipa": "haʊ",
+      "partOfSpeech": "n.",
+      "meaning": "怎样,健康状况如何,到何种地步,以任何方式\nn.方法,方式",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_43455_1",
+          "sentence": "No matter where you go in life or how old you get, there's always something new to learn about. After all, life is full of surprises.",
+          "translation": "不管你生活在哪里，你有多少岁，总有新东西要学习，毕竟，生活总是充满惊喜。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_43455_2",
+          "sentence": "I know how to darn, and how to sew a button on.",
+          "translation": "我会打补丁，缝纽扣。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_43455_3",
+          "sentence": "You must have noticed how tired he sometimes looks.",
+          "translation": "你一定注意到他有时候显得特别疲惫。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_058",
+      "word": "well",
+      "ipa": "wel",
+      "partOfSpeech": "n.",
+      "meaning": "好,很,好意地,高高兴兴地\nadj.健康的,井的,良好的,恰当的\nint.（用于表示惊讶，疑虑，接受等）\nn.泉,源泉,水井\nvi.（液体）涌出,流出,涌流,涌上\nvt.涌出，喷出",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": []
+    },
+    {
+      "id": "word_059",
+      "word": "yeah",
+      "ipa": "jeə",
+      "partOfSpeech": "v.",
+      "meaning": "( yes的俗音),（用于表示对后说的话不相信）,（用于作出回应）哦,是",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_103191_1",
+          "sentence": "And you just like a docile yeanling.",
+          "translation": "而你就像一只温顺的小绵羊.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_103191_2",
+          "sentence": "The trees come up to my window like the yeanling voice of the dumb earth.",
+          "translation": "绿树长到了我的窗前,仿佛是无言的大地发出饥渴的声音.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_060",
+      "word": "his",
+      "ipa": "hɪz",
+      "partOfSpeech": "n.",
+      "meaning": "(he的所有格)他的,(he的物主代词)他的东西\ndet.属于他的，用于名词前,自己的,指某人的,上帝的",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_42506_1",
+          "sentence": "His hands were too weak to cock his revolver.",
+          "translation": "他的手没劲儿，扳不动左轮手枪的扳机。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_42506_2",
+          "sentence": "Barry had his nose put out of joint by Lucy's aloof sophistication.",
+          "translation": "露西的冷淡与世故使得巴里十分不快。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_42506_3",
+          "sentence": "He finished his conversation and stood up, looking straight at me.",
+          "translation": "他说完话站起来，直视着我。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_061",
+      "word": "want",
+      "ipa": "wɒnt",
+      "partOfSpeech": "n.",
+      "meaning": "想要,希望,打算,需要…在场\nn.需要的东西,缺少,贫穷",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_101027_1",
+          "sentence": "... ='class2'>You",
+          "translation": "“ 你老缠着我, 迈克, ” 他说, “ 你要在这儿的话,你就得听听你不想听的事. ”",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_101027_2",
+          "sentence": "If you wanta knighthood, you might as well cry for the moon.",
+          "translation": "你若想获得爵士头衔, 简直形同海底捞月.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_101027_3",
+          "sentence": "George Woolf: Wanta know what I think?",
+          "translation": "乔治·沃尔芙: 想知道我在想什么 吗 ?",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_062",
+      "word": "good",
+      "ipa": "gʊd",
+      "partOfSpeech": "n.",
+      "meaning": "好的,优秀的,有益的,漂亮的，健全的\nn.好处，利益,善良,善行,好人\nadv.同well",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_38834_1",
+          "sentence": "Remember, keep a positive attitude and good things will happen.",
+          "translation": "记住：保持乐观的心态，好事自然会发生。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_38834_2",
+          "sentence": "Do not wait for good things to happen to you. You need to walk towards happiness.",
+          "translation": "不要等待好事降临，你要向幸福进发。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_38834_3",
+          "sentence": "Good luck is when an opportunity comes along and you're prepared for it.",
+          "translation": "好运就是当机会来临时，你早已做好了准备。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_063",
+      "word": "think",
+      "ipa": "θɪŋk",
+      "partOfSpeech": "n.",
+      "meaning": "想,思索,以为,看待\nvi.思辩,考虑,构想,回忆\nadj.深思的,供思考的\nn.想,想法",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_92618_1",
+          "sentence": "Such an idea was scarcely thinkable ten years ago.",
+          "translation": "十年前，这样的想法几乎是难以想象的。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_92618_2",
+          "sentence": "I'm sorry to say her idea is hardly thinkable.",
+          "translation": "对不起,她的想法是几乎不可想像的.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_92618_3",
+          "sentence": "War between big powers would once again become thinkable.",
+          "translation": "大国之间的战争将重新成为可能.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_064",
+      "word": "as",
+      "ipa": "əz",
+      "partOfSpeech": "n.",
+      "meaning": "同样地，一样地,例如\nprep.作为，以…的身份,如同\nconj.像，像…一样,由于,同时，当…时,尽管\nn.阿斯（古罗马重量单位，约373克）",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_5928_1",
+          "sentence": "Failure is never quite so frightening as regret.",
+          "translation": "比失败更令人恐惧的是懊悔。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_5928_2",
+          "sentence": "English has hurt me a thousand times, but I still regard it as my first love.",
+          "translation": "英语伤我千百遍，我待英语如初恋。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_5928_3",
+          "sentence": "The Koran recommends fasting as a penance before pilgrimages.",
+          "translation": "《古兰经》劝告人们在朝圣前斋戒，以作为一种补赎。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_065",
+      "word": "see",
+      "ipa": "si:",
+      "partOfSpeech": "n.",
+      "meaning": "& vi.看见,领会，理解,查看,参观\nn.主教教区,主教权限,牧座",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_81969_1",
+          "sentence": "Same faction players in stealth are seeable by any other player of that faction.",
+          "translation": "潜行玩家对同阵营的其它玩家可见.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_066",
+      "word": "did",
+      "ipa": "dɪd",
+      "partOfSpeech": "v.",
+      "meaning": "做( do的过去式),干,学习,研究",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_25175_1",
+          "sentence": "He did not like to be caught out on details.",
+          "translation": "他不喜欢在细节上被人抓住把柄。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_25175_2",
+          "sentence": "Well, at any rate, let me thank you for all you did.",
+          "translation": "好吧，不管怎样，还是要感谢你所做的一切。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_25175_3",
+          "sentence": "The blame for the Charleston fiasco did not lie with him.",
+          "translation": "查尔斯顿惨败错不在他。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_067",
+      "word": "let",
+      "ipa": "let",
+      "partOfSpeech": "",
+      "meaning": "允许，任由,让，随,假设,出租",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_52830_1",
+          "sentence": "Well, at any rate, let me thank you for all you did.",
+          "translation": "好吧，不管怎样，还是要感谢你所做的一切。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_52830_2",
+          "sentence": "I let the horse drop his head to crop the spring grass.",
+          "translation": "我让马低下头啃吃春天的青草。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_52830_3",
+          "sentence": "If they value these data, let them pay for them.",
+          "translation": "他们要是看重这些数据，就让他们出钱买。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_068",
+      "word": "who",
+      "ipa": "hu:",
+      "partOfSpeech": "n.",
+      "meaning": "谁,什么人,关系代词，有先行词,孰",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_101898_1",
+          "sentence": "Slow down! Whoa!",
+          "translation": "慢点！停！",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_101898_2",
+          "sentence": "\"Whoa, I'm goin\" to Barbay-dos!' ran the jaunty lyrics of a 1970s hit song.",
+          "translation": "“喔，我要去巴巴多斯!”一首20世纪70年代流行歌曲这样欢快地唱道。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_101898_3",
+          "sentence": "Whoa, that's a nasty burn you got on your ear.",
+          "translation": "噢, 你就是用这种肮脏方式上车的.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_069",
+      "word": "from",
+      "ipa": "frəm",
+      "partOfSpeech": "prep.",
+      "meaning": "（表示时间）从…,（表示原因）因为,（表示来源）来自…,（表示分离）与…分离[隔开]",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_36201_1",
+          "sentence": "He knew what he wanted to do from the age of 14.",
+          "translation": "他14岁起就知道自己日后干什么了。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_36201_2",
+          "sentence": "He was fired from his job after roughing up a colleague.",
+          "translation": "他因为对一位同事动粗而被开除了。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_36201_3",
+          "sentence": "I got quite a lot of ribbing from my team-mates.",
+          "translation": "队友们经常开我的玩笑。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_070",
+      "word": "why",
+      "ipa": "waɪ",
+      "partOfSpeech": "n.",
+      "meaning": "（用于问句）为什么,为何,（反问，表示不必）何必,（说明理由）为什么\nint.呵唷，哎呀，嗨\nn.理由,原因,说明,难解的问题",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": []
+    },
+    {
+      "id": "word_071",
+      "word": "will",
+      "ipa": "wɪl",
+      "partOfSpeech": "n.",
+      "meaning": "愿意,意志（力）,[法]遗嘱\nvt.决心要,将（财产等）遗赠某人,用意志力驱使（某事发生）\nvi.愿意， 希望， 想要\naux.将，将会,会，要",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_102054_1",
+          "sentence": "Indeed, there is a succession here, from Mrs Stowe to Jewett and then to Willa Cather.",
+          "translation": "说真的, 我们在这里可以看到, 从斯托夫人到朱厄特,再到威拉·凯瑟是一脉相承的.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_102054_2",
+          "sentence": "Willa Cather ( 1873－1947 ) is one of the famous women writers in American modern literary history.",
+          "translation": "薇拉·凯瑟( Willa SibertCather,1873---1947 ) 是美国现代著名的女作家.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_102054_3",
+          "sentence": "Chapter Two Willa Cather's concept of ecological ethics in O Pioneers! \"",
+          "translation": "第二章探索了小说中所显现出的生态伦理思想.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_072",
+      "word": "had",
+      "ipa": "həd",
+      "partOfSpeech": "v.",
+      "meaning": "有（ have的过去式和过去分词 ）,（亲属关系中）接受,拿,买到",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_40160_1",
+          "sentence": "The house seemed muted, hushed as if it had been deserted.",
+          "translation": "房子里似乎悄然无声，安静得好像已经没人在住一样。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_40160_2",
+          "sentence": "I had obtained the authentic details about the birth of the organization.",
+          "translation": "我已经掌握了有关该组织诞生的可靠的详细资料。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_40160_3",
+          "sentence": "Barry had his nose put out of joint by Lucy's aloof sophistication.",
+          "translation": "露西的冷淡与世故使得巴里十分不快。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_073",
+      "word": "when",
+      "ipa": "wen",
+      "partOfSpeech": "n.",
+      "meaning": "什么时候,（用于时间的表达方式之后）在那时,其时,当时\nconj.在…时,既然,如果\npron.什么时候,那时\nn.时间，时候,日期,场合",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": []
+    },
+    {
+      "id": "word_074",
+      "word": "going",
+      "ipa": "ˈgəʊɪŋ",
+      "partOfSpeech": "n.",
+      "meaning": "出行，离去,出发,行为,工作情况\nadj.活着的，现在的,进行中的，营业中的,现行的,流行中的\nv.进行(go的现在分词)",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_38733_1",
+          "sentence": "They were going to sail around the little island, against the tide.",
+          "translation": "他们打算绕着小岛逆潮航行。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_38733_2",
+          "sentence": "She's going to be fine. She always was pretty strong.",
+          "translation": "她会好的。她一直都很强壮。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_38733_3",
+          "sentence": "It's an uphill battle but I think we're going to win.",
+          "translation": "虽然这是一场艰苦的斗争，但我相信我们会取得胜利。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_075",
+      "word": "time",
+      "ipa": "taɪm",
+      "partOfSpeech": "n.",
+      "meaning": "时间,时刻,时代,次\nvt.为…安排时间,测定…的时间,调准（机械的）速度,拨准（钟、表）的快慢\nvi.合拍,和谐,打拍子\nadj.定时的,定期的,[美国英语]分期（付款）的\nint.[体育]时间到，（一场或一局等的）比赛时限，暂停",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": []
+    },
+    {
+      "id": "word_076",
+      "word": "back",
+      "ipa": "bæk",
+      "partOfSpeech": "n.",
+      "meaning": "背，背部,背面，反面,后面，后部,（椅子等的）靠背\nvt.使后退,支持,加背书于,下赌注于\nvi.后退,倒退\nadj.背部的,后面的,以前的,拖欠的\nadv.以前,向后地",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_7556_1",
+          "sentence": "If you love life, life will love you back.",
+          "translation": "热爱生活，生活也会厚爱你。(Arthur Rubinstein)",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_7556_2",
+          "sentence": "We'll go to a meeting in Birmingham and come straight back.",
+          "translation": "我们将去伯明翰参加会议，然后马上回来。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_7556_3",
+          "sentence": "The rescuers were beaten back by strong winds and currents.",
+          "translation": "救援人员因风浪太大而被迫中断工作。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_077",
+      "word": "an",
+      "ipa": "ən",
+      "partOfSpeech": "art.",
+      "meaning": "一（在元音字母前代替不定代词a）,一任一某一,一个",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_3510_1",
+          "sentence": "Beauty is an attitude. It has nothing to do with age.",
+          "translation": "美是一种态度，与年龄无关。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_3510_2",
+          "sentence": "Good luck is when an opportunity comes along and you're prepared for it.",
+          "translation": "好运就是当机会来临时，你早已做好了准备。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_3510_3",
+          "sentence": "Here's an inside tip: The faster you rise, the harder you fall.",
+          "translation": "给你一个小忠告：爬得越快，摔得越疼。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_078",
+      "word": "them",
+      "ipa": "ðəm",
+      "partOfSpeech": "n.",
+      "meaning": "他们,她们,它们",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_92325_1",
+          "sentence": "Sie ist auch bei uns ein zentrales Thema.",
+          "translation": "构建和谐社会在我们国家也是一个中心话题.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_92325_2",
+          "sentence": "Antike Ku t ist sein lie tes Thema . Auf dem Gebiet ist er enorm beschlagen.",
+          "translation": "他在自然科学方面是个专家.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_079",
+      "word": "yes",
+      "ipa": "jes",
+      "partOfSpeech": "n.",
+      "meaning": "是,（表示刚想起某事）哦,（表示不相信某人所言）真的吗,（鼓励某人继续讲）往下说\nn.“是”，“行”,同意，答应,肯定的回答,赞成票",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": []
+    },
+    {
+      "id": "word_080",
+      "word": "man",
+      "ipa": "mæn",
+      "partOfSpeech": "n.",
+      "meaning": "男人,人类,男子汉,雇工\nvt.使振作,操纵,给…配置人员,在…就位\nint.（表示惊讶、气愤等）嘿，天哪",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_55545_1",
+          "sentence": "She ran away with a man called McTavish last year.",
+          "translation": "去年，她和一个叫麦克塔维什的男人私奔了。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_55545_2",
+          "sentence": "Nora was deflowered by a man who worked in a soda-water factory.",
+          "translation": "在汽水厂工作的一个男子夺去了诺拉的童贞。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_55545_3",
+          "sentence": "He could just about see the little man behind the counter.",
+          "translation": "他勉强能看到柜台后面的小个子男人。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_081",
+      "word": "okay",
+      "ipa": "ˌəuˈkei",
+      "partOfSpeech": "n.",
+      "meaning": "认可，同意\nv.赞成或同意,批准\nint.行，用以表达准许或同意之意\nadj.可以，不错",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_63989_1",
+          "sentence": "\"I think I hear the telephone ringing.\"—\"Okay, I can take a hint.\"",
+          "translation": "“我想我听到电话铃在响。”——“好的，我明白你的意思了。”",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_63989_2",
+          "sentence": "\"Are you okay?\" I asked. She nodded and smiled.",
+          "translation": "“你没事吧?”我问她.她点点头,笑了.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_63989_3",
+          "sentence": "\"Let me in, Di.\" — \"Okay. Just a minute.\"",
+          "translation": "“让我进来，迪。”——“好的。稍等一下。”",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_082",
+      "word": "d",
+      "ipa": "",
+      "partOfSpeech": "",
+      "meaning": "英语字母表中的第四个字母,（学生成绩）丁",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_22449_1",
+          "sentence": "Butter, margarine, and oily fish are all good sources of vitamin D.",
+          "translation": "黄油、人造黄油和多脂鱼都含有丰富的维生素D。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_22449_2",
+          "sentence": "In figure 24 \"D\" denotes quantity demanded and \"S\" denotes quantity supplied.",
+          "translation": "在图24中，D代表需求量而S代表供应量。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_22449_3",
+          "sentence": "Milk, oily fish and egg all contain vitamin D.",
+          "translation": "牛奶、油性鱼类和鸡蛋都含有维生素D.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_083",
+      "word": "look",
+      "ipa": "lʊk",
+      "partOfSpeech": "n.",
+      "meaning": "& vi.看，瞧\nvi.注意,面向,寻找,看起来好像\nn.看,（尤指吸引人的）相貌,眼神,样子\nint.（插话或唤起注意）喂，听我说",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_54216_1",
+          "sentence": "It was just then that I chanced to look round.",
+          "translation": "就在那时，我恰好环顾了下四周。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_54216_2",
+          "sentence": "She had the look of someone deserted and betrayed.",
+          "translation": "她一副遭人遗弃和背叛的样子。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_54216_3",
+          "sentence": "Does this dress make my legs look too stumpy?",
+          "translation": "这条裙子会使我的腿看上去又短又粗吗？",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_084",
+      "word": "gonna",
+      "ipa": "ˈgənə",
+      "partOfSpeech": "n.",
+      "meaning": "<美>将要",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_38822_1",
+          "sentence": "Your mama and I are gonna miss you at Christmas.",
+          "translation": "我和你妈妈过圣诞节的时候会想念你的。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_38822_2",
+          "sentence": "From now on, I'm gonna say yes--yes to love, yes to adventure, yes to life, whatever it maybe, the answer's going to be yes.",
+          "translation": "从今天起，我要积极接受一切，接受爱，迎接挑战，拥抱生活，不管什么事，我都会勇敢地去接受。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_38822_3",
+          "sentence": "I'm gonna write you a long, gooey letter.",
+          "translation": "我要给你写一封情意绵绵的长信。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_085",
+      "word": "take",
+      "ipa": "teɪk",
+      "partOfSpeech": "n.",
+      "meaning": "拿，取,采取,接受（礼物等）,耗费（时间等）\nvi.拿,获得\nn.镜头,看法,收入额,场景",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_90709_1",
+          "sentence": "The strike has taken on overtones of a civil rights campaign.",
+          "translation": "罢工带上了民权运动的意味。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_90709_2",
+          "sentence": "Rather taken aback by such forwardness, I slammed down the phone.",
+          "translation": "如此无礼的言语让我火冒三丈，我砰的一下把电话挂了。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_90709_3",
+          "sentence": "They were taken to hospital suffering from smoke inhalation.",
+          "translation": "他们因吸入大量烟尘被送往医院。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_086",
+      "word": "would",
+      "ipa": "wʊd",
+      "partOfSpeech": "v.",
+      "meaning": "aux.将，将要,愿意,会，打算,大概\nv.(will 的过去式，用于转述)将",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_102667_1",
+          "sentence": "\" And now what wouldst thou with me touching this man? \"",
+          "translation": "“ 那么,如今你要我对那个人怎么办 呢 ? ”",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_102667_2",
+          "sentence": "\" Wouldst thou avenge thyself on the innocent babe? \" whispered she. \"",
+          "translation": "\" 你打算在这无辜的婴儿身上发泄你的仇恨 吗 ? \" 她悄声说.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_102667_3",
+          "sentence": "Thou wouldst not, yonder, in the forest!",
+          "translation": "那天在那树林里你不肯亲我!",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_087",
+      "word": "were",
+      "ipa": "wə(r)",
+      "partOfSpeech": "",
+      "meaning": "be的过去时复数和第二人称单数形式,有时代替 was,用于条件从句、动词 wish 之后等",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": []
+    },
+    {
+      "id": "word_088",
+      "word": "been",
+      "ipa": "bi:n",
+      "partOfSpeech": "v.",
+      "meaning": "用来表示某人或某物即主语本身，用来表示某人或某物属于某一群体或有某种性质（ be的过去分词 ）,在，存在,不受干扰,去过了,be的过去分词",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_8907_1",
+          "sentence": "The house seemed muted, hushed as if it had been deserted.",
+          "translation": "房子里似乎悄然无声，安静得好像已经没人在住一样。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_8907_2",
+          "sentence": "It had once been the home of a wealthy nobleman.",
+          "translation": "这里曾是一个有钱贵族的宅邸。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_8907_3",
+          "sentence": "These files have been zipped up to take up less disk space.",
+          "translation": "这些文档已经进行了压缩，以节省磁盘空间。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_089",
+      "word": "where",
+      "ipa": "weə(r)",
+      "partOfSpeech": "n.",
+      "meaning": "哪里，在哪里,到哪里,某种情势或位置\nconj.在…的地方\nn.地方，场所\npron.哪里",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_101717_1",
+          "sentence": "I don't know whereabouts the border will be drawn ; whereabout do you live?",
+          "translation": "我不知道国界线会划在哪里; 你住在哪里?",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_090",
+      "word": "or",
+      "ipa": "ɔ:(r)",
+      "partOfSpeech": "n.",
+      "meaning": "或，或者,还是,不然，否则,左右\nprep.<古、诗>在…之前，比…更早\nn.[纹章]黑金色、黑色",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_64492_1",
+          "sentence": "No matter where you go in life or how old you get, there's always something new to learn about. After all, life is full of surprises.",
+          "translation": "不管你生活在哪里，你有多少岁，总有新东西要学习，毕竟，生活总是充满惊喜。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_64492_2",
+          "sentence": "Remember, happiness doesn't depend upon who you are or what you have; it depends solely upon what you think.--Dale Carnegie",
+          "translation": "请记住，幸福不在于你是谁或者你拥有什么，而仅仅取决于你的心态！",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_64492_3",
+          "sentence": "If your skin becomes red, sore or very scaly, consult your doctor.",
+          "translation": "如果皮肤发红、瘙痒或脱皮，要向医生咨询。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_091",
+      "word": "some",
+      "ipa": "səm",
+      "partOfSpeech": "n.",
+      "meaning": "一些,某个,大约,相当多的\npron.一些,若干,其中的一部分,（数量不确切时用）有些人\nadv.非常,相当,<美>稍微",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_85748_1",
+          "sentence": "Has somebody helped himself to some film star's diamonds?",
+          "translation": "有人偷了某个影星的钻石了吗?",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_85748_2",
+          "sentence": "Somebody else lent me a pump and helped me mend the puncture.",
+          "translation": "别人借给我一个打气筒，又帮我补好了轮胎。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_85748_3",
+          "sentence": "If I reduced somebody to tears I'd be mortified.",
+          "translation": "如果我把谁弄哭了，我会尴尬的。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_092",
+      "word": "us",
+      "ipa": "əs",
+      "partOfSpeech": "n.",
+      "meaning": "我们",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_98872_1",
+          "sentence": "They swore their allegiance to the USA and received their naturalization papers.",
+          "translation": "他们起誓忠诚于美国，随后就接到了批准他们入籍的文件。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_98872_2",
+          "sentence": "That's a general British failing. In the USA it's quite different.",
+          "translation": "那是英国人的普遍缺点。在美国，情况就大不一样了。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_98872_3",
+          "sentence": "I bought a copy of \"USA Today\" from a street-corner machine.",
+          "translation": "我从街角的自动售卖机买了一份《今日美国》。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_093",
+      "word": "tell",
+      "ipa": "tel",
+      "partOfSpeech": "n.",
+      "meaning": "告诉，说,辨别,吩咐,讲述\nvt.& vi.分辨，辨别,告诉，吩咐,泄漏,保证\nvi.泄密，告发,（颜色、声音等）显示,识别\nn.[考古学]（古代村落遗址堆积而成的）台形土墩,[方言]讲的话,谈话,传闻",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_91607_1",
+          "sentence": "The murderer was given away by a few tellable bloodstains on his car seat.",
+          "translation": "谋杀犯是因汽车座位上留下的几滴血迹露出马脚而被揭发出来.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_094",
+      "word": "could",
+      "ipa": "kəd",
+      "partOfSpeech": "",
+      "meaning": "aux.“can”的过去式,能够，打算,用于假设语气的条件句,用于虚拟语气的结论句",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_20507_1",
+          "sentence": "He could just about see the little man behind the counter.",
+          "translation": "他勉强能看到柜台后面的小个子男人。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_20507_2",
+          "sentence": "So, if we could just move onto something else?",
+          "translation": "那么我们可不可以干脆谈点别的？",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_20507_3",
+          "sentence": "Northbridge is a cool, calculating and clever criminal who could strike again.",
+          "translation": "诺思布里奇是个头脑冷静、诡计多端、阴险狡诈的罪犯，他可能还会犯案。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_095",
+      "word": "hey",
+      "ipa": "heɪ",
+      "partOfSpeech": "n.",
+      "meaning": "int.（用以引起注意，表示惊异或询问）嘿，喂,你好！（表示问候）,咳\nn.干草（等于hay）",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_42224_1",
+          "sentence": "\"Hey, I don't know what you're talking about,\" Russo objected.",
+          "translation": "“喂，我不知道你在说些什么，”拉索反驳道。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_42224_2",
+          "sentence": "\"Hey, Judith,\" he resumed, \"tell me all about yourself.\"",
+          "translation": "“嘿，朱迪思，”他接着说，“跟我谈谈你自己吧。”",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_42224_3",
+          "sentence": "Hey, I know what, I'll get a bumper sticker printed up.",
+          "translation": "嘿，有了，我会找人印刷一些保险杠贴纸。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_096",
+      "word": "say",
+      "ipa": "seɪ",
+      "partOfSpeech": "n.",
+      "meaning": "说， 讲,表明，宣称,假设,约莫\nvt.表明,念,说明,比方说\nn.发言权,说话,要说的话,发言权",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_80881_1",
+          "sentence": "Saya will start teaching full - time after passing a trial Tokyo primary school.",
+          "translation": "如果通过试用期,她将开始她的全职教师生涯.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_80881_2",
+          "sentence": "Tengku Adnan he said, saya bukan Perdana Menteri Malaysia lah, you know.",
+          "translation": "东姑安南他说, 我不是马来西亚首相啦, 你知道.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_80881_3",
+          "sentence": "Saya sungguh bahagia dapat menyatukan orang yang pada awalnya tidak saling mengenal.",
+          "translation": "我很开心,我可以让不认识的人联系起来.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_097",
+      "word": "then",
+      "ipa": "ðen",
+      "partOfSpeech": "v.",
+      "meaning": "那时,然后,那么,话说回来\nadj.当时的,那时的",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_92331_1",
+          "sentence": "Minor thenar - hitting is also called'side - hitting \" or \" cut - beating \".",
+          "translation": "小鱼际击法,又称“侧击法 ” 或 “ 切打法 ”.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_92331_2",
+          "sentence": "That is why often Anrou thenar can improve human immunity, strengthening the ability Yufeng cold reason.",
+          "translation": "这就是为什么常按揉大鱼际可提高人体免疫力, 增强御风抗寒能力的原因.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_92331_3",
+          "sentence": "While the thenar main points Governance disease cough, hemoptysis, sore throat , aphonia, and fever.",
+          "translation": "而鱼际穴主治疾病有咳嗽 、 咳血 、 咽喉肿痛、失音和发热.",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_098",
+      "word": "by",
+      "ipa": "baɪ",
+      "partOfSpeech": "v.",
+      "meaning": "在…旁边,表示方式,由于,经过\nadv.经过,表示保留或保存时用,短暂拜访",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_12616_1",
+          "sentence": "Doctors are complaining about being barraged by drug-company salesmen.",
+          "translation": "医生们抱怨他们疲于应付医药公司的销售人员。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_12616_2",
+          "sentence": "He was hand-picked for this job by the Admiral.",
+          "translation": "他是由海军上将精心挑选出来担任这项工作的。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_12616_3",
+          "sentence": "Barry had his nose put out of joint by Lucy's aloof sophistication.",
+          "translation": "露西的冷淡与世故使得巴里十分不快。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_099",
+      "word": "down",
+      "ipa": "daʊn",
+      "partOfSpeech": "n.",
+      "meaning": "（坐、倒、躺）下,向下,（表示范围或顺序的限度）下至\nprep.（从高处）向下,（表示位置）在…的下方,（表示方向）沿着…向下,（表示时间）自…以来\nadj.向下的,沮丧的,计算机或计算机系统停机,（以…）落后于对手的\nn.（鸟的）绒羽,绒毛,软毛,汗毛\nvt.放下,（尤指大口或快速地）喝下,使摔倒,击落（敌机等）\nvi.[常用于祈使句中]下去,下来,卧倒,下降",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_27218_1",
+          "sentence": "She dusted herself down and left to build her own career.",
+          "translation": "她重振旗鼓去开创自己的事业了。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_27218_2",
+          "sentence": "Try to support each other when one of you is feeling down.",
+          "translation": "当有人觉得情绪低落时，要努力相互打气。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_27218_3",
+          "sentence": "One of the office girls was down with the flu.",
+          "translation": "一位女职员得了流感。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "word_100",
+      "word": "little",
+      "ipa": "ˈlɪtl",
+      "partOfSpeech": "n.",
+      "meaning": "小的,琐碎的,娇小的,幼小的\nadv.不多，略微,少许，一点,短时间地\nn.（表示否定）微少,没有多少,短时间\ndet.（数量上）微少的，少到几乎没有的,（a little）少量的，一些",
+      "level": "core",
+      "frequency": 10,
+      "collocations": [],
+      "synonyms": [],
+      "examples": [
+        {
+          "id": "ex_53775_1",
+          "sentence": "It's not about making the amazing saves. It's the little things and small things that made great gatekeepers great.",
+          "translation": "伟大的门将不是靠神奇的扑救成就，而是靠注重小事和细节成功。（Tim Howard美国国家队门将）",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_53775_2",
+          "sentence": "He could just about see the little man behind the counter.",
+          "translation": "他勉强能看到柜台后面的小个子男人。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        },
+        {
+          "id": "ex_53775_3",
+          "sentence": "\"I wish I had a little brother,\" said Daphne wistfully.",
+          "translation": "“我希望有个小弟弟。”达夫妮伤感地说。",
+          "source": "IELTS Corpus",
+          "difficulty": 3,
+          "tags": []
+        }
+      ]
+    }
+  ]
+}
