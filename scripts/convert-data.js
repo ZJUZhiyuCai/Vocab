@@ -94,14 +94,62 @@ async function main() {
 
 /**
  * 提取雅思高频词汇
- * 这里简化处理：按频率排序，取前100个
- * 实际应该根据词书关联表提取
+ * 优化筛选逻辑，过滤简单词，保留真正有价值的雅思词汇
  */
 function extractIeltsWords(vocabulary, count) {
-  // 过滤掉频率为0的词
-  const validWords = vocabulary.filter(w => w.frequency > 0);
+  // 常见简单词黑名单（代词、介词、冠词、连词、常用动词等）
+  const simpleWordsBlacklist = new Set([
+    // 代词
+    'i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them',
+    'my', 'your', 'his', 'its', 'our', 'their', 'mine', 'yours', 'hers', 'ours', 'theirs',
+    'this', 'that', 'these', 'those', 'what', 'which', 'who', 'whom', 'whose',
+    // 介词
+    'in', 'on', 'at', 'to', 'for', 'of', 'with', 'from', 'by', 'about', 'as',
+    'into', 'through', 'during', 'before', 'after', 'above', 'below', 'between',
+    // 冠词
+    'a', 'an', 'the',
+    // 连词
+    'and', 'but', 'or', 'so', 'if', 'because', 'although', 'though', 'while',
+    // 常用动词
+    'is', 'am', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had',
+    'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'can',
+    'get', 'got', 'go', 'goes', 'went', 'come', 'comes', 'came', 'make', 'makes',
+    'see', 'saw', 'seen', 'know', 'knew', 'known', 'think', 'thought', 'take', 'took',
+    // 口语化词汇
+    'yeah', 'okay', 'gonna', 'wanna', 'gotta', 'kinda', 'sorta',
+    // 其他超简单词
+    'yes', 'no', 'not', 'very', 'more', 'most', 'some', 'any', 'all', 'each', 'every',
+    'both', 'few', 'many', 'much', 'such', 'own', 'same', 'so', 'than', 'too',
+    // 简单形容词和副词
+    'good', 'bad', 'big', 'small', 'long', 'short', 'high', 'low', 'right', 'wrong',
+    'well', 'just', 'like', 'time', 'back', 'look', 'down', 'off', 'out', 'up'
+  ]);
 
-  // 按频率降序排序
+  // 筛选有价值的词汇
+  const validWords = vocabulary.filter(w => {
+    // 频率必须在合理范围内（0.4-0.85），避开超高频基础词和低频生僻词
+    if (w.frequency <= 0.4 || w.frequency >= 0.85) return false;
+
+    // 单词长度 >= 6（过滤掉太短的词，要求更严格）
+    if (w.spelling.length < 6) return false;
+
+    // 单词长度 <= 15（过滤掉过长的词）
+    if (w.spelling.length > 15) return false;
+
+    // 不在黑名单中
+    if (simpleWordsBlacklist.has(w.spelling.toLowerCase())) return false;
+
+    // 必须是学术相关词性（名词、动词、形容词）
+    const validPos = ['n.', 'v.', 'vi.', 'vt.', 'adj.', 'adv.'];
+    const hasValidPos = validPos.some(pos => {
+      const paraphrase = w.paraphrase || '';
+      return paraphrase.includes(pos);
+    });
+
+    return hasValidPos;
+  });
+
+  // 按频率降序排序（高频在前）
   const sortedWords = validWords.sort((a, b) => b.frequency - a.frequency);
 
   // 取前N个

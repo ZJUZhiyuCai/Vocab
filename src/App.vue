@@ -27,11 +27,11 @@
       </div>
 
       <!-- 单词卡片 -->
-      <div v-if="currentWord" class="card animate-fade-in">
+      <div v-if="currentWord" class="card animate-fade-in flex flex-col" style="min-height: 520px;">
         <!-- 单词标题 -->
-        <div class="mb-6">
-          <h2 class="word-display mb-3">{{ currentWord.word }}</h2>
-          <div class="flex gap-4 text-sm text-gray-600">
+        <div class="mb-4">
+          <h2 class="word-display mb-2">{{ currentWord.word }}</h2>
+          <div class="flex gap-3 text-sm text-gray-600">
             <span v-if="currentWord.ipa">{{ currentWord.ipa }}</span>
             <span v-if="currentWord.partOfSpeech">{{ currentWord.partOfSpeech }}</span>
             <span v-if="currentWord.frequency" class="text-sage-500">
@@ -41,26 +41,26 @@
         </div>
 
         <!-- 释义 -->
-        <div class="mb-6">
-          <p class="text-gray-700">{{ currentWord.meaning }}</p>
+        <div class="mb-4 flex-shrink-0">
+          <p class="text-gray-700 text-sm leading-relaxed">{{ currentWord.meaning }}</p>
         </div>
 
         <!-- 语境例句 -->
-        <div v-if="currentWord.examples && currentWord.examples.length > 0" class="sentence-box">
-          <div class="text-sm text-gray-600 mb-2">📖 语境例句</div>
-          <p class="text-sentence text-gray-800">
+        <div v-if="currentWord.examples && currentWord.examples.length > 0" class="sentence-box flex-grow mb-4">
+          <div class="text-xs text-gray-600 mb-2">📖 语境例句</div>
+          <p class="text-sm text-gray-800 leading-relaxed mb-2">
             <span
               v-html="highlightWord(currentWord.examples[0].sentence, currentWord.word)"
             ></span>
           </p>
-          <p class="text-sm text-gray-500 mt-2">
+          <p class="text-xs text-gray-500">
             {{ currentWord.examples[0].translation }}
           </p>
         </div>
 
         <!-- 搭配 -->
-        <div v-if="currentWord.collocations && currentWord.collocations.length > 0" class="mb-6">
-          <div class="text-sm text-gray-600 mb-2">🔗 常用搭配</div>
+        <div v-if="currentWord.collocations && currentWord.collocations.length > 0" class="mb-4 flex-shrink-0">
+          <div class="text-xs text-gray-600 mb-2">🔗 常用搭配</div>
           <div class="flex flex-wrap gap-2">
             <span
               v-for="(collocation, index) in currentWord.collocations.slice(0, 3)"
@@ -72,8 +72,8 @@
           </div>
         </div>
 
-        <!-- 操作按钮 -->
-        <div class="flex gap-3 mt-6">
+        <!-- 操作按钮 - 固定在底部 -->
+        <div class="flex gap-3 mt-auto pt-4">
           <button
             @click="handleKnow"
             class="flex-1 btn btn-success"
