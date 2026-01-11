@@ -168,7 +168,6 @@ const nextQuestion = () => {
 
 const resetState = () => {
   answered.value = false
-  selectedAnswer.value = null
   userInput.value = ''
   showAnswer.value = false
 }

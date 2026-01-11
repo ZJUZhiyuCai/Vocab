@@ -6,29 +6,31 @@
       <div class="stats-overview">
         <div class="stat-card">
           <div class="stat-value">{{ learnedCount }}</div>
-          <div class="stat-label">学习过</div>
+          <div class="stat-label">📚 学习过</div>
         </div>
         <div class="stat-card">
           <div class="stat-value">{{ reviewAccuracy }}%</div>
-          <div class="stat-label">正确率</div>
+          <div class="stat-label">🎯 正确率</div>
         </div>
         <div class="stat-card">
           <div class="stat-value">{{ totalReviewed }}</div>
-          <div class="stat-label">复习次数</div>
+          <div class="stat-label">🔄 复习次数</div>
         </div>
       </div>
 
       <!-- 学习模式 -->
       <div class="mode-section">
-        <h2 class="section-title">学习模式</h2>
+        <h2 class="section-title">✨ 学习模式</h2>
         <p class="section-description">选择你的学习方式</p>
 
         <div v-if="learnedCount > 0" class="mode-options">
           <button @click="startSession('flashcard')" class="mode-card">
+            <div class="mode-emoji">🎴</div>
             <h3 class="mode-title">闪卡学习</h3>
             <p class="mode-desc">快速浏览单词，点击翻转查看释义</p>
           </button>
           <button @click="startSession('spelling')" class="mode-card">
+            <div class="mode-emoji">✍️</div>
             <h3 class="mode-title">拼写练习</h3>
             <p class="mode-desc">根据释义拼写单词，强化记忆</p>
           </button>
@@ -36,10 +38,10 @@
 
         <!-- 空状态 -->
         <div v-else class="empty-state">
-          <div class="empty-icon">—</div>
+          <div class="empty-icon">📝</div>
           <h3 class="empty-title">还没有学习过的单词</h3>
           <p class="empty-desc">先去今日学习页面学习一些新单词</p>
-          <button @click="$emit('navigate', 'today')" class="btn-primary">开始学习</button>
+          <button @click="$emit('navigate', 'today')" class="btn-primary">🚀 开始学习</button>
         </div>
       </div>
 
@@ -47,11 +49,11 @@
       <div class="list-section">
         <div class="list-header">
           <div>
-            <h2 class="section-title">单词列表</h2>
+            <h2 class="section-title">📖 单词列表</h2>
             <p class="section-description">查看所有学习过的单词</p>
           </div>
           <button @click="openWordList" class="btn-secondary">
-            查看列表
+            👁️ 查看列表
           </button>
         </div>
       </div>
@@ -281,12 +283,17 @@ const exitSession = () => {
   @apply p-6 rounded-lg border-2 border-gray-200;
   @apply transition-all duration-200;
   background-color: #fafafa;
+  @apply flex flex-col items-center text-center;
 }
 
 .mode-card:hover {
   border-color: #5c6b5c;
   background-color: #ffffff;
   box-shadow: 0 4px 12px rgba(92, 107, 92, 0.15);
+}
+
+.mode-emoji {
+  @apply text-5xl mb-3;
 }
 
 .mode-title {

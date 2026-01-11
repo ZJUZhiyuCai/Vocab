@@ -56,9 +56,9 @@
       </div>
 
       <!-- 测试结果 -->
-      <div v-else-if="testCompleted" class="result-section">
+      <div v-else-if="testCompleted" class="result-section" @click="selectedVocab = null">
         <div class="result-icon">🎯</div>
-        <h2 class="text-2xl font-bold text-sage-500 mb-4">测试完成</h2>
+        <h2 class="text-xl font-bold text-sage-500 mb-3">测试完成</h2>
 
         <div class="result-card">
           <div class="result-item">
@@ -75,13 +75,13 @@
           </div>
         </div>
 
-        <div class="recommended-section">
+        <div class="recommended-section" @click.stop>
           <h3 class="text-lg font-semibold text-sage-500 mb-3">📚 推荐词库</h3>
           <div class="vocab-list">
             <div
               v-for="vocab in recommendedVocabs"
               :key="vocab.id"
-              @click="selectVocab(vocab)"
+              @click.stop="selectVocab(vocab)"
               class="vocab-item"
               :class="{ 'selected': selectedVocab?.id === vocab.id }"
             >
@@ -390,180 +390,407 @@ const confirmSelection = () => {
 </script>
 
 <style scoped>
+/* 模态框 - 毛玻璃效果 */
 .vocab-test-modal {
-  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
 }
 
 .modal-content {
-  @apply bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8 max-h-[90vh] overflow-y-auto;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 42rem;
+  width: 100%;
+  padding: 1.5rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid #e8e0d8;
 }
 
-/* 进度条 */
+/* ===== 进度条 ===== */
 .progress-header {
-  @apply mb-6;
+  margin-bottom: 1.5rem;
 }
 
 .progress-info {
-  @apply flex justify-between items-center mb-2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.progress-info span:first-child {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.progress-info span:last-child {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #5c6b5c;
 }
 
 .progress-bar {
-  @apply w-full h-2 bg-gray-200 rounded-full overflow-hidden;
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #e8e0d8;
 }
 
 .progress-fill {
-  @apply h-full bg-sage-500 transition-all duration-300;
+  height: 100%;
+  transition: all 300ms ease-out;
+  background: linear-gradient(90deg, #7d8f7d 0%, #5c6b5c 100%);
 }
 
-/* 介绍部分 */
+/* ===== 介绍部分 ===== */
 .intro-section {
-  @apply text-center py-8;
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .intro-icon {
-  @apply text-6xl mb-4;
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
-/* 题目部分 */
+.intro-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #3d473d;
+}
+
+.intro-list {
+  text-align: left;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.intro-list p {
+  margin-bottom: 0.75rem;
+  color: #374151;
+  font-size: 1rem;
+  line-height: 1.625;
+}
+
+/* ===== 题目部分 ===== */
 .question-section {
-  @apply text-center py-8;
+  text-align: center;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .word-display {
-  @apply mb-8;
+  margin-bottom: 2rem;
 }
 
+.word-display h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #5c6b5c;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+
+.word-display p {
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* ===== 答题按钮 ===== */
 .answer-buttons {
-  @apply flex gap-4 justify-center mb-6;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
 .answer-btn {
-  @apply px-12 py-6 rounded-xl text-white text-lg font-medium min-w-[150px];
-  @apply transition-all duration-200;
-  @apply flex flex-col items-center;
+  padding: 1.25rem 2.5rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  min-width: 140px;
+  transition: all 150ms ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.answer-btn:hover {
-  @apply transform scale-105;
+.answer-btn:active {
+  transform: scale(0.97);
+}
+
+.answer-btn.btn-success {
+  background: linear-gradient(135deg, #5c7d5c 0%, #4a634a 100%);
+}
+
+.answer-btn.btn-success:hover {
+  box-shadow: 0 4px 12px rgba(92, 125, 92, 0.25);
+  transform: translateY(-1px);
+}
+
+.answer-btn.btn-error {
+  background: linear-gradient(135deg, #b86c6c 0%, #a35a5a 100%);
+}
+
+.answer-btn.btn-error:hover {
+  box-shadow: 0 4px 12px rgba(184, 108, 108, 0.25);
+  transform: translateY(-1px);
 }
 
 .test-tip {
-  @apply text-center;
+  text-align: center;
 }
 
-/* 结果部分 */
+.test-tip p {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* ===== 结果部分 ===== */
 .result-section {
-  @apply text-center;
+  text-align: center;
 }
 
 .result-icon {
-  @apply text-6xl mb-4;
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.result-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #3d473d;
 }
 
 .result-card {
-  @apply bg-gradient-to-br from-sage-50 to-blue-50 rounded-xl p-6 mb-6;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #f0f4f0 0%, #dce8dc 100%);
+  border: 1px solid #c0d5c0;
 }
 
 .result-item {
-  @apply flex justify-between items-center mb-3 last:mb-0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #dce8dc;
+}
+
+.result-item:last-child {
+  border-bottom: none;
 }
 
 .result-label {
-  @apply text-gray-600;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .result-value {
-  @apply text-lg font-bold text-sage-600;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3d473d;
 }
 
+/* ===== 推荐词库区域 ===== */
 .recommended-section {
-  @apply text-left mb-6;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.recommended-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3d473d;
+  margin-bottom: 0.75rem;
 }
 
 .vocab-list {
-  @apply space-y-2 mb-4;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .vocab-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .vocab-item {
-  @apply flex items-center gap-3 p-4 rounded-lg border-2 border-gray-200 cursor-pointer;
-  @apply transition-all duration-200;
-  background-color: #fafafa;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+  position: relative;
+  overflow: hidden;
+  background-color: #faf8f6;
+  border: 2px solid #e8e0d8;
+}
+
+.vocab-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, #f5f7f5, transparent);
+  opacity: 0;
+  transition: opacity 150ms;
 }
 
 .vocab-item:hover {
-  border-color: #5c6b5c;
-  box-shadow: 0 2px 8px rgba(92, 107, 92, 0.15);
+  border-color: #9caf9c;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.vocab-item:hover::before {
+  opacity: 1;
 }
 
 .vocab-item.selected {
   border-color: #5c6b5c;
-  background-color: #f0f5f0;
+  background: linear-gradient(135deg, #f0f4f0 0%, #e8f0e8 100%);
   box-shadow: 0 0 0 3px rgba(92, 107, 92, 0.1);
 }
 
 .vocab-icon {
-  @apply text-3xl;
+  font-size: 1.5rem;
+  flex-shrink: 0;
 }
 
 .vocab-info {
-  @apply flex-1;
+  flex: 1;
+  min-width: 0;
 }
 
 .vocab-name {
-  @apply font-semibold text-gray-700;
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 0.875rem;
 }
 
 .vocab-meta {
-  @apply flex gap-2 mt-1;
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.125rem;
+}
+
+.vocab-meta span {
+  font-size: 0.75rem;
+}
+
+.vocab-meta span:first-child {
+  color: #5c6b5c;
+}
+
+.vocab-meta span:last-child {
+  color: #9ca3af;
 }
 
 .vocab-recommend {
-  @apply flex items-center;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .recommend-badge {
-  @apply px-2 py-1 bg-sage-100 text-sage-700 text-xs rounded-full font-medium;
+  padding: 0.125rem 0.5rem;
+  background-color: #dce8dc;
+  color: #5c6b5c;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
 }
 
+/* ===== 操作按钮 ===== */
 .action-buttons {
-  @apply flex gap-3;
+  display: flex;
+  gap: 0.75rem;
 }
 
-/* 按钮样式 */
-.btn {
-  @apply px-6 py-3 rounded-lg font-medium;
-  @apply transition-all duration-200;
+.action-buttons button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 150ms ease-out;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
-.btn-primary {
-  background-color: #5c6b5c;
+.action-buttons button:active {
+  transform: scale(0.98);
+}
+
+.action-buttons button[class*="btn-primary"] {
+  background: linear-gradient(135deg, #5c6b5c 0%, #4a5a4a 100%);
   color: white;
 }
 
-.btn-primary:hover:not(:disabled) {
-  background-color: #4a5a4a;
-  box-shadow: 0 2px 8px rgba(92, 107, 92, 0.3);
+.action-buttons button[class*="btn-primary"]:hover:not(:disabled) {
+  box-shadow: 0 4px 12px rgba(92, 107, 92, 0.2);
+  transform: translateY(-1px);
 }
 
-.btn-primary:disabled {
-  @apply opacity-50 cursor-not-allowed;
+.action-buttons button[class*="btn-primary"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
-.btn-success {
-  background-color: #22c55e;
+.action-buttons button.bg-gray-200 {
+  background-color: #e8e0d8;
+  color: #374151;
 }
 
-.btn-success:hover {
-  background-color: #16a34a;
-  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+.action-buttons button.bg-gray-200:hover {
+  background-color: #d4c8b9;
 }
 
-.btn-error {
-  background-color: #ef4444;
-}
+/* ===== 移动端优化 ===== */
+@media (max-width: 640px) {
+  .modal-content {
+    padding: 1.25rem;
+  }
 
-.btn-error:hover {
-  background-color: #dc2626;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  .word-display h2 {
+    font-size: 24px;
+  }
+
+  .answer-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .answer-btn {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .vocab-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 </style>

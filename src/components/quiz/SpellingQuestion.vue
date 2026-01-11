@@ -2,9 +2,10 @@
   <div class="spelling-question">
     <!-- 释义展示 -->
     <div class="meaning-display">
+      <div class="question-icon">✍️</div>
       <h2 class="meaning-text">{{ word.meaning }}</h2>
       <div v-if="word.example" class="example-text">
-        {{ word.example }}
+        💬 {{ word.example }}
       </div>
     </div>
 
@@ -26,26 +27,28 @@
         class="submit-button"
         :disabled="!inputValue.trim()"
       >
-        提交
+        ✓ 提交
       </button>
     </div>
 
     <!-- 反馈信息 -->
     <div v-if="answered" class="feedback-area">
       <div v-if="isCorrect" class="feedback-correct">
+        <span class="text-2xl mr-2">🎉</span>
         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
         </svg>
-        <span class="ml-2 font-medium">正确！</span>
+        <span class="ml-2 font-medium">太棒了，正确！</span>
       </div>
       <div v-else class="feedback-wrong">
+        <span class="text-2xl mr-2">😅</span>
         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
         </svg>
         <div class="ml-2">
-          <span class="font-medium">错误</span>
+          <span class="font-medium">回答错误</span>
           <div class="text-sm mt-1">
-            正确答案：<span class="font-bold text-sage-600">{{ word.word }}</span>
+            ✅ 正确答案：<span class="font-bold text-sage-600">{{ word.word }}</span>
           </div>
         </div>
       </div>
@@ -54,7 +57,7 @@
     <!-- 提示 -->
     <div v-if="!answered" class="hint-area">
       <span class="text-sm text-gray-500">
-        按 Enter 键快速提交
+        ⌨️ 按 Enter 键快速提交
       </span>
     </div>
   </div>
@@ -128,6 +131,10 @@ watch(() => props.word, () => {
 
 .meaning-display {
   @apply text-center pb-6 border-b border-gray-200;
+}
+
+.question-icon {
+  @apply text-4xl mb-3;
 }
 
 .meaning-text {

@@ -14,7 +14,12 @@ export const VOCABULARIES = [
     file: '/data/vocab-cet4-basic.json',
     icon: '📖',
     color: '#8da892',
-    difficulty: '四级'
+    difficulty: {
+      cefr: ['A1', 'A2'],
+      vocabRange: '0-4500',
+      stars: 1,
+      label: '四级'
+    }
   },
   {
     id: 'vocab-cet6-advanced',
@@ -26,7 +31,12 @@ export const VOCABULARIES = [
     file: '/data/vocab-cet6-advanced.json',
     icon: '📚',
     color: '#5c6b5c',
-    difficulty: '六级'
+    difficulty: {
+      cefr: ['B1'],
+      vocabRange: '4500-6000',
+      stars: 2,
+      label: '六级'
+    }
   },
   {
     id: 'vocab-ielts6-breakthrough',
@@ -38,7 +48,12 @@ export const VOCABULARIES = [
     file: '/data/vocab-ielts6-breakthrough.json',
     icon: '🎯',
     color: '#52667c',
-    difficulty: '雅思6.0'
+    difficulty: {
+      cefr: ['B2'],
+      vocabRange: '6000-7000',
+      stars: 3,
+      label: '雅思6.0'
+    }
   },
   {
     id: 'vocab-ielts7-sprint',
@@ -50,7 +65,12 @@ export const VOCABULARIES = [
     file: '/data/vocab-ielts7-sprint.json',
     icon: '🏆',
     color: '#7c6f62',
-    difficulty: '雅思7.0'
+    difficulty: {
+      cefr: ['C1'],
+      vocabRange: '7000-9000',
+      stars: 4,
+      label: '雅思7.0'
+    }
   },
   {
     id: 'vocab-ielts8-mastery',
@@ -62,7 +82,12 @@ export const VOCABULARIES = [
     file: '/data/vocab-ielts8-mastery.json',
     icon: '💎',
     color: '#6b5c7c',
-    difficulty: '雅思8.0+'
+    difficulty: {
+      cefr: ['C2'],
+      vocabRange: '9000-13670',
+      stars: 5,
+      label: '雅思8.0+'
+    }
   }
 ]
 

@@ -329,8 +329,12 @@
     </div>
 
     <!-- 词库选择弹窗 -->
-    <div v-if="showVocabSelector" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div class="bg-white rounded-lg p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div
+      v-if="showVocabSelector"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      @click.self="showVocabSelector = false"
+    >
+      <div class="bg-white rounded-lg p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto" @click.stop>
         <div class="flex justify-between items-center mb-6">
           <h2 class="text-xl font-bold text-sage-500">选择词库</h2>
           <button @click="showVocabSelector = false" class="text-gray-400 hover:text-gray-600">
@@ -346,8 +350,12 @@
     </div>
 
     <!-- 设置弹窗 -->
-    <div v-if="showSettings" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
+    <div
+      v-if="showSettings"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      @click.self="closeSettings"
+    >
+      <div class="bg-white rounded-lg p-6 max-w-md w-full max-h-[90vh] overflow-y-auto" @click.stop>
         <h2 class="text-xl font-bold text-sage-500 mb-4">设置</h2>
 
         <!-- 学习计划 -->
@@ -551,7 +559,7 @@
     />
 
     <!-- 错误提示 -->
-    <div v-if="error" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-error text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-slide-up">
+    <div v-if="error" class="fixed lg:bottom-4 bottom-24 left-1/2 transform -translate-x-1/2 bg-error text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-slide-up">
       {{ error }}
     </div>
 
@@ -1522,9 +1530,6 @@ const handleMobileNavigate = (page) => {
   if (page === 'settings') {
     // 设置页面打开弹窗
     openSettings();
-  } else if (page === 'review') {
-    // 复习页面 - 暂时显示今日学习页面,但可以复习forgotten的单词
-    currentPage.value = 'today';
   } else {
     currentPage.value = page;
   }
@@ -1545,16 +1550,17 @@ const handleTouchMove = (event) => {
   const diffX = currentX - touchStartX.value;
   const diffY = Math.abs(currentY - touchStartY.value);
 
-  // 阻止页面滚动（仅在水平滑动时）
-  if (Math.abs(diffX) > Math.abs(diffY)) {
+  // 只在明确的水平滑动时阻止默认行为
+  // 使用更严格的阈值：水平移动距离大于垂直移动距离的2倍
+  if (Math.abs(diffX) > diffY * 2 && Math.abs(diffX) > 10) {
     event.preventDefault();
 
     // 实时更新卡片位置和旋转
-    const rotation = diffX * 0.05; // 根据移动距离计算旋转角度
-    const opacity = 1 - Math.abs(diffX) / 200; // 根据移动距离计算透明度
+    const rotation = Math.min(diffX * 0.05, 10); // 限制旋转角度
+    const opacity = Math.max(1 - Math.abs(diffX) / 200, 0.3); // 限制透明度
 
     wordCard.value.style.transform = `translateX(${diffX}px) rotate(${rotation}deg)`;
-    wordCard.value.style.opacity = Math.max(opacity, 0.3).toString();
+    wordCard.value.style.opacity = opacity.toString();
   }
 };
 
@@ -1567,8 +1573,8 @@ const handleTouchEnd = (event) => {
   const diffX = touchEndX.value - touchStartX.value;
   const diffY = Math.abs(touchEndY.value - touchStartY.value);
 
-  // 判断是否为有效滑动
-  if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+  // 判断是否为有效水平滑动（使用更严格的阈值）
+  if (Math.abs(diffX) > diffY * 2 && Math.abs(diffX) > 50) {
     // 有效滑动 - 触发相应操作
     if (diffX > 0) {
       // 向右滑动 → 不认识
@@ -1578,7 +1584,7 @@ const handleTouchEnd = (event) => {
       handleKnow();
     }
   } else {
-    // 滑动距离不够 - 回弹效果
+    // 滑动无效 - 回弹效果
     wordCard.value.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
     wordCard.value.style.transform = 'translateX(0) rotate(0deg)';
     wordCard.value.style.opacity = '1';

@@ -18,9 +18,9 @@
             <!-- Step 1: 欢迎 -->
             <div v-if="currentStep === 0" class="step-content">
               <div class="welcome-icon">🎯</div>
-              <h2 class="step-title">欢迎使用VocabContext</h2>
+              <h2 class="step-title">欢迎使用 VocabContext</h2>
               <p class="step-desc">为了给你提供更个性化的学习体验，请回答几个简单问题</p>
-              <p class="step-note">只需30秒</p>
+              <p class="step-note">⏱️ 只需30秒</p>
             </div>
 
             <!-- Step 2: 词汇水平测试 -->
@@ -32,7 +32,7 @@
               <div class="test-info-box">
                 <div class="test-info-item">
                   <div class="test-info-icon">✓</div>
-                  <div class="test-info-text">共50道题，约5-8分钟</div>
+                  <div class="test-info-text">共 50 道题，约 5-8 分钟</div>
                 </div>
                 <div class="test-info-item">
                   <div class="test-info-icon">✓</div>
@@ -44,11 +44,11 @@
                 </div>
               </div>
 
-              <button @click="startVocabTest" class="btn btn-primary w-full mt-6">
-                开始测试
+              <button @click="startVocabTest" class="btn-primary w-full">
+                🚀 开始测试
               </button>
 
-              <button @click="skipTest" class="text-sage-500 text-sm mt-4 hover:text-sage-700">
+              <button @click="skipTest" class="text-sage-500 text-sm mt-4 font-medium hover:text-sage-700 transition-colors">
                 跳过测试，稍后再测
               </button>
             </div>
@@ -75,26 +75,26 @@
 
             <!-- Step 4: 确认 -->
             <div v-if="currentStep === 3" class="step-content">
-              <div class="summary-icon">✓</div>
+              <div class="summary-icon">✨</div>
               <h2 class="step-title">设置完成</h2>
               <p class="step-desc">我们已根据你的情况优化学习体验</p>
 
               <div class="summary-box">
                 <div class="summary-item">
-                  <span class="summary-label">词汇量：</span>
+                  <span class="summary-label">📚 词汇量</span>
                   <span class="summary-value">{{ vocabTestResult ? vocabTestResult.estimatedVocab : '未测试' }}</span>
                 </div>
                 <div class="summary-item" v-if="vocabTestResult">
-                  <span class="summary-label">等级：</span>
+                  <span class="summary-label">📊 等级</span>
                   <span class="summary-value">{{ vocabTestResult.cefrLevel }} ({{ vocabTestResult.ieltsLevel }})</span>
                 </div>
                 <div class="summary-item">
-                  <span class="summary-label">学习目的：</span>
+                  <span class="summary-label">🎯 学习目的</span>
                   <span class="summary-value">{{ getPurposeLabel(userProfile.purpose) }}</span>
                 </div>
               </div>
 
-              <p class="step-note">你随时可以在设置页面修改</p>
+              <p class="step-note">💡 你随时可以在设置页面修改</p>
             </div>
           </div>
         </transition>
@@ -107,14 +107,14 @@
           @click="previousStep"
           class="btn-secondary"
         >
-          上一步
+          ← 上一步
         </button>
         <button
           v-if="currentStep === 0"
           @click="nextStep"
           class="btn-primary"
         >
-          开始
+          开始 →
         </button>
         <button
           v-if="currentStep === 2"
@@ -122,14 +122,14 @@
           class="btn-primary"
           :disabled="!userProfile.purpose"
         >
-          下一步
+          下一步 →
         </button>
         <button
           v-if="currentStep === 3"
           @click="completeOnboarding"
           class="btn-primary"
         >
-          开始学习
+          🚀 开始学习
         </button>
       </div>
     </div>
@@ -242,24 +242,26 @@ const completeOnboarding = () => {
 
 <style scoped>
 .onboarding-modal {
-  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4;
+  @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4;
+  backdrop-filter: blur(4px);
 }
 
 .modal-content {
-  @apply bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8;
+  @apply bg-white rounded-2xl shadow-xl max-w-lg w-full p-8;
+  border: 1px solid rgba(141, 168, 146, 0.1);
 }
 
 /* 进度条 */
 .progress-bar {
-  @apply flex justify-center gap-3 mb-8;
+  @apply flex justify-center gap-2 mb-8;
 }
 
 .progress-dot {
-  @apply w-3 h-3 rounded-full bg-gray-300 transition-all duration-300;
+  @apply w-2.5 h-2.5 rounded-full bg-gray-200 transition-all duration-300;
 }
 
 .progress-dot.active {
-  @apply bg-sage-500;
+  @apply bg-sage-500 w-6;
 }
 
 .progress-dot.completed {
@@ -268,7 +270,7 @@ const completeOnboarding = () => {
 
 /* 问题区域 */
 .question-area {
-  @apply min-h-[300px] flex items-center justify-center;
+  @apply min-h-[320px] flex items-center justify-center py-4;
 }
 
 .step-content {
@@ -278,136 +280,168 @@ const completeOnboarding = () => {
 .welcome-icon,
 .summary-icon,
 .test-intro-icon {
-  @apply text-6xl mb-4;
+  @apply text-5xl mb-4;
 }
 
 .step-title {
-  @apply text-2xl font-semibold mb-3;
-  color: #3d4a3d;
+  @apply text-2xl font-bold mb-3 text-sage-700;
 }
 
 .step-desc {
-  @apply text-gray-600 mb-2;
+  @apply text-gray-600 mb-2 text-base leading-relaxed;
 }
 
 .step-note {
-  @apply text-sm text-gray-400;
+  @apply text-sm text-sage-400 font-medium;
+}
+
+/* 测试信息框 */
+.test-info-box {
+  @apply bg-gradient-to-br from-beige-50 to-sage-50 rounded-xl p-5 mt-6 mb-4 border border-sage-100;
+}
+
+.test-info-item {
+  @apply flex items-start gap-3 mb-3 last:mb-0;
+}
+
+.test-info-icon {
+  @apply w-5 h-5 rounded-full bg-sage-500 text-white flex items-center justify-center text-xs flex-shrink-0 mt-0.5;
+}
+
+.test-info-text {
+  @apply text-sm text-gray-700 text-left leading-relaxed;
 }
 
 /* 选项卡片 */
 .options-grid {
-  @apply grid grid-cols-2 gap-4 mt-6;
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6;
 }
 
 .option-card {
-  @apply p-6 rounded-xl border-2 border-gray-200 cursor-pointer;
+  @apply p-5 rounded-xl border-2 cursor-pointer;
   @apply transition-all duration-200;
   @apply text-center;
+  @apply relative overflow-hidden;
   background-color: #fafafa;
+  border-color: #e5e7eb;
+}
+
+.option-card::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-br from-sage-50 to-transparent opacity-0 transition-opacity duration-200;
 }
 
 .option-card:hover {
-  border-color: #5c6b5c;
-  box-shadow: 0 4px 12px rgba(92, 107, 92, 0.15);
+  border-color: #8da892;
+  box-shadow: 0 4px 12px rgba(141, 168, 146, 0.15);
+  transform: translateY(-2px);
+}
+
+.option-card:hover::before {
+  @apply opacity-100;
 }
 
 .option-card.selected {
   border-color: #5c6b5c;
-  background-color: #f0f5f0;
-  box-shadow: 0 0 0 3px rgba(92, 107, 92, 0.1);
+  background: linear-gradient(135deg, #f0f5f0 0%, #e8efe8 100%);
+  box-shadow: 0 0 0 3px rgba(141, 168, 146, 0.15);
 }
 
 .option-icon {
-  @apply text-4xl mb-3;
+  @apply text-4xl mb-2;
 }
 
 .option-title {
-  @apply font-semibold mb-2;
-  color: #3d4a3d;
+  @apply font-semibold mb-1.5 text-sage-800;
 }
 
 .option-desc {
-  @apply text-sm text-gray-600;
-  line-height: 1.4;
+  @apply text-sm text-gray-600 leading-snug;
 }
 
 /* 总结区域 */
 .summary-box {
-  @apply bg-gray-50 rounded-lg p-6 mt-6 mb-4 inline-block;
+  @apply bg-beige-50 rounded-xl p-6 mt-6 mb-4 border border-sage-100 text-left;
 }
 
 .summary-item {
-  @apply text-left;
+  @apply flex justify-between items-center py-2 last:pb-0;
+  @apply border-b border-sage-100 last:border-0;
 }
 
 .summary-label {
-  @apply text-gray-600 mr-2;
+  @apply text-gray-600 font-medium;
 }
 
 .summary-value {
-  @apply font-semibold;
-  color: #3d4a3d;
+  @apply font-semibold text-sage-700;
 }
 
 /* 操作按钮 */
 .action-buttons {
-  @apply flex justify-center gap-4 mt-8;
+  @apply flex justify-center gap-3 mt-8 pt-6 border-t border-gray-100;
 }
 
 .btn-primary {
-  @apply px-8 py-3 rounded-lg font-medium;
-  background-color: #5c6b5c;
-  color: white;
+  @apply px-8 py-3 rounded-xl font-semibold text-white;
+  background: linear-gradient(135deg, #5c6b5c 0%, #4a5a4a 100%);
   @apply transition-all duration-200;
+  box-shadow: 0 2px 8px rgba(92, 107, 92, 0.2);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: #4a5a4a;
-  box-shadow: 0 2px 8px rgba(92, 107, 92, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(92, 107, 92, 0.3);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .btn-primary:disabled {
   @apply opacity-50 cursor-not-allowed;
+  box-shadow: none;
 }
 
 .btn-secondary {
-  @apply px-8 py-3 rounded-lg font-medium border;
-  background-color: white;
-  border-color: #d1d5db;
-  color: #374151;
+  @apply px-8 py-3 rounded-xl font-semibold border-2;
+  @apply bg-white text-gray-700;
+  border-color: #e5e7eb;
   @apply transition-all duration-200;
 }
 
 .btn-secondary:hover {
-  border-color: #5c6b5c;
+  border-color: #8da892;
   color: #5c6b5c;
+  background-color: #fafafa;
 }
 
 /* 动画 */
 .fade-enter-active,
 .fade-leave-active {
-  @apply transition-opacity duration-300;
+  @apply transition-all duration-300 ease-out;
 }
 
-.fade-enter-from,
+.fade-enter-from {
+  @apply opacity-0 translate-y-4;
+}
+
 .fade-leave-to {
-  @apply opacity-0;
+  @apply opacity-0 -translate-y-4;
 }
 
-/* 测试信息框 */
-.test-info-box {
-  @apply bg-gradient-to-br from-sage-50 to-blue-50 rounded-lg p-6 mt-6 mb-4;
-}
+/* 移动端优化 */
+@media (max-width: 640px) {
+  .modal-content {
+    @apply p-6;
+  }
 
-.test-info-item {
-  @apply flex items-center gap-3 mb-3 last:mb-0;
-}
+  .step-title {
+    @apply text-xl;
+  }
 
-.test-info-icon {
-  @apply w-6 h-6 rounded-full bg-sage-500 text-white flex items-center justify-center text-sm;
-}
-
-.test-info-text {
-  @apply text-sm text-gray-700 text-left;
+  .options-grid {
+    @apply grid-cols-1;
+  }
 }
 </style>
