@@ -516,7 +516,7 @@ npm run preview
 git init
 git add .
 git commit -m "Initial commit"
-git remote add origin https://github.com/你的用户名/vocab-context.git
+git remote add origin https://github.com/YOUR_USERNAME/vocab-context.git
 git push -u origin main
 
 # 2. 在 vercel.com 导入项目
