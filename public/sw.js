@@ -43,6 +43,11 @@ self.addEventListener('activate', event => {
 
 // 拦截网络请求
 self.addEventListener('fetch', event => {
+  // 只处理 HTTP(S) 协议的请求，忽略 chrome-extension、chrome-search 等协议
+  if (!event.request.url.startsWith('http://') && !event.request.url.startsWith('https://')) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then(response => {
