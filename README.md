@@ -2,7 +2,7 @@
 
 > 语境优先 + AI个性化 + 间隔重复的高效学习系统
 
-**在线体验**: https://scintillating-dragon-3ef634.netlify.app/
+**在线体验**: https://meek-truffle-4ce5d0.netlify.app/
 
 ## 特性
 
@@ -28,7 +28,7 @@
 
 ### 在线使用
 
-直接访问: https://scintillating-dragon-3ef634.netlify.app/
+直接访问: https://meek-truffle-4ce5d0.netlify.app/
 
 ### 本地开发
 
@@ -133,4 +133,4 @@ MIT License
 
 ---
 
-**在线地址**: https://scintillating-dragon-3ef634.netlify.app/
+**在线地址**: https://meek-truffle-4ce5d0.netlify.app/
