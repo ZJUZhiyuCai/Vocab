@@ -1,9 +1,9 @@
 {
-  "version": "2.0.0",
+  "version": "3.0.0",
   "lastUpdated": "2026-01-11",
   "totalWords": 1500,
   "level": "六级",
-  "description": "大学英语六级新增词汇",
+  "description": "六级进阶",
   "cumulativeRange": "4500-6000",
   "words": [
     {
