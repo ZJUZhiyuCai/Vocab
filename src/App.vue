@@ -1,5 +1,11 @@
 <template>
   <div class="min-h-screen flex flex-col bg-gradient-to-br from-beige-50 via-sage-50/30 to-blue-50/30">
+    <!-- 入门测试弹窗 -->
+    <OnboardingQuiz
+      v-if="showOnboarding"
+      @complete="handleOnboardingComplete"
+    />
+
     <!-- 离线状态指示器 -->
     <div
       v-if="!isOnline"
@@ -23,6 +29,7 @@
         :accuracy="stats.accuracy"
         @navigate="handleNavigate"
         @open-settings="openSettings"
+        @open-vocab-selector="showVocabSelector = true"
       />
 
       <!-- 主内容区 -->
@@ -216,8 +223,8 @@
                 <span v-html="highlightWord(currentWord.aiExample.sentence, currentWord.word)"></span>
               </p>
               <p class="text-xs text-gray-500">{{ currentWord.aiExample.translation }}</p>
-              <div v-if="currentWord.aiExample.basedOnInterests && currentWord.aiExample.basedOnInterests.length" class="mt-2">
-                <span class="text-xs text-gray-400">基于：{{ currentWord.aiExample.basedOnInterests.join('、') }}</span>
+              <div v-if="currentWord.aiExample.basedOnPurpose" class="mt-2">
+                <span class="text-xs text-gray-400">基于：{{ getPurposeLabel(currentWord.aiExample.basedOnPurpose) }}</span>
               </div>
             </div>
 
@@ -262,6 +269,9 @@
               <div class="text-xs text-gray-400 text-center space-y-1">
                 <div>快捷键：<kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">空格</kbd> 认识 · <kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">回车</kbd> 不认识 · <kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">←</kbd> 上一个 · <kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">→</kbd> 下一个</div>
                 <div><kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">A</kbd> AI例句 <span class="hidden lg:inline">· <kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">S</kbd> 设置</span></div>
+                <div class="mt-2">
+                  <button @click="restart" class="text-sage-500 hover:text-sage-700 underline">🔄 重新开始</button>
+                </div>
               </div>
             </div>
           </div>
@@ -375,6 +385,46 @@
           </div>
         </div>
 
+        <!-- 学习目的 -->
+        <div class="mb-6 pb-6 border-b border-gray-200">
+          <h3 class="text-sm font-bold text-gray-700 mb-3">🎯 学习目的</h3>
+          <p class="text-xs text-gray-500 mb-3">选择你的学习目的，AI会根据此生成个性化例句</p>
+          <div class="grid grid-cols-2 gap-2">
+            <button
+              @click="settingsForm.purpose = 'exam'"
+              class="p-3 text-sm rounded-lg border transition-colors"
+              :class="settingsForm.purpose === 'exam' ? 'border-sage-500 bg-sage-50 text-sage-700' : 'border-gray-200 text-gray-600 hover:border-sage-300'"
+            >
+              <div class="font-medium mb-1">📚 备考</div>
+              <div class="text-xs opacity-75">雅思、托福、GRE等</div>
+            </button>
+            <button
+              @click="settingsForm.purpose = 'career'"
+              class="p-3 text-sm rounded-lg border transition-colors"
+              :class="settingsForm.purpose === 'career' ? 'border-sage-500 bg-sage-50 text-sage-700' : 'border-gray-200 text-gray-600 hover:border-sage-300'"
+            >
+              <div class="font-medium mb-1">💼 职场提升</div>
+              <div class="text-xs opacity-75">商务、技术英语</div>
+            </button>
+            <button
+              @click="settingsForm.purpose = 'hobby'"
+              class="p-3 text-sm rounded-lg border transition-colors"
+              :class="settingsForm.purpose === 'hobby' ? 'border-sage-500 bg-sage-50 text-sage-700' : 'border-gray-200 text-gray-600 hover:border-sage-300'"
+            >
+              <div class="font-medium mb-1">🎨 兴趣爱好</div>
+              <div class="text-xs opacity-75">阅读、影视、旅行</div>
+            </button>
+            <button
+              @click="settingsForm.purpose = 'daily'"
+              class="p-3 text-sm rounded-lg border transition-colors"
+              :class="settingsForm.purpose === 'daily' ? 'border-sage-500 bg-sage-50 text-sage-700' : 'border-gray-200 text-gray-600 hover:border-sage-300'"
+            >
+              <div class="font-medium mb-1">💬 日常交流</div>
+              <div class="text-xs opacity-75">生活、社交对话</div>
+            </button>
+          </div>
+        </div>
+
         <!-- AI设置 -->
         <div class="mb-4">
           <h3 class="text-sm font-bold text-gray-700 mb-3">🤖 AI功能</h3>
@@ -387,46 +437,13 @@
               在<a href="https://docs.siliconflow.cn/cn/userguide/quickstart" target="_blank" class="text-sage-500 underline">硅基流动官网</a>获取免费API密钥
             </p>
           </div>
-
-          <!-- 兴趣标签输入 -->
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-2">兴趣标签（可选）</label>
-            <p class="text-xs text-gray-500 mb-2">输入你的专业、爱好或学习场景，AI会生成相关例句</p>
-
-            <div class="flex flex-wrap gap-2 mb-2">
-              <span v-for="(interest, index) in settingsForm.interests" :key="index" class="tag flex items-center gap-1">
-                {{ interest }}
-                <button @click="removeInterest(index)" class="text-sage-500 hover:text-sage-700 font-bold">×</button>
-              </span>
-            </div>
-
-            <div class="flex gap-2">
-              <input type="text" v-model="newInterest" @keyup.enter="addInterest" placeholder="例如：雅思考试、计算机科学" class="input flex-1">
-              <button @click="addInterest" class="btn btn-primary px-4">添加</button>
-            </div>
-
-            <div class="mt-3">
-              <p class="text-xs text-gray-500 mb-2">推荐标签：</p>
-              <div class="flex flex-wrap gap-1">
-                <button
-                  v-for="tag in recommendedTags"
-                  :key="tag"
-                  @click="addRecommendedTag(tag)"
-                  class="text-xs px-2 py-1 rounded bg-beige-100 text-gray-600 hover:bg-sage-100 hover:text-sage-700 transition-colors"
-                  :class="{ 'bg-sage-100 text-sage-700': settingsForm.interests.includes(tag) }"
-                >
-                  {{ tag }}
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- 数据管理 -->
         <div class="mb-4">
           <h3 class="text-sm font-bold text-gray-700 mb-3">💾 数据管理</h3>
 
-          <div class="grid grid-cols-2 gap-2">
+          <div class="grid grid-cols-2 gap-2 mb-3">
             <button
               @click="exportData"
               class="p-3 text-sm rounded-lg border border-gray-200 text-gray-600 hover:border-sage-300 hover:bg-sage-50 transition-colors"
@@ -442,6 +459,15 @@
               <div class="text-xs opacity-75">导入到Anki</div>
             </button>
           </div>
+
+          <!-- 重新测试按钮 -->
+          <button
+            @click="restartLevelTest"
+            class="w-full p-3 text-sm rounded-lg border border-sage-300 text-sage-700 hover:bg-sage-50 transition-colors"
+          >
+            <div class="font-medium mb-1">📊 重新进行词汇测试</div>
+            <div class="text-xs opacity-75">评估当前词汇量并推荐词库</div>
+          </button>
         </div>
 
         <div class="flex gap-3 mt-6">
@@ -450,6 +476,12 @@
         </div>
       </div>
     </div>
+
+    <!-- 词汇测试弹窗 -->
+    <VocabLevelTest
+      v-if="showVocabTest"
+      @complete="handleVocabTestComplete"
+    />
 
     <!-- 错误提示 -->
     <div v-if="error" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-error text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-slide-up">
@@ -495,7 +527,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { generateAIExample } from './utils/aiService.js'
 import { getEtymology } from './utils/etymologyService.js'
-import { loadSettings, saveSettings as saveSettingsToStorage, loadWordbook, saveWordbook } from './utils/storage.js'
+import { loadSettings, saveSettings as saveSettingsToStorage, loadWordbook, saveWordbook, loadUserProfile, saveUserProfile, shouldShowOnboarding } from './utils/storage.js'
 import { useConfetti } from './composables/useConfetti.js'
 import Sidebar from './components/Sidebar.vue'
 import StatsPanel from './components/StatsPanel.vue'
@@ -504,12 +536,15 @@ import ReviewQueue from './components/ReviewQueue.vue'
 import MobileTabBar from './components/MobileTabBar.vue'
 import VocabularySelector from './components/VocabularySelector.vue'
 import Quiz from './components/Quiz.vue'
+import OnboardingQuiz from './components/OnboardingQuiz.vue'
+import VocabLevelTest from './components/VocabLevelTest.vue'
 import {
   getCurrentVocabulary,
   loadCurrentVocabulary,
   getVocabularyProgress,
   saveVocabularyProgress
 } from './utils/vocabularyManager.js'
+import { getVocabularyLoader, clearVocabularyLoader } from './utils/vocabularyLoader.js'
 import {
   createWordReviewState,
   needsReview,
@@ -557,6 +592,11 @@ const newInterest = ref('')
 const generatingWordId = ref(null)
 const loadingEtymology = ref(null)
 const error = ref(null)
+
+// 用户画像状态
+const userProfile = ref({ purpose: '' })
+const showOnboarding = ref(false)
+const showVocabTest = ref(false)  // 显示词汇测试弹窗
 
 // 页面状态
 const currentPage = ref('today')
@@ -816,9 +856,177 @@ const toggleWordbook = (wordId) => {
 
 // 重新开始
 const restart = () => {
+  console.log('🔄 重新开始学习');
+
+  // 重置状态
   currentIndex.value = 0;
   learned.value.clear();
   forgotten.value.clear();
+
+  // 清除当前词库的进度
+  const key = `vocabcontext_progress_${currentVocab.value.id}`;
+  localStorage.removeItem(key);
+  console.log(`🗑️ 已清除词库进度: ${key}`);
+
+  // 如果是随机模式，重新生成随机顺序
+  if (userSettings.value.studyMode === 'random' && words.value.length > 0) {
+    console.log('🎲 重新生成随机顺序...');
+    shuffleWords();
+  }
+
+  console.log('✅ 重新开始完成');
+};
+
+// 创建随机懒加载单词数组（真正从整个词库随机）
+const createRandomLazyWordArray = (loader, totalCount, randomIndices) => {
+  const loadedWords = new Map(); // 随机索引 -> 单词
+  const loadingPromises = new Map(); // 随机索引 -> 加载Promise
+
+  // 预加载前300个随机位置的单词
+  const preloadSize = Math.min(300, totalCount);
+  const preloadPromises = [];
+
+  console.log(`🎲 随机模式：预加载前 ${preloadSize} 个随机单词...`);
+
+  // 批量加载随机单词（优化性能）
+  for (let i = 0; i < preloadSize; i++) {
+    const randomIndex = randomIndices[i];
+    const loadPromise = (async () => {
+      try {
+        const wordsSlice = await loader.getWordsRange(randomIndex, 1);
+        if (wordsSlice && wordsSlice.length > 0) {
+          loadedWords.set(randomIndex, wordsSlice[0]);
+          return wordsSlice[0];
+        }
+      } catch (err) {
+        console.error(`加载随机索引 ${randomIndex} 失败:`, err);
+      }
+    })();
+    preloadPromises.push(loadPromise);
+    loadingPromises.set(randomIndex, loadPromise);
+  }
+
+  // 等待预加载完成
+  Promise.all(preloadPromises).then(() => {
+    console.log(`✅ 随机预加载完成 (${preloadSize} 个单词)`);
+  });
+
+  // 创建懒加载函数
+  const ensureLoaded = async (displayIndex) => {
+    // displayIndex是用户看到的索引（0, 1, 2...）
+    // randomIndex是实际词库中的索引
+    const randomIndex = randomIndices[displayIndex];
+
+    if (loadedWords.has(randomIndex)) {
+      return loadedWords.get(randomIndex);
+    }
+
+    if (loadingPromises.has(randomIndex)) {
+      return await loadingPromises.get(randomIndex);
+    }
+
+    const loadPromise = (async () => {
+      try {
+        const wordsSlice = await loader.getWordsRange(randomIndex, 1);
+        if (wordsSlice && wordsSlice.length > 0) {
+          loadedWords.set(randomIndex, wordsSlice[0]);
+          return wordsSlice[0];
+        }
+        return null;
+      } catch (err) {
+        console.error(`加载随机索引 ${randomIndex} 失败:`, err);
+        return null;
+      }
+    })();
+
+    loadingPromises.set(randomIndex, loadPromise);
+    const result = await loadPromise;
+    loadingPromises.delete(randomIndex);
+
+    return result;
+  };
+
+  // 返回一个类数组对象
+  const arrayProxy = [];
+  arrayProxy.length = totalCount;
+
+  return new Proxy(arrayProxy, {
+    get(target, prop) {
+      if (prop === 'length') return totalCount;
+
+      if (typeof prop === 'symbol') {
+        return target[prop];
+      }
+
+      if (typeof prop === 'string' && prop in Array.prototype) {
+        return target[prop];
+      }
+
+      const displayIndex = parseInt(prop);
+      if (!isNaN(displayIndex) && displayIndex >= 0 && displayIndex < totalCount) {
+        const randomIndex = randomIndices[displayIndex];
+        const word = loadedWords.get(randomIndex);
+
+        if (word) {
+          // 预加载接下来的单词（后台进行）
+          if (displayIndex > 0 && displayIndex % 50 === 0) {
+            const preloadIndex = displayIndex + 50;
+            if (preloadIndex < totalCount) {
+              ensureLoaded(preloadIndex);
+            }
+          }
+          return word;
+        }
+
+        // 未加载：触发异步加载，但不等待
+        ensureLoaded(displayIndex);
+        return null;
+      }
+
+      return target[prop];
+    },
+
+    set(target, prop, value) {
+      const displayIndex = parseInt(prop);
+      if (!isNaN(displayIndex) && displayIndex >= 0) {
+        const randomIndex = randomIndices[displayIndex];
+        loadedWords.set(randomIndex, value);
+        return true;
+      }
+      return false;
+    }
+  });
+};
+
+// 随机打乱单词顺序（从整个词库随机）
+const shuffleWords = async () => {
+  if (!words.value || words.value.length === 0) return;
+
+  const totalCount = words.value.length;
+  console.log(`🔀 开始从 ${totalCount} 个单词中生成随机顺序...`);
+
+  // 生成随机索引数组（Fisher-Yates洗牌算法）
+  const randomIndices = Array.from({ length: totalCount }, (_, i) => i);
+
+  for (let i = totalCount - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [randomIndices[i], randomIndices[j]] = [randomIndices[j], randomIndices[i]];
+  }
+
+  console.log(`🎲 随机索引数组生成完成，示例：`);
+  console.log(`   - 前10个原始索引: ${randomIndices.slice(0, 10).join(', ')}`);
+  console.log(`   - 涵盖范围: 0 - ${totalCount - 1}`);
+
+  // 使用随机索引数组创建懒加载包装器
+  const loader = getVocabularyLoader(currentVocab.value.file);
+
+  // 创建随机懒加载数组
+  words.value = createRandomLazyWordArray(loader, totalCount, randomIndices);
+
+  // 重置到第一个单词
+  currentIndex.value = 0;
+
+  console.log(`✅ 已创建 ${totalCount} 个单词的随机学习顺序`);
 };
 
 // 加载数据
@@ -829,10 +1037,14 @@ const loadData = async () => {
     // 加载当前词库
     currentVocab.value = loadCurrentVocabulary();
 
-    // 根据词库文件加载数据
-    const response = await fetch(currentVocab.value.file);
-    const data = await response.json();
-    words.value = data.words || [];
+    console.log('📚 开始加载词库:', currentVocab.value.name, currentVocab.value.file);
+
+    // 懒加载：只加载元数据和第一批单词
+    const loader = getVocabularyLoader(currentVocab.value.file);
+
+    // 获取总单词数（用于显示进度）
+    const totalCount = await loader.getTotalCount();
+    console.log(`📊 词库总单词数: ${totalCount}`);
 
     // 加载该词库的学习进度
     const progress = getVocabularyProgress(currentVocab.value.id);
@@ -840,16 +1052,156 @@ const loadData = async () => {
     forgotten.value = new Set(progress.forgotten || []);
     currentIndex.value = progress.currentIndex || 0;
 
+    console.log(`📍 当前进度: currentIndex=${currentIndex.value}, learned=${learned.value.size}`);
+
+    // 检查是否是随机模式
+    const isRandomMode = userSettings.value.studyMode === 'random';
+
+    if (isRandomMode) {
+      // 随机模式：直接生成随机索引数组并创建随机懒加载数组
+      console.log('🎲 随机学习模式，从整个词库生成全局随机顺序...');
+
+      // 生成随机索引数组（Fisher-Yates洗牌算法）
+      const randomIndices = Array.from({ length: totalCount }, (_, i) => i);
+      for (let i = totalCount - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [randomIndices[i], randomIndices[j]] = [randomIndices[j], randomIndices[i]];
+      }
+
+      console.log(`   前10个随机索引: ${randomIndices.slice(0, 10).join(', ')}`);
+
+      // 创建随机懒加载数组
+      words.value = createRandomLazyWordArray(loader, totalCount, randomIndices);
+    } else {
+      // 顺序模式：加载当前进度附近的单词
+      const preloadSize = 300; // 预加载300个单词
+      const startIdx = Math.max(0, currentIndex.value - 50);
+      console.log(`🔜 准备预加载: start=${startIdx}, size=${preloadSize}`);
+
+      const initialWords = await loader.getWordsRange(startIdx, preloadSize);
+      console.log(`✅ 实际加载了 ${initialWords.length} 个单词`);
+      console.log(`🎯 当前单词 (${currentIndex.value}):`, initialWords[currentIndex.value - startIdx]?.word || 'NOT FOUND');
+
+      // 创建顺序懒加载包装数组
+      words.value = createLazyWordArray(loader, totalCount, startIdx, initialWords);
+    }
+
+    console.log(`📦 words.value.length=${words.value.length}`);
+
     // 加载复习状态
     loadReviewStates();
 
     // 计算复习队列
     updateReviewQueue();
   } catch (error) {
-    console.error('加载数据失败:', error);
+    console.error('❌ 加载数据失败:', error);
   } finally {
     isLoading.value = false;
   }
+};
+
+// 创建懒加载单词数组（简化版）
+const createLazyWordArray = (loader, totalCount, startIdx, initialWords) => {
+  const loadedWords = new Map(); // 索引 -> 单词
+  const loadingPromises = new Map(); // 索引 -> 加载Promise
+
+  // 初始化已加载的单词
+  initialWords.forEach((word, i) => {
+    const globalIndex = startIdx + i;
+    loadedWords.set(globalIndex, word);
+  });
+
+  console.log(`📦 已预加载 ${initialWords.length} 个单词 (索引 ${startIdx} - ${startIdx + initialWords.length - 1})`);
+
+  // 创建懒加载函数
+  const ensureLoaded = async (index) => {
+    // 如果已加载，直接返回
+    if (loadedWords.has(index)) {
+      return loadedWords.get(index);
+    }
+
+    // 如果正在加载，等待完成
+    if (loadingPromises.has(index)) {
+      return await loadingPromises.get(index);
+    }
+
+    // 开始加载
+    const loadPromise = (async () => {
+      try {
+        const wordsSlice = await loader.getWordsRange(index, 100);
+        wordsSlice.forEach((word, i) => {
+          loadedWords.set(index + i, word);
+        });
+        return loadedWords.get(index);
+      } catch (err) {
+        console.error(`加载单词 ${index} 失败:`, err);
+        return null;
+      }
+    })();
+
+    loadingPromises.set(index, loadPromise);
+    const result = await loadPromise;
+    loadingPromises.delete(index);
+
+    return result;
+  };
+
+  // 返回一个类数组对象
+  const arrayProxy = [];
+
+  // 重写常用方法
+  arrayProxy.length = totalCount;
+
+  // 索引访问
+  return new Proxy(arrayProxy, {
+    get(target, prop) {
+      // 处理 length 属性
+      if (prop === 'length') return totalCount;
+
+      // 处理 Symbol 属性（Vue 内部使用）
+      if (typeof prop === 'symbol') {
+        return target[prop];
+      }
+
+      // 处理数组方法（slice, map, forEach 等）
+      if (typeof prop === 'string' && prop in Array.prototype) {
+        return target[prop];
+      }
+
+      // 处理数字索引
+      const index = parseInt(prop);
+      if (!isNaN(index) && index >= 0 && index < totalCount) {
+        const word = loadedWords.get(index);
+
+        // 如果已加载，直接返回
+        if (word) {
+          // 预加载接下来的单词（后台进行）
+          if (index > 0 && index % 50 === 0) {
+            const preloadIndex = index + 50;
+            if (preloadIndex < totalCount && !loadedWords.has(preloadIndex)) {
+              ensureLoaded(preloadIndex);
+            }
+          }
+          return word;
+        }
+
+        // 未加载：触发异步加载，但不等待
+        ensureLoaded(index); // 不等待，后台加载
+        return null; // 暂时返回null
+      }
+
+      return target[prop];
+    },
+
+    set(target, prop, value) {
+      const index = parseInt(prop);
+      if (!isNaN(index) && index >= 0) {
+        loadedWords.set(index, value);
+        return true;
+      }
+      return false;
+    }
+  });
 };
 
 // 加载复习状态
@@ -912,7 +1264,8 @@ const openSettings = () => {
     apiKey: userSettings.value.apiKey,
     interests: [...userSettings.value.interests],
     dailyGoal: userSettings.value.dailyGoal || 20,
-    studyMode: userSettings.value.studyMode || 'sequence'
+    studyMode: userSettings.value.studyMode || 'sequence',
+    purpose: userProfile.value.purpose || 'daily'
   };
   showSettings.value = true;
 };
@@ -929,6 +1282,11 @@ const saveSettings = () => {
     studyMode: settingsForm.value.studyMode
   };
   saveSettingsToStorage(userSettings.value);
+
+  // 保存用户画像(学习目的)
+  userProfile.value.purpose = settingsForm.value.purpose;
+  saveUserProfile(userProfile.value);
+
   showSettings.value = false;
 
   // 如果学习模式是随机,重新洗牌单词
@@ -953,17 +1311,6 @@ const addRecommendedTag = (tag) => {
   if (!settingsForm.value.interests.includes(tag)) {
     settingsForm.value.interests.push(tag);
   }
-};
-
-// 随机打乱单词顺序
-const shuffleWords = () => {
-  const shuffled = [...words.value];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  words.value = shuffled;
-  currentIndex.value = 0;
 };
 
 // 导出学习数据
@@ -1055,7 +1402,7 @@ const generateExample = async (word) => {
       apiKey: userSettings.value.apiKey,
       word: word.word,
       meaning: word.meaning,
-      interests: userSettings.value.interests
+      purpose: userProfile.value.purpose || 'daily'
     });
 
     const wordIndex = words.value.findIndex(w => w.id === word.id);
@@ -1064,7 +1411,7 @@ const generateExample = async (word) => {
         sentence: result.sentence,
         translation: result.translation,
         generatedAt: new Date().toISOString(),
-        basedOnInterests: [...userSettings.value.interests]
+        basedOnPurpose: userProfile.value.purpose || 'daily'
       };
     }
 
@@ -1117,6 +1464,48 @@ const loadEtymology = async (word) => {
 // ===== 导航处理 =====
 const handleNavigate = (page) => {
   currentPage.value = page;
+};
+
+// ===== 入门测试处理 =====
+const handleOnboardingComplete = (profile) => {
+  userProfile.value = profile;
+  saveUserProfile(profile);
+  showOnboarding.value = false;
+};
+
+// 获取学习目的标签
+const getPurposeLabel = (purpose) => {
+  const labels = {
+    exam: '📚 备考',
+    career: '💼 职场提升',
+    hobby: '🎨 兴趣爱好',
+    daily: '💬 日常交流'
+  };
+  return labels[purpose] || labels.daily;
+};
+
+// 重新进行词汇测试
+const restartLevelTest = () => {
+  closeSettings();
+  showVocabTest.value = true;
+};
+
+// 处理词汇测试完成
+const handleVocabTestComplete = (result) => {
+  // 更新用户画像中的测试结果
+  userProfile.value.vocabTestResult = result.testResult;
+  saveUserProfile(userProfile.value);
+
+  // 如果用户选择了词库，设置为新词库
+  if (result.selectedVocab) {
+    handleVocabularySelect(result.selectedVocab);
+  }
+
+  showVocabTest.value = false;
+
+  // 显示成功提示
+  error.value = '测试完成！词库已更新';
+  setTimeout(() => { error.value = null; }, 3000);
 };
 
 // 处理测验完成
@@ -1262,6 +1651,17 @@ onMounted(() => {
   const savedSettings = loadSettings();
   if (savedSettings) {
     userSettings.value = savedSettings;
+  }
+
+  // 加载用户画像
+  const savedProfile = loadUserProfile();
+  if (savedProfile) {
+    userProfile.value = savedProfile;
+  }
+
+  // 检查是否需要显示入门测试
+  if (shouldShowOnboarding()) {
+    showOnboarding.value = true;
   }
 
   // 加载单词本

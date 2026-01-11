@@ -1,7 +1,7 @@
 {
   "name": "vocab-context",
-  "version": "1.0.0",
-  "description": "语境词汇学习工具 - 雅思词汇学习",
+  "version": "1.2.0",
+  "description": "语境词汇学习工具 - 基于CEFR分级的雅思词汇学习系统",
   "type": "module",
   "scripts": {
     "convert": "node scripts/convert-data.js",

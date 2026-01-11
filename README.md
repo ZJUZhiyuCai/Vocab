@@ -1,36 +1,39 @@
 # VocabContext - 语境词汇学习工具
 
-> 通过真实语境 + AI个性化例句，让雅思词汇从"认识"到"会用"
+> 通过真实语境 + AI个性化例句 + 间隔重复，让雅思词汇从"认识"到"会用"
 
 ## 项目简介
 
-这是一个专为雅思备考设计的词汇学习工具，通过语境学习和AI个性化例句，帮助学习者从六级509分提升到雅思7.0水平。
+这是一个基于CEFR分级（A1-C2）的智能词汇学习系统，通过语境学习、AI个性化例句和间隔重复算法，帮助学习者高效掌握雅思词汇。
 
 ### 核心特性
 
-- 🎯 **语境优先**：从雅思真题中提取真实语境例句
-- 🤖 **AI个性化**：基于用户背景生成定制例句
-- ⚡ **快速学习**：5分钟碎片化时间，每天3个词
+- 📚 **完整词库**：103,962个词汇，按CEFR分级（A1-C2）和雅思难度分类
+- 🎯 **语境优先**：从雅思真题和真实语料中提取语境例句
+- 🤖 **AI个性化**：基于用户学习目的（雅思/职场/兴趣）生成定制例句
+- 🎲 **智能随机**：真正的全局随机学习，避免字母顺序带来的记忆偏差
+- ⚡ **性能优化**：大文件懒加载，C1词库（80,012词，37MB）秒级启动
+- 🔄 **间隔重复**：智能复习算法，巩固记忆效果
 - 🎨 **莫兰迪配色**：温柔护眼，长时间学习不累
 - 💾 **本地存储**：无需注册，数据完全私有
+- 📱 **响应式设计**：完美支持桌面和移动端
 
-### 差异化优势
+### 技术亮点
 
-| 产品 | 方式 | 问题 |
-|------|------|------|
-| 百词斩 | 图片记忆 | 只记得图不记得词 |
-| 墨墨 | 记忆曲线 | 传统死记硬背 |
-| Anki | 自定义卡片 | 制作成本高 |
-| **VocabContext** | **语境+AI** | **真实场景，深度掌握** |
+- **懒加载架构**：大词库按需加载，预加载300词确保流畅体验
+- **全局随机算法**：Fisher-Yates洗牌 + 随机索引映射，真正的随机分布
+- **智能缓存管理**：自动清理过期缓存，防止localStorage溢出
+- **Proxy拦截器**：透明懒加载，对业务逻辑无侵入
 
 ---
 
 ## 技术栈
 
-- **前端框架**：Vue 3 + Vite
+- **前端框架**：Vue 3 (Composition API) + Vite
 - **UI样式**：Tailwind CSS（莫兰迪配色）
-- **AI服务**：硅基流动 API
-- **数据存储**：LocalStorage
+- **AI服务**：硅基流动 API（Qwen/Qwen2.5-72B-Instruct）
+- **数据存储**：LocalStorage（带自动清理）
+- **动画效果**：canvas-confetti
 - **部署平台**：Vercel
 
 ---
@@ -39,19 +42,47 @@
 
 ```
 vocab-context/
+├── public/                         # 静态资源
+│   └── data/                       # 词库数据
+│       ├── vocab-a2-basic.json           # A1-A2（3,561词）
+│       ├── vocab-b1-intermediate.json    # B1（6,451词）
+│       ├── vocab-b2-upper-intermediate.json # B2（11,894词）
+│       ├── vocab-c1-advanced.json        # C1（80,012词）
+│       └── vocab-c2-proficiency.json     # C2（2,044词）
+│
+├── scripts/                        # 构建脚本
+│   └── build-vocab-libraries.js    # 词库生成工具
+│
+├── src/                            # 源代码
+│   ├── components/                 # 组件
+│   │   ├── Sidebar.vue            # 桌面侧边栏
+│   │   ├── MobileTabBar.vue       # 移动端底部导航
+│   │   ├── VocabularySelector.vue # 词库选择器
+│   │   ├── ReviewQueue.vue        # 复习列表
+│   │   ├── Wordbook.vue           # 单词本
+│   │   ├── Quiz.vue               # 测验模式
+│   │   └── Settings.vue           # 设置面板
+│   │
+│   ├── composables/                # 组合式函数
+│   │   └── useConfetti.js         # 彩带动画
+│   │
+│   ├── utils/                      # 工具函数
+│   │   ├── aiService.js           # AI服务（带缓存）
+│   │   ├── storage.js             # 存储管理（带配额清理）
+│   │   ├── vocabularyLoader.js    # 懒加载器
+│   │   ├── vocabularyManager.js   # 词库管理
+│   │   └── constants.js           # 常量定义
+│   │
+│   └── App.vue                     # 根组件
+│
 ├── docs/                           # 项目文档
 │   ├── 01-PRD.md                   # 产品需求文档
 │   ├── 02-Design-Token.md          # 设计系统
 │   └── 03-Tech-Stack.md            # 技术栈说明
 │
-├── public/                         # 静态资源
-│   └── words-data.json             # 词库数据
-│
-└── src/                            # 源代码
-    ├── components/                 # 组件
-    ├── composables/                # 组合式函数
-    ├── utils/                      # 工具函数
-    └── App.vue                     # 根组件
+└── database/                       # 原始数据库
+    ├── vocabulary.json             # 103,975个单词
+    └── examples.json               # 141,724条例句
 ```
 
 ---
@@ -78,6 +109,58 @@ npm run dev
 npm run build
 ```
 
+### 生成词库（可选）
+
+如果需要从原始数据库重新生成词库：
+
+```bash
+npm run convert
+```
+
+---
+
+## 词库说明
+
+### CEFR分级体系
+
+| 级别 | 单词数 | 雅思分数 | 描述 |
+|------|--------|----------|------|
+| A1-A2 | 3,561 | 基础-4分 | 基础词汇，日常交流 |
+| B1 | 6,451 | 4-5分 | 进阶词汇，简单话题 |
+| B2 | 11,894 | 5-6分 | 中级词汇，学术基础 |
+| C1 | 80,012 | 6-7分 | 高级词汇，深度理解 |
+| C2 | 2,044 | 7-8分 | 精通词汇，接近母语 |
+
+**总计：103,962个单词**
+
+### 词汇数据结构
+
+```json
+{
+  "id": "a1_0001",
+  "word": "able",
+  "ipa": "/ˈebəl/",
+  "partOfSpeech": "adj.",
+  "meaning": "adj.能够的,有能力的...",
+  "cefr": "A1",
+  "ielts": "基础-4分",
+  "frequency": 9,
+  "examples": [
+    {
+      "sentence": "Chantal was lucky to be able to salvage her career.",
+      "translation": "尚塔尔能保住她的事业算是走了运。"
+    }
+  ],
+  "collocations": ["be able to", "able to do"],
+  "synonyms": ["capable", "competent"],
+  "etymology": {
+    "root": "abil",
+    "suffix": "-able",
+    "mnemonic": "able = 能够"
+  }
+}
+```
+
 ---
 
 ## 配置说明
@@ -90,24 +173,77 @@ npm run build
 theme: {
   extend: {
     colors: {
-      sage: '#5c6b5c',      // 鼠尾绿
-      slate: '#52667c',     // 石板蓝
-      beige: '#f5f0eb',     // 米棕色
+      sage: {
+        50: '#f5f5f0',
+        100: '#e8e8dc',
+        200: '#d4ddd4',
+        300: '#b3c2b3',
+        400: '#8da892',
+        500: '#5c6b5c',     // 主色
+        600: '#4a564a',
+        700: '#3d473d',
+      },
+      beige: {
+        50: '#fcfbf9',
+        100: '#f5f0eb',    // 背景色
+        200: '#ebe4dd',
+      }
     }
   }
 }
 ```
 
-### 2. 硅基流动 API
+### 2. AI服务配置
 
-在 `src/utils/constants.js` 配置你的API Key：
+在应用设置中配置硅基流动API密钥：
 
-```javascript
-export const API_CONFIG = {
-  apiKey: '你的API Key',
-  model: 'Qwen/Qwen2.5-7B-Instruct'
-}
-```
+1. 点击右侧"⚙️ 设置"
+2. 输入API密钥（从 https://siliconflow.cn 获取）
+3. 选择学习目的（雅思/职场/兴趣）
+4. 保存设置
+
+**支持的模型**：Qwen/Qwen2.5-72B-Instruct
+
+### 3. 学习模式
+
+- **顺序学习**：按字母顺序学习（A→Z）
+- **随机学习**：全局随机打乱，避免字母聚集
+
+---
+
+## 功能特性
+
+### ✅ 当前版本（v1.2.0）
+
+#### 核心功能
+- [x] 5个难度分级词库（103,962词）
+- [x] 语境例句展示
+- [x] AI生成个性化例句（基于学习目的）
+- [x] 智能复习系统（间隔重复算法）
+- [x] 学习模式切换（顺序/随机）
+- [x] 全局随机算法（真正的随机分布）
+- [x] 单词本功能
+- [x] 测验模式
+- [x] 学习数据统计
+
+#### 性能优化
+- [x] 大文件懒加载（C1词库37MB优化）
+- [x] 全局缓存管理
+- [x] localStorage配额自动清理
+- [x] 预加载机制（300词）
+
+#### 用户体验
+- [x] 彩带动画激励
+- [x] 移动端完美适配
+- [x] 快捷键支持（空格/回车/方向键）
+- [x] 进度持久化保存
+- [x] 重新开始功能
+
+#### 词库管理
+- [x] 词库选择器
+- [x] 学习进度独立保存
+- [x] 复习队列管理
+- [x] 已学/忘记状态追踪
 
 ---
 
@@ -120,39 +256,56 @@ export const API_CONFIG = {
 3. 自动检测为Vite项目，点击Deploy
 4. 30秒后部署完成 ✅
 
-### Netlify 部署
+### 注意事项
 
-1. 运行 `npm run build`
-2. 将 `dist` 文件夹拖拽到 [netlify.com/drop](https://netlify.com/drop)
-3. 部署完成 ✅
+⚠️ **词库文件较大**，部署时需要：
+1. 确保`public/data/`目录下的JSON文件被正确上传
+2. Vercel免费版有文件大小限制（单个文件<25MB）
+3. C1词库（37MB）可能需要压缩或分割
+
+**建议方案**：
+- 使用GZIP压缩（Vercel自动处理）
+- 或将大词库分离到CDN
 
 ---
 
-## MVP 功能范围
+## 技术架构
 
-### ✅ 第一版（当前）
+### 懒加载实现
 
-- 雅思高频词库（2000核心词）
-- 语境例句展示
-- AI生成个性化例句
-- 答对/答错反馈 + 彩带动画
-- 顶部进度条
-- 本地学习进度保存
-- 移动端适配
+```javascript
+// 创建随机懒加载数组
+const createRandomLazyWordArray = (loader, totalCount, randomIndices) => {
+  // 1. 生成随机索引数组（Fisher-Yates洗牌）
+  // 2. 预加载前300个随机位置的单词
+  // 3. 使用Proxy拦截数组访问
+  // 4. 按需加载其他位置
+}
 
-### 📋 第二版（计划）
+// 使用示例
+const randomIndices = Array.from({ length: 80012 }, (_, i) => i);
+for (let i = randomIndices.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [randomIndices[i], randomIndices[j]] = [randomIndices[j], randomIndices[i]];
+}
 
-- 记忆曲线算法
-- 学习数据统计
-- 复习提醒系统
-- 快速测试模式
+words.value = createRandomLazyWordArray(loader, 80012, randomIndices);
+```
 
-### 🚀 第三版（未来）
+### 缓存策略
 
-- 词根词缀学习
-- 同义词扩展
-- 听力例句（发音）
-- 社交功能
+```javascript
+// AI例句缓存（30天TTL）
+const CACHE_VERSION = 'v1';
+const CACHE_KEY_PREFIX = 'vocabcontext_ai_example_';
+
+// 自动清理机制
+function cleanOldCache() {
+  // 按时间戳排序
+  // 删除最旧的50%
+  // 防止localStorage溢出
+}
+```
 
 ---
 
@@ -166,16 +319,56 @@ export const API_CONFIG = {
 
 ---
 
-## 开发计划
+## 开发历程
 
 - [x] 产品需求文档
 - [x] 设计系统
 - [x] 技术栈选型
-- [ ] 项目初始化
-- [ ] 组件开发
-- [ ] API集成
-- [ ] 数据准备
-- [ ] 测试部署
+- [x] 项目初始化（Vue 3 + Vite）
+- [x] 词库构建（103,962词）
+- [x] 核心功能开发
+- [x] AI服务集成
+- [x] 性能优化（懒加载）
+- [x] 全局随机算法
+- [x] 测试部署
+
+---
+
+## 版本历史
+
+### v1.2.0（2026-01-11）
+
+**重大更新**
+- 🎲 实现真正的全局随机学习（解决字母聚集问题）
+- ⚡ 大文件懒加载优化（C1词库37MB秒级启动）
+- 🧠 智能缓存管理（自动清理过期数据）
+- 🔄 完善的重新开始功能
+
+**新增功能**
+- 随机模式下的全局随机打乱
+- 词库选择器（桌面侧边栏）
+- localStorage配额检测与自动清理
+- 学习进度随机索引映射
+
+**性能提升**
+- 预加载300个随机位置单词
+- Proxy透明懒加载
+- 全局词库缓存
+
+### v1.1.0（2026-01-10）
+
+**新增功能**
+- 5个难度分级词库（103,962词）
+- AI个性化例句
+- 智能复习系统
+- 测验模式
+
+### v1.0.0（2026-01-10）
+
+**初始版本**
+- 基础词汇学习功能
+- 语境例句展示
+- 移动端适配
 
 ---
 
@@ -185,6 +378,7 @@ MIT
 
 ---
 
-**开发时间**：2026-01-10
-**产品定位**：精品小工具（自用 + 小范围分享）
+**开发时间**：2026-01-10 至今
+**产品定位**：精品学习工具（自用 + 开源）
 **目标**：六级509 → 雅思7.0
+**项目地址**：https://github.com/yourusername/vocab-context

@@ -57,6 +57,16 @@
         <li>
           <a
             href="#"
+            @click.prevent="$emit('open-vocab-selector')"
+            class="nav-item"
+          >
+            <span class="text-xl">📚</span>
+            <span>选择词库</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
             @click.prevent="$emit('open-settings')"
             class="nav-item"
           >
