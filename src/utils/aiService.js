@@ -147,12 +147,19 @@ function cleanOldCache() {
  * @returns {Promise<{sentence: string, translation: string}>} AI生成的例句
  */
 async function generateAIExampleWithoutCache({ apiKey, word, meaning, purpose }) {
+  // 清理 API key，移除非 ASCII 字符和多余空格
+  const cleanedApiKey = String(apiKey).trim().replace(/[^\x00-\x7F]/g, '');
+
+  if (!cleanedApiKey) {
+    throw new Error('API密钥无效');
+  }
+
   const prompt = buildPrompt(word, meaning, purpose);
 
   const response = await fetch('https://api.siliconflow.cn/v1/chat/completions', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${apiKey}`,
+      'Authorization': `Bearer ${cleanedApiKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -435,10 +442,17 @@ export function saveAISettings(settings) {
  */
 export async function validateApiKey(apiKey) {
   try {
+    // 清理 API key
+    const cleanedApiKey = String(apiKey).trim().replace(/[^\x00-\x7F]/g, '');
+
+    if (!cleanedApiKey) {
+      return false;
+    }
+
     const response = await fetch('https://api.siliconflow.cn/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        'Authorization': `Bearer ${cleanedApiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
