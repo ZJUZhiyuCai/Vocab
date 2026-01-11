@@ -998,7 +998,7 @@ const toggleWordbook = (wordId) => {
 };
 
 // 重新开始
-const restart = () => {
+const restart = async () => {
   console.log('🔄 重新开始学习');
 
   // 重置状态
@@ -1011,11 +1011,14 @@ const restart = () => {
   localStorage.removeItem(key);
   console.log(`🗑️ 已清除词库进度: ${key}`);
 
-  // 如果是随机模式，重新生成随机顺序
-  if (userSettings.value.studyMode === 'random' && words.value.length > 0) {
-    console.log('🎲 重新生成随机顺序...');
-    shuffleWords();
-  }
+  // 清除复习状态
+  const reviewKey = `vocabcontext_review_${currentVocab.value.id}`;
+  localStorage.removeItem(reviewKey);
+  reviewStates.value = {};
+  console.log(`🗑️ 已清除复习状态: ${reviewKey}`);
+
+  // 重新加载数据（确保界面更新）
+  await loadData();
 
   console.log('✅ 重新开始完成');
 };
