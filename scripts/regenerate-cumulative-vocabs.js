@@ -29,6 +29,16 @@ const CEFR_ORDER = {
   'C2': 6
 };
 
+// Fisher-Yates 洗牌算法
+function shuffleArray(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 console.log('📚 开始重新生成累计词库...\n');
 
 // 读取所有CEFR分级的词库
@@ -40,15 +50,15 @@ const b2Data = JSON.parse(fs.readFileSync(path.join(dataDir, 'vocab-b2-upper-int
 const c1Data = JSON.parse(fs.readFileSync(path.join(dataDir, 'vocab-c1-advanced.json'), 'utf8'));
 const c2Data = JSON.parse(fs.readFileSync(path.join(dataDir, 'vocab-c2-proficiency.json'), 'utf8'));
 
-// A1词包含在A2文件中，需要提取
-const a1Words = a1Data.words.filter(w => w.cefr === 'A1');
-const a2Words = a1Data.words.filter(w => w.cefr === 'A2');
-const b1Words = b1Data.words;
-const b2Words = b2Data.words;
-const c1Words = c1Data.words;
-const c2Words = c2Data.words;
+// A1词包含在A2文件中，需要提取并打乱
+const a1Words = shuffleArray(a1Data.words.filter(w => w.cefr === 'A1'));
+const a2Words = shuffleArray(a1Data.words.filter(w => w.cefr === 'A2'));
+const b1Words = shuffleArray(b1Data.words);
+const b2Words = shuffleArray(b2Data.words);
+const c1Words = shuffleArray(c1Data.words);
+const c2Words = shuffleArray(c2Data.words);
 
-console.log('📖 读取词库文件:');
+console.log('📖 读取并打乱词库文件:');
 console.log(`   - A1: ${a1Words.length} 词`);
 console.log(`   - A2: ${a2Words.length} 词`);
 console.log(`   - B1: ${b1Words.length} 词`);
@@ -69,7 +79,7 @@ const allWords = [
 
 console.log(`📊 总词数: ${allWords.length}\n`);
 
-// 配置分段：按CEFR级别分配，而不是累计数量
+// 配置分段：按实际考试词汇量要求
 const CONFIG = [
   {
     id: 'cet4-basic',
@@ -98,7 +108,7 @@ const CONFIG = [
     icon: '🎯',
     color: '#52667c',
     cefrLevels: ['B2'],
-    b2Count: 3000,  // 取前3000个B2词
+    b2Count: 500,  // 雅思6.0累计6000左右，从6000-6500
     targetExam: '雅思6.0'
   },
   {
@@ -107,10 +117,9 @@ const CONFIG = [
     file: 'vocab-ielts7-sprint.json',
     icon: '🏆',
     color: '#7c6f62',
-    cefrLevels: ['B2'],  // 剩余的B2词
-    extraC1: 0,
-    b2Remaining: true,
-    c1Count: 2000,  // 加上2000个C1词
+    cefrLevels: ['B2', 'C1'],
+    extraB2: 1000,  // 再取1000个B2
+    extraC1: 500,   // 加上500个C1，累计约8000
     targetExam: '雅思7.0'
   },
   {
@@ -120,7 +129,7 @@ const CONFIG = [
     icon: '💎',
     color: '#6b5c7c',
     cefrLevels: ['C1', 'C2'],  // 剩余的C1和所有C2
-    c1Limit: 5000,  // 只取前5000个C1词
+    c1Limit: 2000,  // 再取2000个C1（雅思8.0+累计10000+）
     targetExam: '雅思8.0+'
   }
 ];
@@ -157,19 +166,27 @@ CONFIG.forEach((config) => {
     levelWords.push(...b2Words.slice(usedB2Count, usedB2Count + config.b2Count));
     usedB2Count += config.b2Count;
   }
+  if (config.extraB2) {
+    levelWords.push(...b2Words.slice(usedB2Count, usedB2Count + config.extraB2));
+    usedB2Count += config.extraB2;
+  }
   if (config.b2Remaining) {
     levelWords.push(...b2Words.slice(usedB2Count));
     usedB2Count = b2Words.length;
   }
 
   // 处理C1单词
+  if (config.extraC1) {
+    levelWords.push(...c1Words.slice(usedC1Count, usedC1Count + config.extraC1));
+    usedC1Count += config.extraC1;
+  }
   if (config.c1Count) {
     levelWords.push(...c1Words.slice(usedC1Count, usedC1Count + config.c1Count));
     usedC1Count += config.c1Count;
   }
 
   // 处理C1剩余和C2
-  if (config.cefrLevels.includes('C1') && !config.c1Count) {
+  if (config.cefrLevels.includes('C1') && !config.c1Count && !config.extraC1) {
     const c1Limit = config.c1Limit || c1Words.length;
     levelWords.push(...c1Words.slice(usedC1Count, usedC1Count + c1Limit));
     usedC1Count += c1Limit;

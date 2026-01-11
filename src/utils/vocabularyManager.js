@@ -42,7 +42,7 @@ export const VOCABULARIES = [
     id: 'vocab-ielts6-breakthrough',
     name: '雅思6.0突破',
     description: '雅思6.0水平B2词汇',
-    size: 3000,
+    size: 500,
     level: 'ielts6',
     category: 'IELTS',
     file: '/data/vocab-ielts6-breakthrough.json',
@@ -50,7 +50,7 @@ export const VOCABULARIES = [
     color: '#52667c',
     difficulty: {
       cefr: ['B2'],
-      vocabRange: '6000-9000',
+      vocabRange: '6000-6500',
       stars: 3,
       label: '雅思6.0'
     }
@@ -59,7 +59,7 @@ export const VOCABULARIES = [
     id: 'vocab-ielts7-sprint',
     name: '雅思7.0冲刺',
     description: '雅思7.0水平B2+/C1词汇',
-    size: 10894,
+    size: 1500,
     level: 'ielts7',
     category: 'IELTS',
     file: '/data/vocab-ielts7-sprint.json',
@@ -67,7 +67,7 @@ export const VOCABULARIES = [
     color: '#7c6f62',
     difficulty: {
       cefr: ['B2', 'C1'],
-      vocabRange: '9000-20000',
+      vocabRange: '6500-8000',
       stars: 4,
       label: '雅思7.0'
     }
@@ -76,7 +76,7 @@ export const VOCABULARIES = [
     id: 'vocab-ielts8-mastery',
     name: '雅思8.0通关',
     description: '雅思8.0+水平C1/C2精通词汇',
-    size: 7044,
+    size: 4044,
     level: 'ielts8',
     category: 'IELTS',
     file: '/data/vocab-ielts8-mastery.json',
@@ -84,7 +84,7 @@ export const VOCABULARIES = [
     color: '#6b5c7c',
     difficulty: {
       cefr: ['C1', 'C2'],
-      vocabRange: '20000+',
+      vocabRange: '8000-12044',
       stars: 5,
       label: '雅思8.0+'
     }
