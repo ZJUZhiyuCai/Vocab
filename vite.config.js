@@ -22,7 +22,7 @@ export default defineConfig({
     // 生成源码映射
     sourcemap: false,
     // 最小化混淆
-    minify: 'terser',
+    minify: 'esbuild',
     // CSS 代码拆分
     cssCodeSplit: true,
     // Rollup 选项
@@ -42,14 +42,7 @@ export default defineConfig({
       }
     },
     // chunk 大小警告限制 (KB)
-    chunkSizeWarningLimit: 1000,
-    // 压缩配置
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    }
+    chunkSizeWarningLimit: 1000
   },
   // 依赖预构建
   optimizeDeps: {
