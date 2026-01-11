@@ -41,11 +41,11 @@ export const VOCABULARIES = [
   {
     id: 'vocab-ielts6-breakthrough',
     name: '雅思6.0突破',
-    description: '雅思6.0水平新增词汇（累计7,000词）',
-    size: 1000,
+    description: '雅思6.0水平B2词汇',
+    size: 3208,
     level: 'ielts6',
     category: 'IELTS',
-    file: '/data/vocab-ielts6-breakthrough.json',
+    file: '/data/vocab-ielts6.json',
     icon: '🎯',
     color: '#52667c',
     difficulty: {
@@ -58,16 +58,16 @@ export const VOCABULARIES = [
   {
     id: 'vocab-ielts7-sprint',
     name: '雅思7.0冲刺',
-    description: '雅思7.0水平新增词汇（累计9,000词）',
-    size: 2000,
+    description: '雅思7.0水平B2+词汇',
+    size: 11894,
     level: 'ielts7',
     category: 'IELTS',
-    file: '/data/vocab-ielts7-sprint.json',
+    file: '/data/vocab-b2-upper-intermediate.json',
     icon: '🏆',
     color: '#7c6f62',
     difficulty: {
-      cefr: ['C1'],
-      vocabRange: '7000-9000',
+      cefr: ['B2'],
+      vocabRange: '7000-15000',
       stars: 4,
       label: '雅思7.0'
     }
@@ -75,16 +75,16 @@ export const VOCABULARIES = [
   {
     id: 'vocab-ielts8-mastery',
     name: '雅思8.0通关',
-    description: '雅思8.0及以上精通词汇',
-    size: 4670,
+    description: '雅思8.0+水平C2精通词汇',
+    size: 2044,
     level: 'ielts8',
     category: 'IELTS',
-    file: '/data/vocab-ielts8-mastery.json',
+    file: '/data/vocab-c2-proficiency.json',
     icon: '💎',
     color: '#6b5c7c',
     difficulty: {
       cefr: ['C2'],
-      vocabRange: '9000-13670',
+      vocabRange: '15000+',
       stars: 5,
       label: '雅思8.0+'
     }
