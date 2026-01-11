@@ -75,6 +75,83 @@
   .animate-slide-up {
     animation: slideUp 0.4s ease-out;
   }
+
+  /* 页面切换动画 */
+  .page-enter-active,
+  .page-leave-active {
+    transition: all 0.3s ease;
+  }
+
+  .page-enter-from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  .page-leave-to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  /* 加载进度条 */
+  .loading-bar {
+    @apply fixed top-0 left-0 h-1 bg-sage-500 z-50;
+    transition: width 0.3s ease;
+  }
+
+  /* 卡片滑动动画 */
+  .card-slide-left {
+    animation: slideLeft 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  .card-slide-right {
+    animation: slideRight 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  .card-scale-down {
+    animation: scaleDown 0.2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  /* 性能优化：使用GPU加速 */
+  .card {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* 手势跟随效果 */
+  .card-dragging {
+    transition: none;
+    cursor: grabbing;
+    will-change: transform;
+  }
+
+  .card-dragging-left {
+    transform: translateX(-50px) rotate(-5deg);
+    opacity: 0.5;
+  }
+
+  .card-dragging-right {
+    transform: translateX(50px) rotate(5deg);
+    opacity: 0.5;
+  }
+
+  /* 按钮点击动画 */
+  .btn:active {
+    transform: scale(0.97);
+  }
+
+  /* 收藏按钮动画 */
+  .favorite-btn {
+    transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+
+  .favorite-btn:active {
+    transform: scale(0.8);
+  }
 }
 
 /* 工具类 */
@@ -97,5 +174,96 @@
   /* 标签 */
   .tag {
     @apply inline-block px-3 py-1 text-xs rounded-full bg-sage-100 text-sage-700;
+  }
+
+  /* 骨架屏样式 */
+  .skeleton-line {
+    @apply bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200;
+    @apply rounded;
+    animation: shimmer 1.5s infinite;
+  }
+
+  .skeleton-circle {
+    @apply bg-gradient-to-br from-gray-200 via-gray-300 to-gray-200 rounded-full;
+    animation: shimmer 1.5s infinite;
+  }
+
+  .skeleton-button {
+    @apply bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded-md;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+/* 动画关键帧 */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%) rotate(-10deg);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%) rotate(10deg);
+  }
+}
+
+@keyframes scaleDown {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
   }
 }
