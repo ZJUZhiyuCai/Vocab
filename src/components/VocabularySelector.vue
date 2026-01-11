@@ -23,8 +23,8 @@
 
           <!-- 词库统计 -->
           <div class="vocab-stats">
-            <span class="vocab-badge">{{ vocab.size }}</span>
-            <span class="vocab-badge">{{ vocab.difficulty }}</span>
+            <span class="vocab-badge">{{ vocab.size }}词</span>
+            <span class="vocab-badge">{{ vocab.difficulty.label }}</span>
           </div>
 
           <!-- 学习进度 -->
