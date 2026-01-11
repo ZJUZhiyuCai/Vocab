@@ -288,8 +288,7 @@
         <!-- 复习列表页面 -->
         <ReviewQueue
           v-else-if="currentPage === 'review'"
-          :words="words"
-          :review-states="reviewStates"
+          :review-data="reviewQueueData"
           @navigate="handleNavigate"
         />
 
@@ -341,6 +340,7 @@
           </button>
         </div>
 
+        <!-- 词典选择器 -->
         <VocabularySelector @select="handleVocabularySelect" />
       </div>
     </div>
@@ -435,7 +435,7 @@
         </div>
 
         <!-- AI设置 -->
-        <div class="mb-4">
+        <div class="mb-6 pb-6 border-b border-gray-200">
           <h3 class="text-sm font-bold text-gray-700 mb-3">🤖 AI功能</h3>
 
           <!-- API密钥输入 -->
@@ -446,6 +446,11 @@
               在<a href="https://docs.siliconflow.cn/cn/userguide/quickstart" target="_blank" class="text-sage-500 underline">硅基流动官网</a>获取免费API密钥
             </p>
           </div>
+
+          <!-- 缓存说明 -->
+          <p class="text-xs text-gray-500 mt-2">
+            💡 AI例句会自动缓存24小时，减少API调用
+          </p>
         </div>
 
         <!-- 云端同步 -->
@@ -658,8 +663,22 @@ const touchEndY = ref(0)
 const isSwiping = ref(false)
 
 // AI相关状态
-const userSettings = ref({ apiKey: '', interests: [], dailyGoal: 20, studyMode: 'random' })
-const settingsForm = ref({ apiKey: '', interests: [], dailyGoal: 20, studyMode: 'random', githubToken: '' })
+const userSettings = ref({
+  apiKey: '',
+  interests: [],
+  dailyGoal: 20,
+  studyMode: 'random',
+  githubToken: '',
+  purpose: 'exam'
+})
+const settingsForm = ref({
+  apiKey: '',
+  interests: [],
+  dailyGoal: 20,
+  studyMode: 'random',
+  githubToken: '',
+  purpose: 'exam'
+})
 const showSettings = ref(false)
 const newInterest = ref('')
 const generatingWordId = ref(null)
@@ -900,10 +919,15 @@ const reviewStats = computed(() => {
 
 // 获取复习队列详细数据（用于预览）
 const reviewQueueData = computed(() => {
-  return reviewQueue.value.map(wordId => {
-    const word = words.value.find(w => w.id === wordId);
-    const reviewState = reviewStates.value[wordId];
-    return { word, reviewState };
+  return reviewQueue.value.map(item => {
+    const word = words.value.find(w => w.id === item.wordId);
+    const reviewState = reviewStates.value[item.wordId];
+    return {
+      word,
+      reviewState,
+      type: item.type || 'review', // 传递类型信息（forgotten 或 review）
+      priority: item.priority || 0
+    };
   }).filter(item => item.word); // 过滤掉找不到的单词
 });
 
@@ -1026,169 +1050,12 @@ const restart = async () => {
   // 强制等待下一tick，确保Vue更新
   await new Promise(resolve => setTimeout(resolve, 0));
 
-  // 如果是随机模式，确保重新洗牌
-  if (userSettings.value.studyMode === 'random' && words.value.length > 0) {
-    console.log('🎲 重新开始：重新生成随机顺序');
-    await shuffleWords();
-  }
-
+  // 如果是随机模式，重新洗牌（loadData 中已经处理，这里不需要再洗牌）
   console.log('✅ 重新开始完成, 当前索引:', currentIndex.value);
   console.log('   当前单词:', currentWord.value?.word || 'null');
 };
 
-// 创建随机懒加载单词数组（真正从整个词库随机）
-const createRandomLazyWordArray = (loader, totalCount, randomIndices) => {
-  const loadedWords = new Map(); // 随机索引 -> 单词
-  const loadingPromises = new Map(); // 随机索引 -> 加载Promise
-
-  // 预加载前300个随机位置的单词
-  const preloadSize = Math.min(300, totalCount);
-  const preloadPromises = [];
-
-  console.log(`🎲 随机模式：预加载前 ${preloadSize} 个随机单词...`);
-
-  // 批量加载随机单词（优化性能）
-  for (let i = 0; i < preloadSize; i++) {
-    const randomIndex = randomIndices[i];
-    const loadPromise = (async () => {
-      try {
-        const wordsSlice = await loader.getWordsRange(randomIndex, 1);
-        if (wordsSlice && wordsSlice.length > 0) {
-          loadedWords.set(randomIndex, wordsSlice[0]);
-          return wordsSlice[0];
-        }
-      } catch (err) {
-        console.error(`加载随机索引 ${randomIndex} 失败:`, err);
-      }
-    })();
-    preloadPromises.push(loadPromise);
-    loadingPromises.set(randomIndex, loadPromise);
-  }
-
-  // 等待预加载完成
-  Promise.all(preloadPromises).then(() => {
-    console.log(`✅ 随机预加载完成 (${preloadSize} 个单词)`);
-  });
-
-  // 创建懒加载函数
-  const ensureLoaded = async (displayIndex) => {
-    // displayIndex是用户看到的索引（0, 1, 2...）
-    // randomIndex是实际词库中的索引
-    const randomIndex = randomIndices[displayIndex];
-
-    if (loadedWords.has(randomIndex)) {
-      return loadedWords.get(randomIndex);
-    }
-
-    if (loadingPromises.has(randomIndex)) {
-      return await loadingPromises.get(randomIndex);
-    }
-
-    const loadPromise = (async () => {
-      try {
-        const wordsSlice = await loader.getWordsRange(randomIndex, 1);
-        if (wordsSlice && wordsSlice.length > 0) {
-          loadedWords.set(randomIndex, wordsSlice[0]);
-          return wordsSlice[0];
-        }
-        return null;
-      } catch (err) {
-        console.error(`加载随机索引 ${randomIndex} 失败:`, err);
-        return null;
-      }
-    })();
-
-    loadingPromises.set(randomIndex, loadPromise);
-    const result = await loadPromise;
-    loadingPromises.delete(randomIndex);
-
-    return result;
-  };
-
-  // 返回一个类数组对象
-  const arrayProxy = [];
-  arrayProxy.length = totalCount;
-
-  return new Proxy(arrayProxy, {
-    get(target, prop) {
-      if (prop === 'length') return totalCount;
-
-      if (typeof prop === 'symbol') {
-        return target[prop];
-      }
-
-      if (typeof prop === 'string' && prop in Array.prototype) {
-        return target[prop];
-      }
-
-      const displayIndex = parseInt(prop);
-      if (!isNaN(displayIndex) && displayIndex >= 0 && displayIndex < totalCount) {
-        const randomIndex = randomIndices[displayIndex];
-        const word = loadedWords.get(randomIndex);
-
-        if (word) {
-          // 预加载接下来的单词（后台进行）
-          if (displayIndex > 0 && displayIndex % 50 === 0) {
-            const preloadIndex = displayIndex + 50;
-            if (preloadIndex < totalCount) {
-              ensureLoaded(preloadIndex);
-            }
-          }
-          return word;
-        }
-
-        // 未加载：触发异步加载，但不等待
-        ensureLoaded(displayIndex);
-        return null;
-      }
-
-      return target[prop];
-    },
-
-    set(target, prop, value) {
-      const displayIndex = parseInt(prop);
-      if (!isNaN(displayIndex) && displayIndex >= 0) {
-        const randomIndex = randomIndices[displayIndex];
-        loadedWords.set(randomIndex, value);
-        return true;
-      }
-      return false;
-    }
-  });
-};
-
-// 随机打乱单词顺序（从整个词库随机）
-const shuffleWords = async () => {
-  if (!words.value || words.value.length === 0) return;
-
-  const totalCount = words.value.length;
-  console.log(`🔀 开始从 ${totalCount} 个单词中生成随机顺序...`);
-
-  // 生成随机索引数组（Fisher-Yates洗牌算法）
-  const randomIndices = Array.from({ length: totalCount }, (_, i) => i);
-
-  for (let i = totalCount - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [randomIndices[i], randomIndices[j]] = [randomIndices[j], randomIndices[i]];
-  }
-
-  console.log(`🎲 随机索引数组生成完成，示例：`);
-  console.log(`   - 前10个原始索引: ${randomIndices.slice(0, 10).join(', ')}`);
-  console.log(`   - 涵盖范围: 0 - ${totalCount - 1}`);
-
-  // 使用随机索引数组创建懒加载包装器
-  const loader = getVocabularyLoader(currentVocab.value.file);
-
-  // 创建随机懒加载数组
-  words.value = createRandomLazyWordArray(loader, totalCount, randomIndices);
-
-  // 重置到第一个单词
-  currentIndex.value = 0;
-
-  console.log(`✅ 已创建 ${totalCount} 个单词的随机学习顺序`);
-};
-
-// 加载数据
+// 加载数据（全量加载版本）
 const loadData = async () => {
   isLoading.value = true;
 
@@ -1198,12 +1065,13 @@ const loadData = async () => {
 
     console.log('📚 开始加载词库:', currentVocab.value.name, currentVocab.value.file);
 
-    // 懒加载：只加载元数据和第一批单词
+    // 获取加载器
     const loader = getVocabularyLoader(currentVocab.value.file);
 
-    // 获取总单词数（用于显示进度）
-    const totalCount = await loader.getTotalCount();
-    console.log(`📊 词库总单词数: ${totalCount}`);
+    // 🔥 关键修改：一次性加载全部单词
+    console.log('📦 正在加载全部单词...');
+    const allWords = await loader.getWordsRange(0, await loader.getTotalCount());
+    console.log(`✅ 已加载全部 ${allWords.length} 个单词`);
 
     // 加载该词库的学习进度
     const progress = getVocabularyProgress(currentVocab.value.id);
@@ -1217,32 +1085,15 @@ const loadData = async () => {
     const isRandomMode = userSettings.value.studyMode === 'random';
 
     if (isRandomMode) {
-      // 随机模式：直接生成随机索引数组并创建随机懒加载数组
-      console.log('🎲 随机学习模式，从整个词库生成全局随机顺序...');
-
-      // 生成随机索引数组（Fisher-Yates洗牌算法）
-      const randomIndices = Array.from({ length: totalCount }, (_, i) => i);
-      for (let i = totalCount - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [randomIndices[i], randomIndices[j]] = [randomIndices[j], randomIndices[i]];
-      }
-
-      console.log(`   前10个随机索引: ${randomIndices.slice(0, 10).join(', ')}`);
-
-      // 创建随机懒加载数组
-      words.value = createRandomLazyWordArray(loader, totalCount, randomIndices);
+      // 随机模式：打乱数组
+      console.log('🎲 随机学习模式，打乱单词顺序...');
+      words.value = shuffleArray([...allWords]);
+      console.log(`✅ 已打乱顺序，首词: ${words.value[0]?.word}`);
     } else {
-      // 顺序模式：加载当前进度附近的单词
-      const preloadSize = 300; // 预加载300个单词
-      const startIdx = Math.max(0, currentIndex.value - 50);
-      console.log(`🔜 准备预加载: start=${startIdx}, size=${preloadSize}`);
-
-      const initialWords = await loader.getWordsRange(startIdx, preloadSize);
-      console.log(`✅ 实际加载了 ${initialWords.length} 个单词`);
-      console.log(`🎯 当前单词 (${currentIndex.value}):`, initialWords[currentIndex.value - startIdx]?.word || 'NOT FOUND');
-
-      // 创建顺序懒加载包装数组
-      words.value = createLazyWordArray(loader, totalCount, startIdx, initialWords);
+      // 顺序模式：直接使用原数组
+      console.log('🔜 顺序学习模式');
+      words.value = allWords;
+      console.log(`✅ 顺序加载完成，首词: ${words.value[currentIndex.value]?.word}`);
     }
 
     console.log(`📦 words.value.length=${words.value.length}`);
@@ -1259,108 +1110,13 @@ const loadData = async () => {
   }
 };
 
-// 创建懒加载单词数组（简化版）
-const createLazyWordArray = (loader, totalCount, startIdx, initialWords) => {
-  const loadedWords = new Map(); // 索引 -> 单词
-  const loadingPromises = new Map(); // 索引 -> 加载Promise
-
-  // 初始化已加载的单词
-  initialWords.forEach((word, i) => {
-    const globalIndex = startIdx + i;
-    loadedWords.set(globalIndex, word);
-  });
-
-  console.log(`📦 已预加载 ${initialWords.length} 个单词 (索引 ${startIdx} - ${startIdx + initialWords.length - 1})`);
-
-  // 创建懒加载函数
-  const ensureLoaded = async (index) => {
-    // 如果已加载，直接返回
-    if (loadedWords.has(index)) {
-      return loadedWords.get(index);
-    }
-
-    // 如果正在加载，等待完成
-    if (loadingPromises.has(index)) {
-      return await loadingPromises.get(index);
-    }
-
-    // 开始加载
-    const loadPromise = (async () => {
-      try {
-        const wordsSlice = await loader.getWordsRange(index, 100);
-        wordsSlice.forEach((word, i) => {
-          loadedWords.set(index + i, word);
-        });
-        return loadedWords.get(index);
-      } catch (err) {
-        console.error(`加载单词 ${index} 失败:`, err);
-        return null;
-      }
-    })();
-
-    loadingPromises.set(index, loadPromise);
-    const result = await loadPromise;
-    loadingPromises.delete(index);
-
-    return result;
-  };
-
-  // 返回一个类数组对象
-  const arrayProxy = [];
-
-  // 重写常用方法
-  arrayProxy.length = totalCount;
-
-  // 索引访问
-  return new Proxy(arrayProxy, {
-    get(target, prop) {
-      // 处理 length 属性
-      if (prop === 'length') return totalCount;
-
-      // 处理 Symbol 属性（Vue 内部使用）
-      if (typeof prop === 'symbol') {
-        return target[prop];
-      }
-
-      // 处理数组方法（slice, map, forEach 等）
-      if (typeof prop === 'string' && prop in Array.prototype) {
-        return target[prop];
-      }
-
-      // 处理数字索引
-      const index = parseInt(prop);
-      if (!isNaN(index) && index >= 0 && index < totalCount) {
-        const word = loadedWords.get(index);
-
-        // 如果已加载，直接返回
-        if (word) {
-          // 预加载接下来的单词（后台进行）
-          if (index > 0 && index % 50 === 0) {
-            const preloadIndex = index + 50;
-            if (preloadIndex < totalCount && !loadedWords.has(preloadIndex)) {
-              ensureLoaded(preloadIndex);
-            }
-          }
-          return word;
-        }
-
-        // 未加载：触发异步加载，但不等待
-        ensureLoaded(index); // 不等待，后台加载
-        return null; // 暂时返回null
-      }
-
-      return target[prop];
-    },
-
-    set(target, prop, value) {
-      const index = parseInt(prop);
-      if (!isNaN(index) && index >= 0) {
-        loadedWords.set(index, value);
-        return true;
-      }
-      return false;
-    }
-  });
+// 简单的数组打乱函数（Fisher-Yates 算法）
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 };
 
 // 加载复习状态
@@ -1389,7 +1145,7 @@ const saveReviewStates = () => {
 
 // 更新复习队列
 const updateReviewQueue = () => {
-  reviewQueue.value = getReviewQueue(reviewStates.value, 50);
+  reviewQueue.value = getReviewQueue(reviewStates.value, forgotten.value, 50);
 };
 
 // 切换词库

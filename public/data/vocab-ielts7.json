@@ -1,0 +1,1590 @@
+{
+  "version": "2.0.0",
+  "lastUpdated": "2026-01-11",
+  "totalWords": 69,
+  "level": "C1",
+  "cefr": [
+    "C1"
+  ],
+  "ielts": "7.0",
+  "description": "雅思7.0水平核心词汇",
+  "words": [
+    {
+      "id": "c1_0957",
+      "word": "administration",
+      "ipa": " ædˌmɪnɪˈstreʃən",
+      "partOfSpeech": "n.",
+      "meaning": "n.管理,实行,（政府）行政机关,（法律、处罚等的）施行",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "The administration has now endorsed the bill and can't turn back.",
+          "translation": "政府部门如今已经签署了那项法案，没有挽回的余地。"
+        },
+        {
+          "sentence": "His increasing alignment with the Reagan administration nearly cost him re-election.",
+          "translation": "与里根政府日益紧密的关系差点让他失去了连任的机会。"
+        },
+        {
+          "sentence": "His administration has earned low marks for its economic policies.",
+          "translation": "他的班子在经济政策上所获评价很低。"
+        }
+      ]
+    },
+    {
+      "id": "c1_4062",
+      "word": "approximately",
+      "ipa": "əˈprɑksɪmətli",
+      "partOfSpeech": "adv.",
+      "meaning": "adv.近似地，大约,许",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "In the course of the 1930s steel production in Britain approximately doubled.",
+          "translation": "在20世纪30年代，英国的钢铁产量几乎翻了一番。"
+        },
+        {
+          "sentence": "Approximately $150 million is to be spent on improvements.",
+          "translation": "大约1.5亿美元将用于作出改善。"
+        },
+        {
+          "sentence": "The conservatory measures approximately 13ft x 16ft.",
+          "translation": "温室的大小大约是13英尺乘16英尺。"
+        }
+      ]
+    },
+    {
+      "id": "c1_4834",
+      "word": "assassination",
+      "ipa": "əˌsæsɪ'neɪʃn",
+      "partOfSpeech": "n.",
+      "meaning": "n.暗杀",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "He was responding to reports of an assassination plot against him.",
+          "translation": "他正就有关针对他的暗杀阴谋的报道作出回应。"
+        },
+        {
+          "sentence": "She would like an investigation into the assassination of her husband.",
+          "translation": "她希望对她丈夫的遇刺展开调查。"
+        },
+        {
+          "sentence": "They are already serving prison sentences for their part in the assassination.",
+          "translation": "他们因参与这起刺杀已经开始在监狱服刑了。"
+        }
+      ]
+    },
+    {
+      "id": "c1_5421",
+      "word": "authorization",
+      "ipa": "ˌɔθərəˈzeɪʃn",
+      "partOfSpeech": "n.",
+      "meaning": "n.授权，批准,批准（或授权）的证书",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "You may not enter the security area without authorization.",
+          "translation": "未经批准不得进入警戒地区。"
+        },
+        {
+          "sentence": "Formal authorization for the trip was given last week.",
+          "translation": "这次行程上周得到正式批准."
+        },
+        {
+          "sentence": "Anglers are required to obtain prior authorization from the park keeper.",
+          "translation": "垂钓者必须事先得到公园管理者的许可."
+        }
+      ]
+    },
+    {
+      "id": "c1_5544",
+      "word": "automatically",
+      "ipa": "ˌɔtəˈmætɪklɪ",
+      "partOfSpeech": "adv.",
+      "meaning": "adv.自动地,无意识地,不自觉地,机械地",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "Don't assume your baby automatically needs feeding if she's fretful.",
+          "translation": "不要想当然地认为你的宝宝一闹就是要吃奶。"
+        },
+        {
+          "sentence": "Strangely enough, you will automatically wake up after this length of time.",
+          "translation": "奇怪的是，过了这样一段时间你就会自己醒来。"
+        },
+        {
+          "sentence": "Don't automatically accept the solicitor recommended by the broker.",
+          "translation": "别想当然地就接受中间人推荐的诉状律师。"
+        }
+      ]
+    },
+    {
+      "id": "c1_11951",
+      "word": "characteristic",
+      "ipa": "ˌkærəktəˈrɪstɪk",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.特有的,独特的,表示特性的,显示…的特征的\nn.特性，特征，特色，[数]（对数的）首数,独特性,性质",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "With characteristic impetuosity, he announced he was leaving school.",
+          "translation": "一贯性急冲动的他又宣布要退学了。"
+        },
+        {
+          "sentence": "The main characteristic of the strike has been its longevity.",
+          "translation": "这次罢工的主要特点是持续时间长。"
+        },
+        {
+          "sentence": "This book is suffused with Shaw's characteristic wry Irish humour.",
+          "translation": "这本书充满了萧伯纳独特的爱尔兰式幽默与嘲讽。"
+        }
+      ]
+    },
+    {
+      "id": "c1_14276",
+      "word": "communication",
+      "ipa": "kəˌmjunɪˈkeʃən",
+      "partOfSpeech": "n.",
+      "meaning": "n.通讯，通信,交流,书信,传达",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "The vehicle that permitted both communication and acceptability was social revolution.",
+          "translation": "既能实现交流又能被广为接受的手段就是社会革命。"
+        },
+        {
+          "sentence": "She'd never received the merest hint of any communication from him.",
+          "translation": "她从未得到他准备沟通的一丁点儿暗示。"
+        },
+        {
+          "sentence": "Honeybees use one of the most sophisticated communication systems of any insect.",
+          "translation": "蜜蜂之间所用的交流方式是昆虫中最为复杂的方式之一。"
+        }
+      ]
+    },
+    {
+      "id": "c1_14277",
+      "word": "communications",
+      "ipa": "kəˌmjunɪ'keɪʃənz",
+      "partOfSpeech": "n.",
+      "meaning": "n.通信,交流( communication的名词复数 ),交际,信息,通信工具",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "The advances in communications altered the nature of information processing.",
+          "translation": "通讯技术的进步使信息处理发生了质的改变。"
+        },
+        {
+          "sentence": "The prose of his official communications was so laboured, pompous and verbose.",
+          "translation": "他笔下的公文矫揉浮华，长篇大论。"
+        },
+        {
+          "sentence": "Transport is difficult, communications are patchy.",
+          "translation": "交通困难，通信时断时续。"
+        }
+      ]
+    },
+    {
+      "id": "c1_14495",
+      "word": "concentration",
+      "ipa": "ˌkɑnsnˈtreɪʃn",
+      "partOfSpeech": "n.",
+      "meaning": "n.集中,专心,关注,浓度",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "We lacked concentration and it cost us the goal and the game.",
+          "translation": "我们注意力不够集中，结果丢了球，输了比赛。"
+        },
+        {
+          "sentence": "I knew that concentration was the first requirement for learning.",
+          "translation": "我知道专心致志是学习的首要条件。"
+        },
+        {
+          "sentence": "He plays the character with tremendous concentration combined with a pleasing modesty.",
+          "translation": "他表演这个角色时倾注了巨大的心血，而且非常谦虚和善。"
+        }
+      ]
+    },
+    {
+      "id": "c1_14849",
+      "word": "consciousness",
+      "ipa": "ˈkɑnʃəsnəs",
+      "partOfSpeech": "n.",
+      "meaning": "n.意识，观念,知觉,觉悟,感觉",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "There was very little snobbery or class-consciousness in the wartime navy.",
+          "translation": "战时的海军中很少有势利眼，阶级意识也不强。"
+        },
+        {
+          "sentence": "That idea has been creeping into our consciousness for some time.",
+          "translation": "不知不觉间，那种想法在我们脑海里渐渐形成已经有一段时间了。"
+        },
+        {
+          "sentence": "I was meditating, and reached a higher state of consciousness.",
+          "translation": "我在冥想，并进入了一个更高的意识境界。"
+        }
+      ]
+    },
+    {
+      "id": "c1_14871",
+      "word": "consideration",
+      "ipa": "kənˌsɪdəˈreʃən",
+      "partOfSpeech": "n.",
+      "meaning": "n.考虑，考察,照顾，关心,报酬,尊敬",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "Several proposals are under consideration by the state assembly.",
+          "translation": "有几个提案州议会正在讨论中。"
+        },
+        {
+          "sentence": "The Board is scrupulous in its consideration of all applications for licences.",
+          "translation": "委员会对所有申请许可证的人予以审慎考虑。"
+        },
+        {
+          "sentence": "The other fundamental consideration in the conception of a plan is function.",
+          "translation": "在构思设计图时要考虑的另一个基本因素是功能。"
+        }
+      ]
+    },
+    {
+      "id": "c1_14922",
+      "word": "constitutional",
+      "ipa": "ˌkɑnstəˈtuʃənl",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.宪法的，符合宪法的,本质的,体质上的,保健的\nn.保健运动,保健散步",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "Ministers took the floor to denounce the decision to suspend constitutional rule.",
+          "translation": "几位部长发言谴责暂停宪制的决定。"
+        },
+        {
+          "sentence": "It is only an Elastoplast solution to a far greater constitutional pro-blem.",
+          "translation": "对于一个非常严重的宪法问题来说，这只是个暂时的解决方案。"
+        },
+        {
+          "sentence": "A constitutional amendment precludes any president from serving more than two terms.",
+          "translation": "一项宪法修正案使得任何总统的任职不得超过两届。"
+        }
+      ]
+    },
+    {
+      "id": "c1_15497",
+      "word": "correspondence",
+      "ipa": "ˌkɔrəˈspɑndəns",
+      "partOfSpeech": "n.",
+      "meaning": "n.一致，符合,对应,通信，信件,[艺]通感",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "A selection of correspondence from P G Wodehouse realised £ 1,232. P.G.",
+          "translation": "沃德豪斯的书信选集卖了1,232英镑。"
+        },
+        {
+          "sentence": "No correspondence will be entered into.",
+          "translation": "将不会和任何人建立通信联系。"
+        },
+        {
+          "sentence": "Her papers included unpublished articles and correspondence.",
+          "translation": "她的资料包括未发表的文章和信件。"
+        }
+      ]
+    },
+    {
+      "id": "c1_15499",
+      "word": "correspondent",
+      "ipa": "ˌkɔrəˈspɑndənt",
+      "partOfSpeech": "n.",
+      "meaning": "n.通讯员，记者,通信者",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "Frank Deford is a special correspondent for Newsweek magazine.",
+          "translation": "弗兰克·德福特是《新闻周刊》杂志的特派记者。"
+        },
+        {
+          "sentence": "Our economics correspondent, James Morgan, is just back from Germany.",
+          "translation": "我们的财经记者詹姆斯·摩根刚刚从德国回来。"
+        },
+        {
+          "sentence": "From Nairobi here's our East Africa correspondent, Colin Blane.",
+          "translation": "以下是我们来自内罗毕的东非记者科林·布兰的报道。"
+        }
+      ]
+    },
+    {
+      "id": "c1_18332",
+      "word": "demonstration",
+      "ipa": "ˌdɛmənˈstreʃən",
+      "partOfSpeech": "n.",
+      "meaning": "n.游行示威,示范,证明,表露",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "The demonstration itself was against the Government's new Community Charge.",
+          "translation": "游行本身反对的是政府新出台的“人头税”。"
+        },
+        {
+          "sentence": "European farmers are planning a massive demonstration against farm subsidy cuts.",
+          "translation": "欧洲农场主正策划一场抗议削减农场补贴的大规模示威游行。"
+        },
+        {
+          "sentence": "Rubber bullets were used to break up the demonstration.",
+          "translation": "橡皮子弹被用来驱散示威人群。"
+        }
+      ]
+    },
+    {
+      "id": "c1_18828",
+      "word": "determination",
+      "ipa": "dɪˌtɜrmɪˈneɪʃn",
+      "partOfSpeech": "n.",
+      "meaning": "n.决心,决定，确定,[物]测定，计算",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "It must have reinforced my determination to blend into my surroundings.",
+          "translation": "这势必让我更加下定决心融入周围环境。"
+        },
+        {
+          "sentence": "Kauffman was a woman of unique talent and determination.",
+          "translation": "考夫曼是一个有着超群才智和决断力的女子。"
+        },
+        {
+          "sentence": "Their indecision has been replaced by confidence and steely determination.",
+          "translation": "他们的优柔寡断已经被自信和钢铁般的决心所取代。"
+        }
+      ]
+    },
+    {
+      "id": "c1_19716",
+      "word": "disappearance",
+      "ipa": "ˌdɪsə'pɪərəns",
+      "partOfSpeech": "n.",
+      "meaning": "n.消失，不见,消散,失踪,出走，一去不返",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "Police are investigating the disappearance from council offices of confidential files.",
+          "translation": "警察正在调查市政办公室机密档案被盗一案。"
+        },
+        {
+          "sentence": "She described Mr Hutchinson as nervous and jumpy after his wife's disappearance.",
+          "translation": "据她描述,哈钦森先生自从妻子失踪后变得神经兮兮、一惊一乍的."
+        },
+        {
+          "sentence": "The Russian peasantry stood on the brink of disappearance.",
+          "translation": "俄罗斯农民濒临消亡。"
+        }
+      ]
+    },
+    {
+      "id": "c1_19718",
+      "word": "disappointing",
+      "ipa": "ˌdɪsəˈpɔɪntɪŋ",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.令人失望的,令人扫兴的\nv.令人失望(disappoint的ing形式),辜负…的期望",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "The wine was excellent, but the food was disappointing.",
+          "translation": "酒棒极了，但是饭菜却让人不敢恭维。"
+        },
+        {
+          "sentence": "It was a disappointing result for the Greens who polled three percent.",
+          "translation": "这个结果让绿党感到失望，他们只获得了3%的选票。"
+        },
+        {
+          "sentence": "The recession is largely blamed for the disappointing response to the appeal.",
+          "translation": "对此呼吁的反应令人失望，主要归咎于经济衰退。"
+        }
+      ]
+    },
+    {
+      "id": "c1_19719",
+      "word": "disappointment",
+      "ipa": "ˌdɪsəˈpɔɪntmənt",
+      "partOfSpeech": "n.",
+      "meaning": "n.失望，扫兴,令人失望的行为（人）",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "If there was any disappointment it was probably temporary.",
+          "translation": "即便有点儿失望，也肯定是暂时的。"
+        },
+        {
+          "sentence": "The city proved to be something of a disappointment.",
+          "translation": "结果这座城市有点儿令人失望。"
+        },
+        {
+          "sentence": "For many, their long-awaited homecoming was a bitter disappointment.",
+          "translation": "对许多人来说，他们期盼已久的还乡之行却令他们大失所望。"
+        }
+      ]
+    },
+    {
+      "id": "c1_19853",
+      "word": "discrimination",
+      "ipa": "dɪˌskrɪməˈneʃən",
+      "partOfSpeech": "n.",
+      "meaning": "n.歧视,辨别，区别,辨别力，识别力,不公平的待遇",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "1.",
+          "translation": null
+        },
+        {
+          "sentence": "2.",
+          "translation": null
+        },
+        {
+          "sentence": "3.",
+          "translation": null
+        }
+      ]
+    },
+    {
+      "id": "c1_20223",
+      "word": "distinguished",
+      "ipa": "dɪˈstɪŋɡwɪʃt",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.卓越的,著名的,受人尊敬的,显得重要的\nv.辨别，区别( distinguish的过去式和过去分词),突出,区别(distinguish的过去式)",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "All objects are vetted by a distinguished panel of experts.",
+          "translation": "所有物品都交由一个著名的专家小组检查鉴定。"
+        },
+        {
+          "sentence": "She was surely the most distinguished queen consort we have had.",
+          "translation": "毫无疑问她是我们拥有的最为出众的王后。"
+        },
+        {
+          "sentence": "The medal bears the inscription \"For distinguished service\".",
+          "translation": "奖章上刻有“功勋卓越”的字样。"
+        }
+      ]
+    },
+    {
+      "id": "c1_22284",
+      "word": "embarrassment",
+      "ipa": "ɛmˈbærəsmənt",
+      "partOfSpeech": "n.",
+      "meaning": "n.窘迫,难堪,令人难堪或耻辱的事",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "She turned scarlet from embarrassment, once she realized what she had done.",
+          "translation": "她意识到自己做了什么后羞红了脸。"
+        },
+        {
+          "sentence": "The facts could cause embarrassment if they ever became public.",
+          "translation": "一旦披露出去，真相会让人非常尴尬。"
+        },
+        {
+          "sentence": "The report has caused acute embarrassment to the government.",
+          "translation": "报告将政府置于窘境。"
+        }
+      ]
+    },
+    {
+      "id": "c1_22594",
+      "word": "encouragement",
+      "ipa": "ɪnˈkɜrɪdʒmənt",
+      "partOfSpeech": "n.",
+      "meaning": "n.鼓励,支持（的事物）,激励,促进（的事物）",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "The encouragement of a friend spurred Chris into switching jobs.",
+          "translation": "在一位朋友的鼓励下，克理斯换了工作。"
+        },
+        {
+          "sentence": "The man was crooning soft words of encouragement to his wife.",
+          "translation": "那个男人正温柔地轻声鼓励他的妻子。"
+        },
+        {
+          "sentence": "I also had friends who gave me a great deal of encouragement.",
+          "translation": "我还有些朋友给了我很多鼓励。"
+        }
+      ]
+    },
+    {
+      "id": "c1_22978",
+      "word": "entertainment",
+      "ipa": "ˌentərˈteɪnmənt",
+      "partOfSpeech": "n.",
+      "meaning": "n.娱乐，消遣,招待，款待,娱乐节目",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "Crudeness is on the rise in all fields of entertainment.",
+          "translation": "所有娱乐领域都日益粗俗化。"
+        },
+        {
+          "sentence": "One day virtual reality will revolutionize the entertainment industry.",
+          "translation": "有一天虚拟现实将使娱乐业发生革命性的变化。"
+        },
+        {
+          "sentence": "You'll need to provide continuous, organised entertainment or children may get over-excited.",
+          "translation": "你要提供连贯有序的娱乐活动，否则孩子们就有可能兴奋过头。"
+        }
+      ]
+    },
+    {
+      "id": "c1_23088",
+      "word": "environmental",
+      "ipa": "ɛnˌvaɪrənˈmɛntl, -ˌvaɪən",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.（个人）环境的，由个人环境产生的，周围的,环境艺术的",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "This commission would keep environmental scorecards on UN member nations.",
+          "translation": "该委员会将对联合国的成员国采用环境记录卡制。"
+        },
+        {
+          "sentence": "He has attempted to align the Socialists with the environmental movement.",
+          "translation": "他已试图争取社会党人支持环境运动。"
+        },
+        {
+          "sentence": "What right has one country to dictate the environmental standards of another?",
+          "translation": "一个国家有什么权力强行给另一个国家制定环境标准？"
+        }
+      ]
+    },
+    {
+      "id": "c1_23768",
+      "word": "establishment",
+      "ipa": "ɪˈstæblɪʃmənt",
+      "partOfSpeech": "n.",
+      "meaning": "n.企业,建立,（通常反对变革的）当权派,反对改革的保守当权派",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "The fusty old establishment refused to recognise the demand for popular music.",
+          "translation": "这一古板的老旧机构拒绝承认人们对流行音乐的需求。"
+        },
+        {
+          "sentence": "Although things are changing the medical establishment is still overwhelmingly male.",
+          "translation": "虽然世易时移，但医学界依然是男性的天下。"
+        },
+        {
+          "sentence": "Shopkeepers would once have been pillars of the Tory establishment.",
+          "translation": "商店店主一度本该成为保守党统治集团的重要支柱。"
+        }
+      ]
+    },
+    {
+      "id": "c1_24831",
+      "word": "extraordinary",
+      "ipa": "ɪkˈstrɔrdəneri",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.非凡的,特别的,非常奇特的",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 7,
+      "examples": [
+        {
+          "sentence": "They testify to the extraordinary potency of his personality.",
+          "translation": "这些事情证明了他非凡的人格魅力。"
+        },
+        {
+          "sentence": "She was a woman with extraordinary vibrancy and extraordinary knowledge.",
+          "translation": "她是一位充满活力、博学多识的女子。"
+        },
+        {
+          "sentence": "Edwin H. Conger was envoy extraordinary and Minister Plenipotentiary.",
+          "translation": "埃德温·H.康格是特命全权公使。"
+        }
+      ]
+    },
+    {
+      "id": "c1_29905",
+      "word": "grandchildren",
+      "ipa": "ɡ'ræntʃɪldrən",
+      "partOfSpeech": "n.",
+      "meaning": "n.孙子,孙（女），外孙（女）( grandchild的名词复数 )",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "It was the birth of his grandchildren which gave him greatest pleasure.",
+          "translation": "孙子孙女的出生给他带来了极大的快乐。"
+        },
+        {
+          "sentence": "You do not hit my grandchildren, do you understand?",
+          "translation": "你不准打我的孙子孙女，明白吗？"
+        },
+        {
+          "sentence": "You'll bore the pants off your grandchildren.",
+          "translation": "你会把孙辈们烦透的。"
+        }
+      ]
+    },
+    {
+      "id": "c1_29907",
+      "word": "granddaughter",
+      "ipa": "ˈɡrænˌdɔtɚ",
+      "partOfSpeech": "n.",
+      "meaning": "n.（外）孙女",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "Her granddaughter lives abroad.",
+          "translation": "她的孙女住在国外."
+        },
+        {
+          "sentence": "My granddaughter is a little doll.",
+          "translation": "我的孙女是个小美人."
+        },
+        {
+          "sentence": "My little granddaughter caught her heel in the spokes of her bicycle—it was a very nasty wound.",
+          "translation": "我小孙女的脚跟夹到自行车的轮辐里了，伤得很严重。"
+        }
+      ]
+    },
+    {
+      "id": "c1_34302",
+      "word": "identification",
+      "ipa": "aɪˌdɛntəfɪˈkeʃən",
+      "partOfSpeech": "n.",
+      "meaning": "n.鉴定，识别,验明,身份证明,认同",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "After a pause he asked, \"You got any identification?\"",
+          "translation": "稍稍停顿了一下，他问道，“你有任何身份证明吗？”"
+        },
+        {
+          "sentence": "I need your full, emotional identification with the problem and with me.",
+          "translation": "我需要你对我、对此问题都有充分的情感认同与支持。"
+        },
+        {
+          "sentence": "Officials are awaiting positive identification before charging the men with war crimes.",
+          "translation": "在以战争罪起诉这些人以前，官员们一直在等待他们身份的核实。"
+        }
+      ]
+    },
+    {
+      "id": "c1_34958",
+      "word": "inappropriate",
+      "ipa": "ˌɪnəˈproʊpriət",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.不恰当的，不适宜的,不合适,不宜,不妥",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "There is no suggestion that clients have been sold inappropriate policies.",
+          "translation": "无迹象表明向客户售出了不适用的保险。"
+        },
+        {
+          "sentence": "I feel the remark was inappropriate for such a serious issue.",
+          "translation": "我认为对如此严肃的问题来说，该评论不合时宜。"
+        },
+        {
+          "sentence": "It is inappropriate for a judge to belong to a discriminatory club.",
+          "translation": "法官参加一个带歧视性的俱乐部是不合适的。"
+        }
+      ]
+    },
+    {
+      "id": "c1_35162",
+      "word": "inconvenience",
+      "ipa": "ˌɪnkənˈvinjəns",
+      "partOfSpeech": "v.",
+      "meaning": "n.不方便,麻烦,为难之处,麻烦事\nvt.给…带来不便,给…添麻烦,打扰,使为难",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "We apologize for any inconvenience caused during the repairs.",
+          "translation": "我们为维修期间造成的任何不便道歉。"
+        },
+        {
+          "sentence": "We apologize for the delay and regret any inconvenience it may have caused.",
+          "translation": "我们对此次延误以及因此有可能造成的所有不便表示道歉。"
+        },
+        {
+          "sentence": "I don't want to put you to any inconvenience.",
+          "translation": "我不希望给你带来任何的不便."
+        }
+      ]
+    },
+    {
+      "id": "c1_35952",
+      "word": "insignificant",
+      "ipa": "ˌɪnsɪɡˈnɪfɪkənt",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.不重要的,微小的,毫无意义的,不足道",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "The Chief Inspector disliked being overburdened with insignificant detail.",
+          "translation": "总督察讨厌在细枝末节上没完没了地纠缠。"
+        },
+        {
+          "sentence": "In 1949 Bonn was a small, insignificant city.",
+          "translation": "1949年时波恩还是个无足轻重的小城市。"
+        },
+        {
+          "sentence": "The levels of chemicals in the river are not insignificant.",
+          "translation": "河水中的化学物质含量不容忽视。"
+        }
+      ]
+    },
+    {
+      "id": "c1_36117",
+      "word": "intentionally",
+      "ipa": "ɪnˈtɛnʃənlɪ",
+      "partOfSpeech": "adv.",
+      "meaning": "adv.有意地，故意地",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "The figures are intentionally misleading.",
+          "translation": "这些数字是在有意误导。"
+        },
+        {
+          "sentence": "I've never intentionally hurt anyone.",
+          "translation": "我从没故意伤害过任何人。"
+        },
+        {
+          "sentence": "I didn't say it intentionally.",
+          "translation": "我是无心说的."
+        }
+      ]
+    },
+    {
+      "id": "c1_36289",
+      "word": "international",
+      "ipa": "ˌɪntərˈnæʃnəl",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.国际的,两国（或以上）国家的,超越国界的,国际关系的\nn.国际组织,国际体育比赛,外国居留者,国际股票",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "International investors have become jittery about the country's economy.",
+          "translation": "国际投资者已对该国的经济状况感到紧张不安。"
+        },
+        {
+          "sentence": "All cheques should be made out to \"EF International Language Schools\"",
+          "translation": "所有支票的收款人都应是“英孚国际语言学校”。"
+        },
+        {
+          "sentence": "It was his responsibility for foreign affairs that gained him international prestige.",
+          "translation": "他在负责处理外交事务的过程中赢得了国际声望。"
+        }
+      ]
+    },
+    {
+      "id": "c1_36335",
+      "word": "interpretation",
+      "ipa": "ɪnˌtɜrprɪˈteɪʃn",
+      "partOfSpeech": "n.",
+      "meaning": "n.解释，说明,翻译,表演，演绎,理解",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "The opposition Conservative Party put a different interpretation on the figures.",
+          "translation": "反对党保守党对这些数字提出一番不同的解释。"
+        },
+        {
+          "sentence": "Language interpretation is the whole point of the act of reading.",
+          "translation": "阅读行为中关键在于对语言的理解。"
+        },
+        {
+          "sentence": "Their interpretation was faulty — they had misinterpreted things.",
+          "translation": "他们的理解是错误的——他们将事情曲解了。"
+        }
+      ]
+    },
+    {
+      "id": "c1_36353",
+      "word": "interrogation",
+      "ipa": "ɪnˌterə'ɡeɪʃn",
+      "partOfSpeech": "n.",
+      "meaning": "n.讯问,审问,疑问句",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "Under interrogation, he refused to say anything at first.",
+          "translation": "一开始审问的时候, 他什么也不说."
+        },
+        {
+          "sentence": "He persisted with his interrogation.",
+          "translation": "他一直在坚持问此事."
+        },
+        {
+          "sentence": "He seemed shaken after the interrogation.",
+          "translation": "审讯后他似乎惊惶不已."
+        }
+      ]
+    },
+    {
+      "id": "c1_36620",
+      "word": "investigation",
+      "ipa": "ɪnˌvɛstɪˈɡeʃən",
+      "partOfSpeech": "n.",
+      "meaning": "n.（正式的）调查，研究,侦查,科学研究,学术研究",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 7,
+      "examples": [
+        {
+          "sentence": "The allegations are serious enough to warrant an investigation.",
+          "translation": "这些指控很严重，有必要进行一番调查。"
+        },
+        {
+          "sentence": "An investigation is underway to find out how the disaster happened.",
+          "translation": "调查已经展开，以查明灾难是如何发生的。"
+        },
+        {
+          "sentence": "Despite a thorough investigation, no trace of Dr Southwell has been found.",
+          "translation": "尽管进行了彻底的调查，还是没有发现索思韦尔博士的任何踪迹。"
+        }
+      ]
+    },
+    {
+      "id": "c1_36881",
+      "word": "irresponsible",
+      "ipa": "ˌɪrɪˈspɑnsəbl",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.不负责任的,不可靠的，缺乏责任心,[法律] 无责任能力的,无需对更高一级权力负责的\nn.没有责任感的人,[法律] 无责任能力的人,不被列入考虑的人",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "She described his remarks as irresponsible, inflammatory and outrageous.",
+          "translation": "她称他的话不负责任、具煽动性且极端无礼。"
+        },
+        {
+          "sentence": "Many people have an irresponsible attitude towards marriage and relationships.",
+          "translation": "很多人对婚姻与两性关系持一种不负责任的态度。"
+        },
+        {
+          "sentence": "Thick patchy fog and irresponsible driving were to blame.",
+          "translation": "局部浓雾和驾驶员不负责任是罪魁祸首。"
+        }
+      ]
+    },
+    {
+      "id": "c1_43148",
+      "word": "massachusetts",
+      "ipa": "ˌmæsə'tʃusɪts",
+      "partOfSpeech": "n.",
+      "meaning": "n.马萨诸塞州",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "States such as Michigan and Massachusetts are making deep cuts in welfare.",
+          "translation": "诸如密歇根和马萨诸塞等州正在大幅削减社会保障金。"
+        },
+        {
+          "sentence": "He is now a professor of economics at Western New England College in Springfield, Massachusetts.",
+          "translation": "他现在是西新英格兰学院的经济学教授，该学院位于马萨诸塞州的斯普林菲尔德。"
+        },
+        {
+          "sentence": "If she shows her face again back in Massachusetts she'll find a warrant for her arrest waiting.",
+          "translation": "如果她重又在马萨诸塞州露面，等待她的将是一纸拘捕令。"
+        }
+      ]
+    },
+    {
+      "id": "c1_43541",
+      "word": "mediterranean",
+      "ipa": "ˌmɛdɪtəˈreniən, -ˈrenjən",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.地中海的,地中海地区的,地中海居民的",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "Britain bakes in a Mediterranean heatwave.",
+          "translation": "地中海的热浪炙烤着英国。"
+        },
+        {
+          "sentence": "Mediterranean oat held to be progenitor of modern cultivated oat.",
+          "translation": "地中海地区燕麦,被认为是现代栽种燕麦的祖先."
+        },
+        {
+          "sentence": "An American naval force is showing the flag in various Mediterranean ports.",
+          "translation": "美国的海军力量在地中海的多个港口炫耀武力."
+        }
+      ]
+    },
+    {
+      "id": "c1_45083",
+      "word": "misunderstand",
+      "ipa": "ˌmɪsʌndərˈstænd",
+      "partOfSpeech": "v.",
+      "meaning": "vt.误会，误解,曲解",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "I'm not saying what he did was good, don't misunderstand me.",
+          "translation": "别误会，我并不是说他所做的是好事。"
+        },
+        {
+          "sentence": "She no longer feared that they should misunderstand her.",
+          "translation": "她不再害怕他们会误解她了."
+        },
+        {
+          "sentence": "Don't misunderstand what I'm trying to say.",
+          "translation": "别误解我要说的话."
+        }
+      ]
+    },
+    {
+      "id": "c1_45084",
+      "word": "misunderstanding",
+      "ipa": "ˌmɪsʌndərˈstændɪŋ",
+      "partOfSpeech": "n.",
+      "meaning": "n.误解,误会,不和\nv.“misunderstand”的现在分词",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "His misunderstanding of language was the primary cause of his other problems.",
+          "translation": "他对语言的误解是引起其他问题的主要原因。"
+        },
+        {
+          "sentence": "There must be some misunderstanding—I thought I ordered the smaller model.",
+          "translation": "一定是搞错了—我以为我订的是更小型号的。"
+        },
+        {
+          "sentence": "He was the unknowing cause of all the misunderstanding.",
+          "translation": "他无意中引起了这一切误会。"
+        }
+      ]
+    },
+    {
+      "id": "c1_47285",
+      "word": "neighbourhood",
+      "ipa": "ˈneɪbərhʊd",
+      "partOfSpeech": "n.",
+      "meaning": "n.居住区,周边地区,大约,在…附近",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "He was born and grew up in the Flatbush neighbourhood of Brooklyn.",
+          "translation": "他出生在布鲁克林的弗拉特布什一带，并在那儿长大成人。"
+        },
+        {
+          "sentence": "Its speed is probably in the neighbourhood of 380mph or even more.",
+          "translation": "它的时速大约达到了380英里，或者更快。"
+        },
+        {
+          "sentence": "It seemed like a good neighbourhood to raise my children.",
+          "translation": "它看起来像是一个有利于我的孩子们成长的理想居住区。"
+        }
+      ]
+    },
+    {
+      "id": "c1_48595",
+      "word": "notwithstanding",
+      "ipa": "ˌnɑtwɪθˈstændɪŋ",
+      "partOfSpeech": "prep.",
+      "meaning": "prep.尽管,虽然\nadv.尽管如此，仍然,还是\nconj.虽然，尽管",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "He despised William Pitt, notwithstanding the similar views they both held.",
+          "translation": "尽管他和威廉·皮特看法相似，却瞧不起他。"
+        },
+        {
+          "sentence": "His relations with colleagues, differences of opinion notwithstanding, were unfailingly friendly.",
+          "translation": "尽管有意见分歧，他和同事们一直关系融洽。"
+        },
+        {
+          "sentence": "Notwithstanding some major financial problems, the school has had a successful year.",
+          "translation": "虽然有些重大的经费问题，这所学校一年来还是很成功。"
+        }
+      ]
+    },
+    {
+      "id": "c1_56199",
+      "word": "professionally",
+      "ipa": "prəˈfɛʃənəlɪ",
+      "partOfSpeech": "adv.",
+      "meaning": "adv.专业地，内行地",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "By age 16 he was playing professionally with bands in Greenwich Village.",
+          "translation": "16岁的时候,他就为格林尼治村的乐队进行专业演奏."
+        },
+        {
+          "sentence": "This has taken a great toll on me personally and professionally.",
+          "translation": "这给我的个人生活和我的工作都造成了严重的不良影响。"
+        },
+        {
+          "sentence": "The opening months of 1987 were difficult, personally and professionally.",
+          "translation": "无论从个人生活还是从工作上来说，1987年初的几个月都非常艰难。"
+        }
+      ]
+    },
+    {
+      "id": "c1_56787",
+      "word": "psychological",
+      "ipa": "ˌsaɪkəˈlɑdʒɪkl",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.心理的,精神上的，精神（现象）的,心理学（上）的,关于心理学的",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "John received constant physical and psychological abuse from his father.",
+          "translation": "约翰不断遭到父亲身体和心理上的双重虐待。"
+        },
+        {
+          "sentence": "Psychological twists perk up an otherwise predictable story line.",
+          "translation": "心理转折使原本老套的故事情节变得生动有趣。"
+        },
+        {
+          "sentence": "Even minor head injuries can cause long-lasting psychological effects.",
+          "translation": "即使是轻微的头部创伤也会对心理产生长期影响。"
+        }
+      ]
+    },
+    {
+      "id": "c1_58723",
+      "word": "recommendation",
+      "ipa": "ˌrɛkəmɛnˈdeʃən",
+      "partOfSpeech": "n.",
+      "meaning": "n.推荐,推荐信,建议,可取之处",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "Nearly 60% of our bookings come from repeat business and personal recommendation.",
+          "translation": "我们近60%的订单来自于回头客和熟人介绍。"
+        },
+        {
+          "sentence": "The decision was made on the recommendation of the Interior Minister.",
+          "translation": "决议是根据内政部部长的提议作出的。"
+        },
+        {
+          "sentence": "The WHO recommendation has no legal status.",
+          "translation": "世界卫生组织的建议不具备法律效应。"
+        }
+      ]
+    },
+    {
+      "id": "c1_59634",
+      "word": "representative",
+      "ipa": "ˌrɛprɪˈzɛntətɪv",
+      "partOfSpeech": "n.",
+      "meaning": "n.代表,继任者,议员,类似物\nadj.典型的,有代表性的,代议制的,相当[类似]（另一种属）的",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "Professor Baker is unacquainted with the idea of representative democracy.",
+          "translation": "贝克教授并不熟悉“代议制民主”这一思想。"
+        },
+        {
+          "sentence": "Voters are interested in the representative's ability to bring home the bacon.",
+          "translation": "选民感兴趣的是代表能否兑现承诺。"
+        },
+        {
+          "sentence": "\"The community are getting impatient,\" said a representative of the Residents' Association.",
+          "translation": "“社区居民开始不耐烦了，”居民协会的一位代表说。"
+        }
+      ]
+    },
+    {
+      "id": "c1_59843",
+      "word": "responsibility",
+      "ipa": "rɪˌspɑnsəˈbɪləti",
+      "partOfSpeech": "n.",
+      "meaning": "n.责任,职责,责任感，责任心,负责任",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 7,
+      "examples": [
+        {
+          "sentence": "He wants companies to follow the European model of social responsibility.",
+          "translation": "他希望各公司能够以欧洲公司为榜样，承担社会责任。"
+        },
+        {
+          "sentence": "Responsibility and moderation were to be the keynotes of their foreign policy.",
+          "translation": "责任和克制将是他们外交政策的核心。"
+        },
+        {
+          "sentence": "Carrington held a position of responsibility within the government.",
+          "translation": "卡林顿在政府机构身居要职。"
+        }
+      ]
+    },
+    {
+      "id": "c1_60180",
+      "word": "revolutionary",
+      "ipa": "ˌrevəˈluʃəneri",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.革命的,革命性的，创新的,旋转的\nn.革命者，革新者",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "1.",
+          "translation": null
+        },
+        {
+          "sentence": "2.",
+          "translation": null
+        },
+        {
+          "sentence": "3.",
+          "translation": null
+        }
+      ]
+    },
+    {
+      "id": "c1_60534",
+      "word": "righteousness",
+      "ipa": "'raɪtʃəsnəs",
+      "partOfSpeech": "n.",
+      "meaning": "n.正直,正当,正义",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "She visualized him stomping to his car, the picture of self-righteousness.",
+          "translation": "她想象着他噔噔噔地走向车子，一副自以为是的模样。"
+        },
+        {
+          "sentence": "Both sides in the dispute have been adopting a tone of moral righteousness.",
+          "translation": "纠纷双方说起话来都是冠冕堂皇。"
+        },
+        {
+          "sentence": "China has always been known as a land of propriety and righteousness.",
+          "translation": "中国从来以礼义之邦著称。"
+        }
+      ]
+    },
+    {
+      "id": "c1_62591",
+      "word": "schizophrenic",
+      "ipa": "ˌskɪtsəˈfrɛnɪk",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.[医]精神分裂症的\nn.精神分裂症患者",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "Objective To analyse the clinical characteristics of outside workers with schizophreniform psychosis.",
+          "translation": "目的分析外出打工者患分裂样精神病的临床特点."
+        }
+      ]
+    },
+    {
+      "id": "c1_62648",
+      "word": "schoolteacher",
+      "ipa": "ˈskulˌtitʃɚ",
+      "partOfSpeech": "n.",
+      "meaning": "n.（中、小学的）教师",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "Make schoolteaching, preparation and classroom note well.",
+          "translation": "上好面授课, 做好课前预习和课堂笔记."
+        }
+      ]
+    },
+    {
+      "id": "c1_64922",
+      "word": "simultaneously",
+      "ipa": "saɪməlˈtenɪəslɪ",
+      "partOfSpeech": "adv.",
+      "meaning": "adv.同时地,一壁,齐,一齐",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "She was baptized and she was pure and clean of sin.",
+          "translation": "接受了洗礼的她纯洁无瑕。"
+        },
+        {
+          "sentence": "I committed the physician's cardinal sin: I got involved with my patients.",
+          "translation": "我犯了从医的大忌：跟病人有了感情纠葛。"
+        },
+        {
+          "sentence": "I was about to sink into the quicksand of sin.",
+          "translation": "我就要陷入罪孽的深渊了。"
+        }
+      ]
+    },
+    {
+      "id": "c1_66188",
+      "word": "sophisticated",
+      "ipa": "səˈfɪstɪˌketɪd",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.复杂的,精致的,富有经验的,深奥微妙的\nv.使变得世故,使迷惑,篡改(sophisticate的过去分词形式)",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 6,
+      "examples": [
+        {
+          "sentence": "Barry had his nose put out of joint by Lucy's aloof sophistication.",
+          "translation": "露西的冷淡与世故使得巴里十分不快。"
+        },
+        {
+          "sentence": "Well, who gives a toss about sophistication anyway?",
+          "translation": "嗯，不管怎样，谁会在意高雅时髦呢？"
+        },
+        {
+          "sentence": "Despite her scruffy clothes, there was an air of sophistication about her.",
+          "translation": "尽管她衣衫褴褛, 但神态老练世故."
+        }
+      ]
+    },
+    {
+      "id": "c1_67613",
+      "word": "straightforward",
+      "ipa": "ˌstreɪtˈfɔrwərd",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.直截了当的,坦率的,明确的\nadv.直截了当地,坦率地",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "The policy of the annually balanced budget represents a rigid straightjacket.",
+          "translation": "年度平衡预算的政策是一种刻板的束缚."
+        }
+      ]
+    },
+    {
+      "id": "c1_68740",
+      "word": "superintendent",
+      "ipa": "ˌsupərɪnˈtɛndənt, ˌsuprɪn-",
+      "partOfSpeech": "n.",
+      "meaning": "n.监督人，管理人,主管,（陆海军学校等的）校长,厂长，所长",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": []
+    },
+    {
+      "id": "c1_68828",
+      "word": "superstitious",
+      "ipa": "ˌsupərˈstɪʃəs",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.迷信的,有迷信观念的",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "Superstitiously he refused to travel on Friday the 13 th.",
+          "translation": "他很迷信,拒绝在一个是星期五的13号旅行."
+        },
+        {
+          "sentence": "Simon superstitiously made the sign of the Tree as he looked around.",
+          "translation": "Simon打量四周的时候,迷信地画了一个树的符号."
+        }
+      ]
+    },
+    {
+      "id": "c1_71060",
+      "word": "theoretically",
+      "ipa": "ˌθiəˈretɪkli",
+      "partOfSpeech": "adv.",
+      "meaning": "adv.理论地，理论上",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "Do you know that you have become quite a theoretician?",
+          "translation": "你知道 吗 ?你已经成为了一个了不起的理论家了."
+        },
+        {
+          "sentence": "The Evangelist is actually the opposite of The Theoretician.",
+          "translation": "传教士实际上就是理论家的反面."
+        },
+        {
+          "sentence": "LI Yu was one famous drama theoretician of Chinese ancient.",
+          "translation": "李渔是中国古代著名的戏曲理论家."
+        }
+      ]
+    },
+    {
+      "id": "c1_72379",
+      "word": "transformation",
+      "ipa": "ˌtrænsfərˈmeɪʃn",
+      "partOfSpeech": "n.",
+      "meaning": "n.变化,<核>转换,<语>转换,<电>变换",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "The second transformative force is the pending reform of America's health - care industry.",
+          "translation": "第二股转型力量是美国的医药业即将进行改革."
+        },
+        {
+          "sentence": "We talked about the Integral Transformative Practice centers that he and George [ Leonard ] are starting.",
+          "translation": "我们谈到他跟乔治? 李奥纳德 正在创办的“整合转化研习中心”."
+        },
+        {
+          "sentence": "Qi can be seen to have five basic function activation, warming , defense, transformative action and containment.",
+          "translation": "气有五个基本生理功能:推动作用 、 温煦作用 、 防御作用、气化作用和固摄作用."
+        }
+      ]
+    },
+    {
+      "id": "c1_72466",
+      "word": "transportation",
+      "ipa": "ˌtrænspɔrˈteɪʃn",
+      "partOfSpeech": "n.",
+      "meaning": "n.运送，运输,运输系统,运输工具,流放",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": []
+    },
+    {
+      "id": "c1_74268",
+      "word": "uncomfortable",
+      "ipa": "ʌnˈkʌmfətəbəl, -ˈkʌmftə-",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.不舒服的,令人不舒服的,不自在的,不安的",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 7,
+      "examples": [
+        {
+          "sentence": "Some odd smells thethe swirl, nausea and even the uncomfortableness of eyes.",
+          "translation": "时常能闻到一些怪味道,也有头晕 、 恶心、眼睛不舒服的状况."
+        },
+        {
+          "sentence": "We feel depressed when we are suffering physical uncomfortableness.",
+          "translation": "当我们身体不舒服时我们会感到压抑."
+        }
+      ]
+    },
+    {
+      "id": "c1_74300",
+      "word": "unconsciously",
+      "ipa": "ʌnˈkɑnʃəsli",
+      "partOfSpeech": "adv.",
+      "meaning": "adv.未意识到地,不知道地,失去知觉地,神志不清地",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "He knew that he might soon lapse into unconsciousness.",
+          "translation": "他知道自己可能很快就会失去知觉。"
+        },
+        {
+          "sentence": "He had lapsed into unconsciousness.",
+          "translation": "他陷入了昏迷状态。"
+        },
+        {
+          "sentence": "She sank into unconsciousness.",
+          "translation": "她渐渐失去了知觉."
+        }
+      ]
+    },
+    {
+      "id": "c1_74460",
+      "word": "underestimate",
+      "ipa": "ˌʌndɚˈɛstəmet",
+      "partOfSpeech": "v.",
+      "meaning": "vt.低估,对…估计不足,看轻,把…的价值估计过低\nn.低估,估计不足,过低评价，过低估价,轻视",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "1.",
+          "translation": null
+        },
+        {
+          "sentence": "2.",
+          "translation": null
+        },
+        {
+          "sentence": "3.",
+          "translation": null
+        }
+      ]
+    },
+    {
+      "id": "c1_74564",
+      "word": "understandable",
+      "ipa": "ˌʌndərˈstændəbl",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.能懂的，可理解的，可同情的",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "Most organizations are, quite understandably, suspicious of new ideas.",
+          "translation": "大多数机构对新想法持怀疑态度，这不难理解。"
+        },
+        {
+          "sentence": "The duke is understandably proud of Lady Helen and her achievements.",
+          "translation": "公爵为海伦女士和她的成就感到自豪，这很容易理解。"
+        },
+        {
+          "sentence": "The hotel are understandably coy about the incident.",
+          "translation": "酒店对那次事件不愿多说，这可以理解。"
+        }
+      ]
+    },
+    {
+      "id": "c1_74566",
+      "word": "understanding",
+      "ipa": "ˌʌndərˈstændɪŋ",
+      "partOfSpeech": "v.",
+      "meaning": "vt.理解，懂得,熟知，通晓,获知，理解,谅解\nvi.理解，懂得,表示同情或谅解,据说\nn.认识，了解,谅解,知识\nadj.能谅解的,宽容的,通情达理的",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 7,
+      "examples": [
+        {
+          "sentence": "The Arkansan nodded understandingly and said, \" Yep. I had a truck like that once.",
+          "translation": "”那阿肯色人点了点头,满理解的样子,说, “ 是啊, 我有过一辆卡车也是那么大. ”"
+        },
+        {
+          "sentence": "Liu Yu - ying nodded and smiled understandingly.",
+          "translation": "刘玉英点头,抿着嘴笑."
+        },
+        {
+          "sentence": "He smiled understandingly -- much more than understandingly.",
+          "translation": "他心领神会地一笑 —— 还不止心领神会."
+        }
+      ]
+    },
+    {
+      "id": "c1_74833",
+      "word": "unfortunately",
+      "ipa": "ʌnˈfɔrtʃənətli",
+      "partOfSpeech": "adv.",
+      "meaning": "adv.不幸地，遗憾地,可惜,不巧",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 7,
+      "examples": []
+    },
+    {
+      "id": "c1_75343",
+      "word": "unpredictable",
+      "ipa": "ˌʌnprɪˈdɪktəbəl",
+      "partOfSpeech": "adj.",
+      "meaning": "adj.无法预言的,不可预测的\nn.不可预测的事",
+      "cefr": "C1",
+      "ielts": "7-7.5分",
+      "frequency": 5,
+      "examples": [
+        {
+          "sentence": "Objective and Methods: To study unmarried , unpregnant and virgin mature period breast normal structure by ultrasound.",
+          "translation": "目的与方法: 通过对性成熟未婚健康处女乳房的超声研究,提出正常乳腺结构超声图像的新概念."
+        }
+      ]
+    }
+  ]
+}

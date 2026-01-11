@@ -149,30 +149,44 @@ export function getTodayReviewStats(reviewStates) {
 }
 
 /**
- * 获取复习队列
+ * 获取复习队列（增强版：优先显示不认识的单词）
  * 返回需要复习的单词ID数组，按优先级排序
  * @param {object} reviewStates - 所有单词的复习状态
+ * @param {Set} forgotten - 不认识的单词ID集合
  * @param {number} limit - 最大返回数量
- * @returns {Array}
+ * @returns {Array} 单词对象数组，包含 wordId, priority, type
  */
-export function getReviewQueue(reviewStates, limit = 20) {
+export function getReviewQueue(reviewStates, forgotten = new Set(), limit = 20) {
   const queue = [];
 
+  // 1. 添加所有不认识的单词（优先级 100 - 最高优先级）
+  forgotten.forEach(wordId => {
+    queue.push({
+      wordId,
+      priority: 100, // 最高优先级
+      type: 'forgotten' // 标记为不认识的单词
+    });
+  });
+
+  // 2. 添加需要复习的单词（优先级基于间隔重复算法）
   Object.entries(reviewStates).forEach(([wordId, state]) => {
     if (needsReview(state)) {
-      queue.push({
-        wordId,
-        priority: getReviewPriority(state),
-        state
-      });
+      // 避免重复：如果单词已经在 forgotten 中，不重复添加
+      if (!forgotten.has(wordId)) {
+        queue.push({
+          wordId,
+          priority: getReviewPriority(state),
+          type: 'review' // 标记为间隔重复复习
+        });
+      }
     }
   });
 
   // 按优先级排序（分数越高越优先）
   queue.sort((a, b) => b.priority - a.priority);
 
-  // 返回前N个单词ID
-  return queue.slice(0, limit).map(item => item.wordId);
+  // 返回前N个单词对象（包含类型信息）
+  return queue.slice(0, limit);
 }
 
 /**

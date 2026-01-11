@@ -4,7 +4,7 @@
     <div class="page-header">
       <div>
         <h1 class="page-title">复习列表</h1>
-        <p class="page-desc">基于艾宾浩斯记忆曲线的智能复习</p>
+        <p class="page-desc">优先复习不认识的单词</p>
       </div>
       <button v-if="hasWords" @click="startReview" class="btn-primary">
         开始复习
@@ -15,24 +15,25 @@
     <div v-if="hasWords" class="stats-grid">
       <div class="stat-box">
         <div class="stat-label">待复习</div>
-        <div class="stat-value">{{ dueCount }}</div>
+        <div class="stat-value">{{ reviewData.length }}</div>
+      </div>
+      <div class="stat-box stat-box-warning">
+        <div class="stat-label">不认识</div>
+        <div class="stat-value">{{ forgottenCount }}</div>
       </div>
       <div class="stat-box">
         <div class="stat-label">已学习</div>
         <div class="stat-value">{{ totalCount }}</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-label">正确率</div>
-        <div class="stat-value">{{ accuracy }}%</div>
       </div>
     </div>
 
     <!-- 单词列表 -->
     <div v-if="hasWords" class="word-list">
       <div
-        v-for="(item, index) in sortedWords"
+        v-for="(item, index) in reviewData"
         :key="item.word.id"
         class="word-card"
+        :class="{ 'word-card-forgotten': item.type === 'forgotten' }"
         @click="selectWord(item)"
       >
         <div class="word-main">
@@ -44,18 +45,31 @@
         </div>
 
         <div class="word-meta">
-          <div class="meta-item">
-            <span class="meta-label">复习</span>
-            <span class="meta-value">{{ item.reviewState.reviewCount || 0 }}次</span>
+          <!-- 不认识标记 -->
+          <div v-if="item.type === 'forgotten'" class="meta-item meta-tag meta-tag-forgotten">
+            <span class="tag-icon">⚠️</span>
+            <span class="tag-text">不认识</span>
           </div>
-          <div class="meta-item">
+
+          <!-- 复习信息 -->
+          <div v-else class="meta-item">
+            <span class="meta-label">复习</span>
+            <span class="meta-value">{{ item.reviewState?.reviewCount || 0 }}次</span>
+          </div>
+
+          <!-- 正确率 -->
+          <div v-if="item.reviewState" class="meta-item">
             <span class="meta-label">正确率</span>
             <span class="meta-value" :class="getAccuracyClass(item.reviewState)">
               {{ getAccuracy(item.reviewState) }}%
             </span>
           </div>
-          <div class="meta-item" v-if="isOverdue(item.reviewState)">
-            <span class="meta-label overdue">待复习</span>
+
+          <!-- 优先级标记 -->
+          <div class="meta-item">
+            <span class="meta-label priority-badge" :class="getPriorityClass(item.priority)">
+              优先级 {{ item.priority }}
+            </span>
           </div>
         </div>
       </div>
@@ -89,12 +103,8 @@ import { ref, computed, onMounted } from 'vue'
 import ReviewSession from './quiz/ReviewSession.vue'
 
 const props = defineProps({
-  words: {
+  reviewData: {
     type: Array,
-    required: true
-  },
-  reviewStates: {
-    type: Object,
     required: true
   }
 })
@@ -108,104 +118,60 @@ const reviewIndex = ref(0)
 // 调试
 onMounted(() => {
   console.log('ReviewQueue收到的数据:', {
-    wordsCount: props.words.length,
-    reviewStatesKeys: Object.keys(props.reviewStates),
-    reviewStates: props.reviewStates
+    reviewDataCount: props.reviewData.length,
+    reviewData: props.reviewData
   })
 })
 
 // 是否有单词
 const hasWords = computed(() => {
-  const count = Object.keys(props.reviewStates).length
-  console.log('hasWords计算:', count)
-  return count > 0
+  return props.reviewData.length > 0
+})
+
+// 不认识单词数量
+const forgottenCount = computed(() => {
+  return props.reviewData.filter(item => item.type === 'forgotten').length
 })
 
 // 总数
 const totalCount = computed(() => {
-  return Object.keys(props.reviewStates).length
+  return props.reviewData.length
 })
 
-// 待复习数量
-const dueCount = computed(() => {
-  return Object.values(props.reviewStates).filter(state => {
-    return state.nextReview && Date.now() >= state.nextReview
-  }).length
-})
+// 获取优先级样式类
+const getPriorityClass = (priority) => {
+  if (priority >= 100) return 'priority-high' // 不认识的单词
+  if (priority >= 70) return 'priority-medium'
+  return 'priority-low'
+}
 
-// 正确率
-const accuracy = computed(() => {
-  let total = 0
-  let correct = 0
-  Object.values(props.reviewStates).forEach(state => {
-    if (state.reviewCount > 0) {
-      total += state.reviewCount
-      correct += (state.correctCount || 0)
-    }
-  })
-  return total > 0 ? Math.round((correct / total) * 100) : 0
-})
+// 获取正确率
+const getAccuracy = (reviewState) => {
+  if (!reviewState || reviewState.reviewCount === 0) return 0
+  return Math.round((reviewState.correctCount / reviewState.reviewCount) * 100)
+}
 
-// 排序后的单词列表
-const sortedWords = computed(() => {
-  const learnedWordIds = Object.keys(props.reviewStates)
+// 获取正确率样式类
+const getAccuracyClass = (reviewState) => {
+  const accuracy = getAccuracy(reviewState)
+  if (accuracy >= 80) return 'accuracy-high'
+  if (accuracy >= 60) return 'accuracy-medium'
+  return 'accuracy-low'
+}
 
-  return props.words
-    .filter(w => learnedWordIds.includes(w.id))
-    .map(word => ({
-      word,
-      reviewState: props.reviewStates[word.id]
-    }))
-    .sort((a, b) => {
-      const stateA = a.reviewState
-      const stateB = b.reviewState
-
-      // 已到期优先
-      const isDueA = stateA.nextReview && Date.now() >= stateA.nextReview
-      const isDueB = stateB.nextReview && Date.now() >= stateB.nextReview
-
-      if (isDueA && !isDueB) return -1
-      if (!isDueA && isDueB) return 1
-
-      // 按超时程度排序
-      if (isDueA && isDueB) {
-        const overdueA = Date.now() - stateA.nextReview
-        const overdueB = Date.now() - stateB.nextReview
-        return overdueB - overdueA
-      }
-
-      return stateA.nextReview - stateB.nextReview
-    })
-})
+// 是否已到期复习
+const isOverdue = (reviewState) => {
+  return reviewState && reviewState.nextReview && Date.now() >= reviewState.nextReview
+}
 
 // 复习单词
 const reviewWords = computed(() => {
-  return sortedWords.value.map(item => item.word)
+  return props.reviewData.map(item => item.word)
 })
-
-// 是否超时
-const isOverdue = (reviewState) => {
-  return reviewState.nextReview && Date.now() >= reviewState.nextReview
-}
-
-// 计算正确率
-const getAccuracy = (reviewState) => {
-  const total = (reviewState.correctCount || 0) + (reviewState.incorrectCount || 0)
-  if (total === 0) return 100
-  return Math.round((reviewState.correctCount / total) * 100)
-}
-
-// 获取正确率样式
-const getAccuracyClass = (reviewState) => {
-  const accuracy = getAccuracy(reviewState)
-  if (accuracy >= 80) return 'text-green-600'
-  if (accuracy >= 60) return 'text-yellow-600'
-  return 'text-red-600'
-}
 
 // 选择单词
 const selectWord = (item) => {
-  const index = sortedWords.value.indexOf(item)
+  const index = props.reviewData.indexOf(item)
   reviewIndex.value = index
   reviewMode.value = 'flashcard'
   showReview.value = true
@@ -385,5 +351,79 @@ const handleReviewComplete = (result) => {
 
 .modal-container {
   @apply w-full max-w-4xl;
+}
+
+/* 不认识单词特殊样式 */
+.word-card-forgotten {
+  @apply border-red-200 bg-red-50;
+}
+
+.word-card-forgotten:hover {
+  border-color: #ef4444;
+}
+
+/* 警告统计框 */
+.stat-box-warning {
+  @apply bg-orange-50 border-orange-200;
+}
+
+.stat-box-warning .stat-value {
+  color: #ea580c;
+}
+
+/* 标签样式 */
+.meta-tag {
+  @apply px-2.5 py-1 rounded-full text-xs font-medium;
+  @apply flex items-center gap-1;
+}
+
+.meta-tag-forgotten {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+}
+
+.tag-icon {
+  @apply text-sm;
+}
+
+.tag-text {
+  @apply font-medium;
+}
+
+/* 优先级徽章 */
+.priority-badge {
+  @apply px-2 py-0.5 rounded text-xs font-medium;
+}
+
+.priority-high {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.priority-medium {
+  background-color: #fef3c7;
+  color: #d97706;
+  border: 1px solid #fde68a;
+}
+
+.priority-low {
+  background-color: #f3f4f6;
+  color: #6b7280;
+  border: 1px solid #e5e7eb;
+}
+
+/* 正确率样式 */
+.accuracy-high {
+  color: #059669;
+}
+
+.accuracy-medium {
+  color: #d97706;
+}
+
+.accuracy-low {
+  color: #dc2626;
 }
 </style>

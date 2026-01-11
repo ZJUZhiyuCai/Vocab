@@ -1,11 +1,21 @@
 /**
  * AI服务工具
- * 封装硅基流动API调用，生成个性化例句
+ * 封装硅基流动API调用，提供多种AI功能
+ * - AI个性化例句生成
+ * - AI智能测验生成
+ * - AI错题分析与学习建议
+ * - AI词汇关联记忆
  */
 
-// localStorage key前缀
-const CACHE_KEY_PREFIX = 'vocabcontext_ai_example_';
+import { generateQuiz, generateFillBlankQuestion } from './aiQuizGenerator.js';
+import { analyzeErrors, analyzeWordError, generateStudyPlan } from './aiErrorAnalyzer.js';
+import { generateMemoryHooks, generateWordNetwork, generateScenarioExamples, generateLearningPath } from './aiMemoryHooks.js';
+
+// localStorage keys
+const CACHE_KEY_PREFIX = 'vocabcontext_ai_';
 const CACHE_VERSION = 'v1';
+const SETTINGS_KEY = 'vocabcontext_settings'; // 与主设置文件保持一致
+const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24小时缓存
 
 /**
  * 生成AI例句（带缓存）
@@ -370,4 +380,484 @@ export function getErrorMessage(errorCode) {
     [ERROR_CODES.UNKNOWN_ERROR]: '未知错误，请重试'
   };
   return messages[errorCode] || messages[ERROR_CODES.UNKNOWN_ERROR];
+}
+
+// ==================== AI 设置管理 ====================
+
+/**
+ * 默认AI设置
+ */
+const DEFAULT_SETTINGS = {
+  apiKey: '',
+  enabled: false,
+  features: {
+    example: true,      // AI例句
+    quiz: true,         // AI测验
+    errorAnalysis: true,// AI错题分析
+    memoryHooks: true   // AI记忆辅助
+  },
+  userLevel: 'B2',
+  cacheEnabled: true,
+  learningPurpose: 'exam' // exam, career, hobby, daily
+};
+
+/**
+ * 加载 AI 设置
+ */
+export function loadAISettings() {
+  try {
+    const saved = localStorage.getItem(SETTINGS_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return { apiKey: parsed.apiKey || '' };
+    }
+  } catch (error) {
+    console.error('加载AI设置失败:', error);
+  }
+  return { apiKey: '' };
+}
+
+/**
+ * 保存 AI 设置
+ */
+export function saveAISettings(settings) {
+  try {
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+    return true;
+  } catch (error) {
+    console.error('保存AI设置失败:', error);
+    return false;
+  }
+}
+
+/**
+ * 验证 API 密钥
+ */
+export async function validateApiKey(apiKey) {
+  try {
+    const response = await fetch('https://api.siliconflow.cn/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'Qwen/Qwen2.5-72B-Instruct',
+        messages: [{ role: 'user', content: 'Hello' }],
+        max_tokens: 10
+      })
+    });
+
+    return response.ok;
+  } catch (error) {
+    console.error('验证API密钥失败:', error);
+    return false;
+  }
+}
+
+/**
+ * 生成通用缓存键
+ */
+function generateCacheKey(type, identifier) {
+  const id = typeof identifier === 'string' ? identifier : identifier.word || identifier.id;
+  return `${CACHE_KEY_PREFIX}${type}_${id}`;
+}
+
+/**
+ * 获取缓存数据
+ */
+function getCachedData(cacheKey) {
+  try {
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) {
+      const data = JSON.parse(cached);
+      const now = Date.now();
+      if (now - (data.timestamp || 0) < CACHE_DURATION) {
+        return data.content;
+      } else {
+        localStorage.removeItem(cacheKey);
+      }
+    }
+  } catch (error) {
+    console.error('读取缓存失败:', error);
+  }
+  return null;
+}
+
+/**
+ * 保存缓存数据
+ */
+function setCachedData(cacheKey, content) {
+  try {
+    const data = {
+      content,
+      timestamp: Date.now()
+    };
+    localStorage.setItem(cacheKey, JSON.stringify(data));
+  } catch (error) {
+    console.error('保存缓存失败:', error);
+  }
+}
+
+/**
+ * 清除指定类型的AI缓存
+ */
+export function clearAICacheByType(type) {
+  try {
+    const keys = Object.keys(localStorage);
+    const cacheKeys = keys.filter(k => k.startsWith(`${CACHE_KEY_PREFIX}${type}_`));
+
+    cacheKeys.forEach(key => {
+      localStorage.removeItem(key);
+    });
+
+    return cacheKeys.length;
+  } catch (error) {
+    console.error('清除缓存失败:', error);
+    return 0;
+  }
+}
+
+// ==================== AI 服务类 ====================
+
+/**
+ * AI 服务统一接口
+ * 管理所有 AI 功能的 API 调用和配置
+ */
+export class AIService {
+  constructor() {
+    this.settings = loadAISettings();
+  }
+
+  /**
+   * 重新加载设置（每次调用时）
+   */
+  reloadSettings() {
+    this.settings = loadAISettings();
+  }
+
+  /**
+   * 更新设置
+   */
+  updateSettings(newSettings) {
+    this.settings = { ...this.settings, ...newSettings };
+    saveAISettings(this.settings);
+  }
+
+  /**
+   * 检查是否可用
+   */
+  isAvailable() {
+    this.reloadSettings();
+    return !!this.settings.apiKey;
+  }
+
+  /**
+   * 检查特定功能是否可用（简化版，暂时不使用）
+   */
+  isFeatureEnabled(feature) {
+    return true;
+  }
+
+  // ==================== AI例句功能 ====================
+
+  /**
+   * 生成AI例句
+   */
+  async generateExample(word, meaning, purpose) {
+    this.reloadSettings();
+
+    if (!this.isAvailable()) {
+      throw new Error('请先配置API密钥');
+    }
+
+    const cacheKey = getCacheKey(word, purpose || 'exam');
+
+    const cached = getCachedData(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
+    const result = await generateAIExampleWithoutCache({
+      apiKey: this.settings.apiKey,
+      word,
+      meaning,
+      purpose: purpose || 'exam'
+    });
+
+    setCachedData(cacheKey, result);
+    return result;
+  }
+
+  // ==================== AI测验功能 ====================
+
+  /**
+   * 生成选择题
+   */
+  async generateQuiz(word, otherWords, options = {}) {
+    // 重新加载设置
+    this.reloadSettings();
+
+    if (!this.isAvailable() || !this.isFeatureEnabled('quiz')) {
+      throw new Error('AI测验功能未启用');
+    }
+
+    const cacheKey = generateCacheKey('quiz', word);
+
+    if (this.settings.aiCacheEnabled) {
+      const cached = getCachedData(cacheKey);
+      if (cached) return cached;
+    }
+
+    const result = await generateQuiz({
+      apiKey: this.settings.apiKey,
+      word,
+      otherWords,
+      userLevel: this.settings.aiUserLevel,
+      ...options
+    });
+
+    if (this.settings.aiCacheEnabled && result && !result.error) {
+      setCachedData(cacheKey, result);
+    }
+
+    return result;
+  }
+
+  /**
+   * 生成填空题
+   */
+  async generateFillBlank(word, options = {}) {
+    // 重新加载设置
+    this.reloadSettings();
+
+    if (!this.isAvailable()) {
+      throw new Error('AI功能未启用');
+    }
+
+    const cacheKey = generateCacheKey('fillblank', word);
+
+    if (this.settings.aiCacheEnabled) {
+      const cached = getCachedData(cacheKey);
+      if (cached) return cached;
+    }
+
+    const result = await generateFillBlankQuestion({
+      apiKey: this.settings.apiKey,
+      word,
+      userLevel: this.settings.aiUserLevel,
+      ...options
+    });
+
+    if (this.settings.aiCacheEnabled && result && !result.error) {
+      setCachedData(cacheKey, result);
+    }
+
+    return result;
+  }
+
+  // ==================== AI错题分析功能 ====================
+
+  /**
+   * 分析错误模式
+   */
+  async analyzeErrors(mistakes, stats, options = {}) {
+    // 重新加载设置
+    this.reloadSettings();
+
+    if (!this.isAvailable() || !this.isFeatureEnabled('errorAnalysis')) {
+      throw new Error('AI错题分析功能未启用');
+    }
+
+    // 错误分析不缓存，因为会动态变化
+    return await analyzeErrors({
+      apiKey: this.settings.apiKey,
+      mistakes,
+      stats,
+      userLevel: this.settings.aiUserLevel,
+      ...options
+    });
+  }
+
+  /**
+   * 分析单词错误
+   */
+  async analyzeWordError(word, userAnswer, correctAnswer, context = '') {
+    // 重新加载设置
+    this.reloadSettings();
+
+    if (!this.isAvailable()) {
+      throw new Error('AI功能未启用');
+    }
+
+    return await analyzeWordError({
+      apiKey: this.settings.apiKey,
+      word,
+      userAnswer,
+      correctAnswer,
+      context
+    });
+  }
+
+  /**
+   * 生成学习计划
+   */
+  async generateStudyPlan(stats, weakAreas, goals, options = {}) {
+    // 重新加载设置
+    this.reloadSettings();
+
+    if (!this.isAvailable()) {
+      throw new Error('AI功能未启用');
+    }
+
+    return await generateStudyPlan({
+      apiKey: this.settings.apiKey,
+      stats,
+      weakAreas,
+      goals,
+      userLevel: this.settings.aiUserLevel,
+      ...options
+    });
+  }
+
+  // ==================== AI记忆辅助功能 ====================
+
+  /**
+   * 生成记忆辅助内容
+   */
+  async generateMemoryHooks(word, options = {}) {
+    // 重新加载设置
+    this.reloadSettings();
+
+    if (!this.isAvailable() || !this.isFeatureEnabled('memoryHooks')) {
+      throw new Error('AI记忆辅助功能未启用');
+    }
+
+    const cacheKey = generateCacheKey('memory', word);
+
+    if (this.settings.aiCacheEnabled) {
+      const cached = getCachedData(cacheKey);
+      if (cached) return cached;
+    }
+
+    const result = await generateMemoryHooks({
+      apiKey: this.settings.apiKey,
+      word,
+      userLevel: this.settings.aiUserLevel,
+      ...options
+    });
+
+    if (this.settings.aiCacheEnabled && result && !result.error) {
+      setCachedData(cacheKey, result);
+    }
+
+    return result;
+  }
+
+  /**
+   * 生成单词网络
+   */
+  async generateWordNetwork(word, options = {}) {
+    // 重新加载设置
+    this.reloadSettings();
+
+    if (!this.isAvailable()) {
+      throw new Error('AI功能未启用');
+    }
+
+    const cacheKey = generateCacheKey('network', word);
+
+    if (this.settings.aiCacheEnabled) {
+      const cached = getCachedData(cacheKey);
+      if (cached) return cached;
+    }
+
+    const result = await generateWordNetwork({
+      apiKey: this.settings.apiKey,
+      word,
+      userLevel: this.settings.aiUserLevel,
+      ...options
+    });
+
+    if (this.settings.aiCacheEnabled && result && !result.error) {
+      setCachedData(cacheKey, result);
+    }
+
+    return result;
+  }
+
+  /**
+   * 生成场景化例句
+   */
+  async generateScenarioExamples(word, scenarios, options = {}) {
+    // 重新加载设置
+    this.reloadSettings();
+
+    if (!this.isAvailable()) {
+      throw new Error('AI功能未启用');
+    }
+
+    const cacheKey = generateCacheKey('scenarios', word);
+
+    if (this.settings.aiCacheEnabled) {
+      const cached = getCachedData(cacheKey);
+      if (cached) return cached;
+    }
+
+    const result = await generateScenarioExamples({
+      apiKey: this.settings.apiKey,
+      word,
+      scenarios,
+      userLevel: this.settings.aiUserLevel,
+      ...options
+    });
+
+    if (this.settings.aiCacheEnabled && result && !result.error) {
+      setCachedData(cacheKey, result);
+    }
+
+    return result;
+  }
+
+  /**
+   * 生成学习路径
+   */
+  async generateLearningPath(words, goal, options = {}) {
+    // 重新加载设置
+    this.reloadSettings();
+
+    if (!this.isAvailable()) {
+      throw new Error('AI功能未启用');
+    }
+
+    return await generateLearningPath({
+      apiKey: this.settings.apiKey,
+      words,
+      goal,
+      userLevel: this.settings.aiUserLevel,
+      ...options
+    });
+  }
+}
+
+// ==================== 单例模式 ====================
+
+let aiServiceInstance = null;
+
+/**
+ * 获取 AI 服务实例
+ */
+export function getAIService() {
+  if (!aiServiceInstance) {
+    aiServiceInstance = new AIService();
+  }
+  return aiServiceInstance;
+}
+
+/**
+ * 重置 AI 服务（用于测试）
+ */
+export function resetAIService() {
+  aiServiceInstance = null;
+  return getAIService();
 }

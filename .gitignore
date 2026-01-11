@@ -45,3 +45,6 @@ data/*.json
 *.tmp
 *.temp
 .cache/
+
+# Local Netlify folder
+.netlify

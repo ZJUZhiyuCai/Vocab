@@ -24,7 +24,7 @@
           <!-- 词库统计 -->
           <div class="vocab-stats">
             <span class="vocab-badge">{{ vocab.size }}</span>
-            <span class="vocab-badge">{{ getLevelLabel(vocab.level) }}</span>
+            <span class="vocab-badge">{{ vocab.difficulty }}</span>
           </div>
 
           <!-- 学习进度 -->
@@ -48,7 +48,7 @@
 
     <!-- 精简提示 -->
     <div class="text-xs text-gray-500 text-center">
-      切换词库会自动保存当前进度
+      切换词典会自动保存当前进度
     </div>
   </div>
 </template>
@@ -59,8 +59,7 @@ import {
   VOCABULARIES,
   getCurrentVocabulary,
   setCurrentVocabulary,
-  getVocabularyProgress,
-  LEVEL_LABELS
+  getVocabularyProgress
 } from '../utils/vocabularyManager.js'
 
 const emit = defineEmits(['select'])
@@ -69,12 +68,7 @@ const vocabularies = ref(VOCABULARIES)
 const currentVocabId = ref(getCurrentVocabulary().id)
 const progressMap = ref({})
 
-// 获取难度标签
-const getLevelLabel = (level) => {
-  return LEVEL_LABELS[level] || level
-}
-
-// 选择词库
+// 选择词典
 const selectVocabulary = (vocab) => {
   if (vocab.id === currentVocabId.value) return
 
