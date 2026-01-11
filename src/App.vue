@@ -658,8 +658,8 @@ const touchEndY = ref(0)
 const isSwiping = ref(false)
 
 // AI相关状态
-const userSettings = ref({ apiKey: '', interests: [], dailyGoal: 20, studyMode: 'sequence' })
-const settingsForm = ref({ apiKey: '', interests: [], dailyGoal: 20, studyMode: 'sequence', githubToken: '' })
+const userSettings = ref({ apiKey: '', interests: [], dailyGoal: 20, studyMode: 'random' })
+const settingsForm = ref({ apiKey: '', interests: [], dailyGoal: 20, studyMode: 'random', githubToken: '' })
 const showSettings = ref(false)
 const newInterest = ref('')
 const generatingWordId = ref(null)
@@ -1017,10 +1017,23 @@ const restart = async () => {
   reviewStates.value = {};
   console.log(`🗑️ 已清除复习状态: ${reviewKey}`);
 
-  // 重新加载数据（确保界面更新）
+  // 重置会话计数
+  sessionLearnCount.value = 0;
+
+  // 重新加载数据
   await loadData();
 
-  console.log('✅ 重新开始完成');
+  // 强制等待下一tick，确保Vue更新
+  await new Promise(resolve => setTimeout(resolve, 0));
+
+  // 如果是随机模式，确保重新洗牌
+  if (userSettings.value.studyMode === 'random' && words.value.length > 0) {
+    console.log('🎲 重新开始：重新生成随机顺序');
+    await shuffleWords();
+  }
+
+  console.log('✅ 重新开始完成, 当前索引:', currentIndex.value);
+  console.log('   当前单词:', currentWord.value?.word || 'null');
 };
 
 // 创建随机懒加载单词数组（真正从整个词库随机）
@@ -1474,7 +1487,7 @@ const openSettings = () => {
     apiKey: userSettings.value.apiKey,
     interests: [...userSettings.value.interests],
     dailyGoal: userSettings.value.dailyGoal || 20,
-    studyMode: userSettings.value.studyMode || 'sequence',
+    studyMode: userSettings.value.studyMode || 'random',
     purpose: userProfile.value.purpose || 'daily',
     githubToken: ''
   };
@@ -1517,10 +1530,12 @@ const saveSettings = () => {
 
   showSettings.value = false;
 
-  // 如果学习模式是随机,重新洗牌单词
-  if (userSettings.value.studyMode === 'random') {
-    shuffleWords();
-  }
+  // 重新加载数据以应用新的学习模式
+  // 使用setTimeout确保设置保存后再加载
+  setTimeout(async () => {
+    await loadData();
+    console.log('✅ 设置已保存，数据已重新加载');
+  }, 100);
 
   // 更新同步统计
   updateGistSyncStats();
