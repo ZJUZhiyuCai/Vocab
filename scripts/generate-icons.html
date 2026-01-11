@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA图标生成器 - VocabContext</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f0eb;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #5c6b5c;
+      margin-bottom: 20px;
+    }
+    .preview {
+      display: flex;
+      gap: 20px;
+      margin: 20px 0;
+      padding: 20px;
+      background: #f8f8f8;
+      border-radius: 8px;
+    }
+    canvas {
+      border: 2px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      background: #5c6b5c;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    button:hover {
+      background: #4a564a;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    .info {
+      background: #e8e8dc;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    .success {
+      background: #d4ddd4;
+      color: #3d473d;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 20px 0;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📚 PWA图标生成器</h1>
+
+    <div class="info">
+      <strong>说明：</strong>
+      <ul>
+        <li>此工具将SVG图标转换为PNG格式</li>
+        <li>生成192x192和512x512两种尺寸</li>
+        <li>下载后请将图标文件放到 <code>public/</code> 目录</li>
+      </ul>
+    </div>
+
+    <div class="preview">
+      <div>
+        <h3>192x192 (图标)</h3>
+        <canvas id="canvas192" width="192" height="192"></canvas>
+      </div>
+      <div>
+        <h3>512x512 (应用图标)</h3>
+        <canvas id="canvas512" width="512" height="512"></canvas>
+      </div>
+    </div>
+
+    <div>
+      <button onclick="generateIcons()">✨ 生成图标</button>
+      <button id="download192" onclick="downloadIcon(192)" disabled>⬇️ 下载192</button>
+      <button id="download512" onclick="downloadIcon(512)" disabled>⬇️ 下载512</button>
+    </div>
+
+    <div id="success" class="success"></div>
+  </div>
+
+  <script>
+    const svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <circle cx="256" cy="256" r="256" fill="#5c6b5c"/>
+      <g transform="translate(128, 128)">
+        <rect x="20" y="40" width="216" height="160" rx="8" fill="#f5f0eb"/>
+        <rect x="124" y="40" width="8" height="160" fill="#8da892"/>
+        <line x1="40" y1="70" x2="108" y2="70" stroke="#5c6b5c" stroke-width="4" stroke-linecap="round"/>
+        <line x1="40" y1="95" x2="108" y2="95" stroke="#5c6b5c" stroke-width="4" stroke-linecap="round"/>
+        <line x1="40" y1="120" x2="108" y2="120" stroke="#5c6b5c" stroke-width="4" stroke-linecap="round"/>
+        <line x1="40" y1="145" x2="90" y2="145" stroke="#5c6b5c" stroke-width="4" stroke-linecap="round"/>
+        <line x1="148" y1="70" x2="216" y2="70" stroke="#5c6b5c" stroke-width="4" stroke-linecap="round"/>
+        <line x1="148" y1="95" x2="216" y2="95" stroke="#5c6b5c" stroke-width="4" stroke-linecap="round"/>
+        <line x1="148" y1="120" x2="216" y2="120" stroke="#5c6b5c" stroke-width="4" stroke-linecap="round"/>
+        <line x1="148" y1="145" x2="198" y2="145" stroke="#5c6b5c" stroke-width="4" stroke-linecap="round"/>
+        <rect x="180" y="50" width="24" height="50" fill="#d4ddd4"/>
+        <polygon points="180,100 192,110 204,100" fill="#d4ddd4"/>
+      </g>
+      <circle cx="80" cy="100" r="6" fill="#b3c2b3" opacity="0.6"/>
+      <circle cx="432" cy="140" r="4" fill="#b3c2b3" opacity="0.6"/>
+      <circle cx="100" cy="400" r="5" fill="#b3c2b3" opacity="0.6"/>
+      <circle cx="420" cy="380" r="7" fill="#b3c2b3" opacity="0.6"/>
+    </svg>`;
+
+    function generateIcons() {
+      const sizes = [192, 512];
+
+      sizes.forEach(size => {
+        const canvas = document.getElementById(`canvas${size}`);
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
+
+        const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(svgBlob);
+
+        img.onload = function() {
+          ctx.drawImage(img, 0, 0, size, size);
+          URL.revokeObjectURL(url);
+
+          // 启用下载按钮
+          document.getElementById(`download${size}`).disabled = false;
+        };
+
+        img.src = url;
+      });
+
+      const successDiv = document.getElementById('success');
+      successDiv.style.display = 'block';
+      successDiv.textContent = '✅ 图标生成成功！请点击下方按钮下载。';
+    }
+
+    function downloadIcon(size) {
+      const canvas = document.getElementById(`canvas${size}`);
+      const url = canvas.toDataURL('image/png');
+
+      const link = document.createElement('a');
+      link.download = `icon-${size}.png`;
+      link.href = url;
+      link.click();
+    }
+
+    // 自动生成图标
+    window.onload = generateIcons;
+  </script>
+</body>
+</html>

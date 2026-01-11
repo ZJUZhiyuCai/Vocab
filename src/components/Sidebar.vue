@@ -57,6 +57,17 @@
         <li>
           <a
             href="#"
+            @click.prevent="$emit('navigate', 'achievements')"
+            class="nav-item"
+            :class="{ 'active': currentPage === 'achievements' }"
+          >
+            <span class="text-xl">🏆</span>
+            <span>成就</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
             @click.prevent="$emit('open-vocab-selector')"
             class="nav-item"
           >

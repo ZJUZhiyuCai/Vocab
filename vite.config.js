@@ -13,5 +13,46 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true
+  },
+  build: {
+    // 生产环境构建目标
+    target: 'modules',
+    // 输出目录
+    outDir: 'dist',
+    // 生成源码映射
+    sourcemap: false,
+    // 最小化混淆
+    minify: 'terser',
+    // CSS 代码拆分
+    cssCodeSplit: true,
+    // Rollup 选项
+    rollupOptions: {
+      output: {
+        // 分块策略
+        manualChunks: {
+          'vue-vendor': ['vue'],
+          'utils': ['./src/utils/aiService.js', './src/utils/storage.js']
+        },
+        // 资源文件命名
+        assetFileNames: 'assets/[name].[hash].[ext]',
+        // 分块文件命名
+        chunkFileNames: 'assets/[name].[hash].js',
+        // 入口文件命名
+        entryFileNames: 'assets/[name].[hash].js'
+      }
+    },
+    // chunk 大小警告限制 (KB)
+    chunkSizeWarningLimit: 1000,
+    // 压缩配置
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    }
+  },
+  // 依赖预构建
+  optimizeDeps: {
+    include: ['vue', 'canvas-confetti']
   }
 })

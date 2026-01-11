@@ -311,6 +311,15 @@
           :review-states="reviewStates"
           @navigate="handleNavigate"
         />
+
+        <!-- 成就面板页面（包含成就和数据可视化） -->
+        <div v-else-if="currentPage === 'achievements'" class="max-w-4xl mx-auto px-4 py-8 space-y-6">
+          <!-- 学习热力图 -->
+          <StudyHeatmap />
+
+          <!-- 成就系统 -->
+          <AchievementsPanel />
+        </div>
       </main>
 
       <!-- 右侧统计面板（桌面端显示） -->
@@ -439,6 +448,52 @@
           </div>
         </div>
 
+        <!-- 云端同步 -->
+        <div class="mb-4">
+          <h3 class="text-sm font-bold text-gray-700 mb-3">☁️ 云端同步（GitHub Gist）</h3>
+
+          <!-- GitHub Token -->
+          <div class="mb-3">
+            <label class="block text-sm font-medium text-gray-700 mb-2">GitHub Personal Access Token</label>
+            <input
+              type="password"
+              v-model="settingsForm.githubToken"
+              placeholder="ghp_..."
+              class="input w-full"
+            >
+            <p class="text-xs text-gray-500 mt-1">
+              需要 <code>gist</code> 权限，
+              <a href="https://github.com/settings/tokens/new" target="_blank" class="text-sage-500 underline">点击创建Token</a>
+            </p>
+          </div>
+
+          <!-- 同步操作 -->
+          <div class="grid grid-cols-2 gap-2">
+            <button
+              @click="syncToCloud"
+              :disabled="syncing || !settingsForm.githubToken"
+              class="p-3 text-sm rounded-lg border border-gray-200 text-gray-600 hover:border-sage-300 hover:bg-sage-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <div class="font-medium mb-1">🔄 立即同步</div>
+              <div class="text-xs opacity-75">{{ syncing ? '同步中...' : '备份数据' }}</div>
+            </button>
+            <button
+              @click="testGistConnection"
+              :disabled="testingGist || !settingsForm.githubToken"
+              class="p-3 text-sm rounded-lg border border-gray-200 text-gray-600 hover:border-sage-300 hover:bg-sage-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <div class="font-medium mb-1">🔗 测试连接</div>
+              <div class="text-xs opacity-75">{{ testingGist ? '测试中...' : '验证配置' }}</div>
+            </button>
+          </div>
+
+          <!-- 同步状态 -->
+          <div v-if="gistSyncStats.lastSync !== '从未同步'" class="mt-2 text-xs text-gray-500 bg-gray-50 p-2 rounded">
+            <span>上次同步: {{ gistSyncStats.lastSync }}</span>
+            <span v-if="gistSyncStats.gistId" class="ml-2">ID: {{ gistSyncStats.gistId.slice(0, 8) }}...</span>
+          </div>
+        </div>
+
         <!-- 数据管理 -->
         <div class="mb-4">
           <h3 class="text-sm font-bold text-gray-700 mb-3">💾 数据管理</h3>
@@ -476,6 +531,13 @@
         </div>
       </div>
     </div>
+
+    <!-- 成就解锁通知 -->
+    <AchievementNotification
+      v-if="currentAchievementNotification"
+      :achievement="currentAchievementNotification"
+      @close="onAchievementClose"
+    />
 
     <!-- 词汇测试弹窗 -->
     <VocabLevelTest
@@ -553,7 +615,18 @@ import {
   getReviewQueue,
   getTodayReviewStats
 } from './utils/spacedRepetition.js'
-import { recordTodayStudy } from './utils/studyHistory.js'
+import { recordTodayStudy, getStreakDays } from './utils/studyHistory.js'
+import { checkAchievements } from './utils/achievements.js'
+import AchievementsPanel from './components/AchievementsPanel.vue'
+import AchievementNotification from './components/AchievementNotification.vue'
+import StudyHeatmap from './components/StudyHeatmap.vue'
+import {
+  saveGistConfig,
+  loadGistConfig,
+  syncData,
+  testGistConfig,
+  getSyncStats
+} from './utils/gistSync.js'
 
 // 状态
 const words = ref([])
@@ -586,17 +659,26 @@ const isSwiping = ref(false)
 
 // AI相关状态
 const userSettings = ref({ apiKey: '', interests: [], dailyGoal: 20, studyMode: 'sequence' })
-const settingsForm = ref({ apiKey: '', interests: [], dailyGoal: 20, studyMode: 'sequence' })
+const settingsForm = ref({ apiKey: '', interests: [], dailyGoal: 20, studyMode: 'sequence', githubToken: '' })
 const showSettings = ref(false)
 const newInterest = ref('')
 const generatingWordId = ref(null)
 const loadingEtymology = ref(null)
 const error = ref(null)
 
+// 同步状态
+const syncing = ref(false)
+const testingGist = ref(false)
+const gistSyncStats = ref({ lastSync: '从未同步', gistId: null, hasConfig: false })
+
 // 用户画像状态
 const userProfile = ref({ purpose: '' })
 const showOnboarding = ref(false)
 const showVocabTest = ref(false)  // 显示词汇测试弹窗
+
+// 成就系统状态
+const currentAchievementNotification = ref(null)
+const sessionLearnCount = ref(0)  // 本次会话学习的单词数
 
 // 页面状态
 const currentPage = ref('today')
@@ -726,7 +808,11 @@ const handleKnow = () => {
 
     // 记录学习历史（每次学习都记录）
     recordTodayStudy(1);
+    sessionLearnCount.value++;
     console.log('认识 - 记录学习历史 +1');
+
+    // 检测成就
+    checkAndUnlockAchievements();
 
     animateCardAndNext('slide-left');
     triggerHapticFeedback();
@@ -760,7 +846,11 @@ const handleForget = () => {
 
     // 记录学习历史（每次学习都记录）
     recordTodayStudy(1);
+    sessionLearnCount.value++;
     console.log('不认识 - 记录学习历史 +1');
+
+    // 检测成就
+    checkAndUnlockAchievements();
 
     animateCardAndNext('slide-right');
     triggerHapticFeedback();
@@ -817,6 +907,60 @@ const reviewQueueData = computed(() => {
     return { word, reviewState };
   }).filter(item => item.word); // 过滤掉找不到的单词
 });
+
+// ===== 成就系统 =====
+
+// 检测并解锁成就
+const checkAndUnlockAchievements = () => {
+  const hour = new Date().getHours()
+
+  // 准备统计数据
+  const stats = {
+    totalLearned: learned.value.size,
+    streakDays: getStreakDays(),
+    sessionCount: sessionLearnCount.value,
+    accuracy: stats.value.accuracy,
+    hour,
+    vocabProgress: {}
+  }
+
+  // 添加各词库进度
+  const vocabularies = ['vocab-a2-basic', 'vocab-b1-intermediate', 'vocab-b2-upper-intermediate', 'vocab-c1-advanced', 'vocab-c2-proficiency']
+  vocabularies.forEach(vocabId => {
+    try {
+      const progress = getVocabularyProgress(vocabId)
+      const totalWords = progress.total || 0
+      const learnedCount = (progress.learned || []).length
+      stats.vocabProgress[vocabId] = totalWords > 0 ? Math.round((learnedCount / totalWords) * 100) : 0
+    } catch {
+      stats.vocabProgress[vocabId] = 0
+    }
+  })
+
+  // 检查成就
+  const newAchievements = checkAchievements(stats)
+
+  // 显示成就解锁通知
+  if (newAchievements.length > 0) {
+    newAchievements.forEach((achievement, index) => {
+      setTimeout(() => {
+        showAchievementNotification(achievement)
+        triggerConfetti()
+      }, index * 1000) // 每个成就间隔1秒显示
+    })
+  }
+}
+
+// 显示成就解锁通知
+const showAchievementNotification = (achievement) => {
+  currentAchievementNotification.value = achievement
+  console.log('🏆 成就解锁:', achievement.name)
+}
+
+// 成就通知关闭回调
+const onAchievementClose = () => {
+  currentAchievementNotification.value = null
+}
 
 // ===== 单词本功能 =====
 
@@ -1258,6 +1402,70 @@ const saveCurrentProgress = () => {
   saveVocabularyProgress(currentVocab.value.id, progress);
 };
 
+// ===== 云端同步相关方法 =====
+
+// 更新同步统计
+const updateGistSyncStats = () => {
+  gistSyncStats.value = getSyncStats()
+};
+
+// 同步到云端
+const syncToCloud = async () => {
+  if (!settingsForm.value.githubToken) {
+    error.value = '请先配置GitHub Token'
+    setTimeout(() => { error.value = null }, 3000)
+    return
+  }
+
+  syncing.value = true
+  error.value = null
+
+  try {
+    const result = await syncData(settingsForm.value.githubToken)
+    console.log('✅ 同步成功:', result)
+
+    // 显示成功提示
+    error.value = `同步成功！Gist: ${result.gistId.slice(0, 8)}...`
+    setTimeout(() => { error.value = null }, 3000)
+
+    updateGistSyncStats()
+  } catch (err) {
+    console.error('❌ 同步失败:', err)
+    error.value = `同步失败: ${err.message}`
+    setTimeout(() => { error.value = null }, 5000)
+  } finally {
+    syncing.value = false
+  }
+};
+
+// 测试Gist连接
+const testGistConnection = async () => {
+  if (!settingsForm.value.githubToken) {
+    error.value = '请先配置GitHub Token'
+    setTimeout(() => { error.value = null }, 3000)
+    return
+  }
+
+  testingGist.value = true
+  error.value = null
+
+  try {
+    const result = await testGistConfig(settingsForm.value.githubToken)
+    if (result.success) {
+      error.value = `连接成功！GitHub用户: ${result.username}`
+      setTimeout(() => { error.value = null }, 3000)
+    } else {
+      error.value = `连接失败: ${result.error}`
+      setTimeout(() => { error.value = null }, 5000)
+    }
+  } catch (err) {
+    error.value = `测试失败: ${err.message}`
+    setTimeout(() => { error.value = null }, 5000)
+  } finally {
+    testingGist.value = false
+  }
+};
+
 // ===== 设置相关方法 =====
 const openSettings = () => {
   settingsForm.value = {
@@ -1265,9 +1473,20 @@ const openSettings = () => {
     interests: [...userSettings.value.interests],
     dailyGoal: userSettings.value.dailyGoal || 20,
     studyMode: userSettings.value.studyMode || 'sequence',
-    purpose: userProfile.value.purpose || 'daily'
+    purpose: userProfile.value.purpose || 'daily',
+    githubToken: ''
   };
-  showSettings.value = true;
+
+  // 从Gist配置加载GitHub Token
+  const gistConfig = loadGistConfig()
+  if (gistConfig && gistConfig.token) {
+    settingsForm.value.githubToken = gistConfig.token
+  }
+
+  // 更新同步统计
+  updateGistSyncStats()
+
+  showSettings.value = true
 };
 
 const closeSettings = () => {
@@ -1283,6 +1502,13 @@ const saveSettings = () => {
   };
   saveSettingsToStorage(userSettings.value);
 
+  // 保存GitHub Token到Gist配置
+  if (settingsForm.value.githubToken) {
+    const config = loadGistConfig() || {};
+    config.token = settingsForm.value.githubToken.trim();
+    saveGistConfig(config);
+  }
+
   // 保存用户画像(学习目的)
   userProfile.value.purpose = settingsForm.value.purpose;
   saveUserProfile(userProfile.value);
@@ -1293,6 +1519,9 @@ const saveSettings = () => {
   if (userSettings.value.studyMode === 'random') {
     shuffleWords();
   }
+
+  // 更新同步统计
+  updateGistSyncStats();
 };
 
 const addInterest = () => {
@@ -1682,6 +1911,9 @@ onMounted(() => {
   // 监听网络状态变化
   window.addEventListener('online', handleOnline);
   window.addEventListener('offline', handleOffline);
+
+  // 初始化同步统计
+  updateGistSyncStats();
 });
 
 onUnmounted(() => {

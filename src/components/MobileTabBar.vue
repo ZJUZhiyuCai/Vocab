@@ -53,6 +53,11 @@ const tabs = computed(() => [
     icon: '🎯'
   },
   {
+    key: 'achievements',
+    label: '成就',
+    icon: '🏆'
+  },
+  {
     key: 'settings',
     label: '设置',
     icon: '⚙️'
