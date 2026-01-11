@@ -809,7 +809,6 @@ const handleKnow = () => {
     // 记录学习历史（每次学习都记录）
     recordTodayStudy(1);
     sessionLearnCount.value++;
-    console.log('认识 - 记录学习历史 +1');
 
     // 检测成就
     checkAndUnlockAchievements();
@@ -914,8 +913,8 @@ const reviewQueueData = computed(() => {
 const checkAndUnlockAchievements = () => {
   const hour = new Date().getHours()
 
-  // 准备统计数据
-  const stats = {
+  // 准备统计数据（使用achievementStats避免与computed stats冲突）
+  const achievementStats = {
     totalLearned: learned.value.size,
     streakDays: getStreakDays(),
     sessionCount: sessionLearnCount.value,
@@ -931,14 +930,14 @@ const checkAndUnlockAchievements = () => {
       const progress = getVocabularyProgress(vocabId)
       const totalWords = progress.total || 0
       const learnedCount = (progress.learned || []).length
-      stats.vocabProgress[vocabId] = totalWords > 0 ? Math.round((learnedCount / totalWords) * 100) : 0
+      achievementStats.vocabProgress[vocabId] = totalWords > 0 ? Math.round((learnedCount / totalWords) * 100) : 0
     } catch {
-      stats.vocabProgress[vocabId] = 0
+      achievementStats.vocabProgress[vocabId] = 0
     }
   })
 
   // 检查成就
-  const newAchievements = checkAchievements(stats)
+  const newAchievements = checkAchievements(achievementStats)
 
   // 显示成就解锁通知
   if (newAchievements.length > 0) {
