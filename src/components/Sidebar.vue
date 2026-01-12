@@ -2,7 +2,7 @@
   <aside class="sidebar w-60 bg-white border-r border-gray-200 flex flex-col">
     <!-- Logo区域 -->
     <div class="p-6 border-b border-gray-100">
-      <h1 class="text-xl font-bold text-sage-500">VocabContext</h1>
+      <h1 class="text-xl font-bold text-sage-500">Vocab</h1>
       <p class="text-xs text-gray-500 mt-1">语境词汇学习</p>
     </div>
 

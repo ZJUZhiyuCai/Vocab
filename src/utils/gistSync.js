@@ -107,7 +107,7 @@ export async function createGist(token, data) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      description: 'VocabContext 学习数据备份',
+      description: 'Vocab 学习数据备份',
       public: false,
       files: {
         [filename]: {

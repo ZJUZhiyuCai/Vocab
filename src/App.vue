@@ -39,7 +39,7 @@
           <!-- 移动端顶部导航 -->
           <header class="lg:hidden bg-white rounded-lg shadow-sm p-4 mb-6 flex justify-between items-center">
             <div class="flex items-center gap-3">
-              <h1 class="text-xl font-bold text-sage-500">VocabContext</h1>
+              <h1 class="text-xl font-bold text-sage-500">Vocab</h1>
               <button
                 @click="showVocabSelector = true"
                 class="text-xs px-2 py-1 rounded-full bg-sage-100 text-sage-700"

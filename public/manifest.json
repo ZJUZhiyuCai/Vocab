@@ -1,6 +1,6 @@
 {
-  "name": "VocabContext - 语境词汇学习",
-  "short_name": "VocabContext",
+  "name": "Vocab - 语境词汇学习",
+  "short_name": "Vocab",
   "description": "基于语境的英语词汇学习工具，支持雅思、托福等考试词汇",
   "start_url": "/",
   "display": "standalone",

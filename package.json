@@ -1,5 +1,5 @@
 {
-  "name": "vocab-context",
+  "name": "vocab",
   "version": "1.3.0",
   "description": "语境词汇学习工具 - 基于CEFR分级的雅思词汇学习系统",
   "type": "module",

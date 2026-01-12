@@ -1,4 +1,4 @@
-# VocabContext - 智能雅思词汇学习工具
+# Vocab - 智能雅思词汇学习工具
 
 > 语境优先 + AI个性化 + 间隔重复的高效学习系统
 
@@ -34,8 +34,8 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/your-username/vocab-context.git
-cd vocab-context
+git clone https://github.com/ZJUZhiyuCai/vocab.git
+cd vocab
 
 # 安装依赖
 npm install
@@ -85,7 +85,7 @@ npm run build
 
 **一键部署**：
 点击下方按钮一键部署到 Vercel：
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ZJUZhiyuCai/-vocab-context)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ZJUZhiyuCai/vocab)
 
 **手动部署**：
 1. 访问 [Vercel Dashboard](https://vercel.com/dashboard)
@@ -122,7 +122,7 @@ git push origin master
 ## 项目结构
 
 ```
-vocab-context/
+vocab/
 ├── public/
 │   └── data/          # 5个词库JSON文件
 ├── src/
