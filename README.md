@@ -1,8 +1,8 @@
-# Vocab - 智能雅思词汇学习工具
+# VocabMan - 智能雅思词汇学习工具
 
 > 语境优先 + AI个性化 + 间隔重复的高效学习系统
 
-**在线体验**: [部署到 Vercel 后更新]
+**在线体验**: https://vocabman.netlify.app
 
 ## 特性
 
@@ -28,14 +28,14 @@
 
 ### 在线使用
 
-部署到 Netlify 后更新链接
+在线访问：https://vocabman.netlify.app
 
 ### 本地开发
 
 ```bash
 # 克隆仓库
-git clone https://github.com/ZJUZhiyuCai/vocab.git
-cd vocab
+git clone https://github.com/ZJUZhiyuCai/Vocab.git
+cd Vocab
 
 # 安装依赖
 npm install
@@ -85,7 +85,7 @@ npm run build
 
 **一键部署**：
 点击下方按钮一键部署到 Netlify：
-[![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ZJUZhiyuCai/vocab)
+[![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ZJUZhiyuCai/Vocab)
 
 **手动部署**：
 1. 访问 [Netlify Dashboard](https://app.netlify.com/start)
@@ -142,4 +142,4 @@ MIT License
 
 ---
 
-**在线地址**: [部署到 Vercel 后更新]
+**在线地址**: https://vocabman.netlify.app

@@ -1,6 +1,6 @@
 {
-  "name": "Vocab - 语境词汇学习",
-  "short_name": "Vocab",
+  "name": "VocabMan - 语境词汇学习",
+  "short_name": "VocabMan",
   "description": "基于语境的英语词汇学习工具，支持雅思、托福等考试词汇",
   "start_url": "/",
   "display": "standalone",

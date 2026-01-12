@@ -18,7 +18,7 @@
             <!-- Step 1: 欢迎 -->
             <div v-if="currentStep === 0" class="step-content">
               <div class="welcome-icon">🎯</div>
-              <h2 class="step-title">欢迎使用 Vocab</h2>
+              <h2 class="step-title">欢迎使用 VocabMan</h2>
               <p class="step-desc">为了给你提供更个性化的学习体验，请回答几个简单问题</p>
               <p class="step-note">⏱️ 只需30秒</p>
             </div>
