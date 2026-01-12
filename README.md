@@ -2,7 +2,7 @@
 
 > 语境优先 + AI个性化 + 间隔重复的高效学习系统
 
-**在线体验**: https://meek-truffle-4ce5d0.netlify.app/
+**在线体验**: [部署到 Vercel 后更新]
 
 ## 特性
 
@@ -22,13 +22,13 @@
 - **前端**: Vue 3 + Vite + Tailwind CSS
 - **AI服务**: 硅基流动 API (Qwen2.5-72B-Instruct)
 - **存储**: LocalStorage + GitHub Gist
-- **部署**: Netlify / Vercel
+- **部署**: Vercel (推荐) / Netlify
 
 ## 快速开始
 
 ### 在线使用
 
-直接访问: https://meek-truffle-4ce5d0.netlify.app/
+部署到 Vercel 后更新链接
 
 ### 本地开发
 
@@ -81,23 +81,43 @@ npm run build
 
 ## 部署
 
-### Netlify 拖拽部署
+### Vercel 部署（推荐）
 
-```bash
-npm run build
-# 将 dist 文件夹拖拽到 https://app.netlify.com/drop
-```
+**一键部署**：
+点击下方按钮一键部署到 Vercel：
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ZJUZhiyuCai/-vocab-context)
 
-### Git 集成
+**手动部署**：
+1. 访问 [Vercel Dashboard](https://vercel.com/dashboard)
+2. 点击 "Add New Project"
+3. 导入 GitHub 仓库
+4. 配置项目：
+   - **Framework Preset**: Vite
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+   - **Install Command**: `npm install`
+5. 点击 "Deploy"
 
+**为什么选择 Vercel？**
+- ✅ 自动从 GitHub 部署，无需手动配置
+- ✅ 全球 CDN，访问速度更快
+- ✅ 每次推送自动重新构建，确保代码最新
+- ✅ 免费 SSL 证书
+- ✅ 预览部署功能（每个 PR 自动生成预览链接）
+
+### Netlify 部署
+
+如果使用 Netlify：
 ```bash
 # 推送到 GitHub
-git push origin main
+git push origin master
 
-# 在 Netlify/Vercel 导入项目
+# 在 Netlify 导入项目
 # 构建命令: npm run build
 # 发布目录: dist
 ```
+
+**注意**：Netlify 可能存在缓存问题，需要在部署后手动清除缓存。
 
 ## 项目结构
 
@@ -137,4 +157,4 @@ MIT License
 
 ---
 
-**在线地址**: https://meek-truffle-4ce5d0.netlify.app/
+**在线地址**: [部署到 Vercel 后更新]
