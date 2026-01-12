@@ -566,11 +566,20 @@ export class AIService {
   }
 
   /**
+   * 获取清理后的 API key
+   * @private
+   */
+  getCleanedApiKey() {
+    const apiKey = this.settings.apiKey || '';
+    return String(apiKey).trim().replace(/[^\x00-\x7F]/g, '');
+  }
+
+  /**
    * 检查是否可用
    */
   isAvailable() {
     this.reloadSettings();
-    return !!this.settings.apiKey;
+    return !!this.getCleanedApiKey();
   }
 
   /**
@@ -600,7 +609,7 @@ export class AIService {
     }
 
     const result = await generateAIExampleWithoutCache({
-      apiKey: this.settings.apiKey,
+      apiKey: this.getCleanedApiKey(),
       word,
       meaning,
       purpose: purpose || 'exam'
@@ -631,7 +640,7 @@ export class AIService {
     }
 
     const result = await generateQuiz({
-      apiKey: this.settings.apiKey,
+      apiKey: this.getCleanedApiKey(),
       word,
       otherWords,
       userLevel: this.settings.aiUserLevel,
@@ -664,7 +673,7 @@ export class AIService {
     }
 
     const result = await generateFillBlankQuestion({
-      apiKey: this.settings.apiKey,
+      apiKey: this.getCleanedApiKey(),
       word,
       userLevel: this.settings.aiUserLevel,
       ...options
@@ -692,7 +701,7 @@ export class AIService {
 
     // 错误分析不缓存，因为会动态变化
     return await analyzeErrors({
-      apiKey: this.settings.apiKey,
+      apiKey: this.getCleanedApiKey(),
       mistakes,
       stats,
       userLevel: this.settings.aiUserLevel,
@@ -712,7 +721,7 @@ export class AIService {
     }
 
     return await analyzeWordError({
-      apiKey: this.settings.apiKey,
+      apiKey: this.getCleanedApiKey(),
       word,
       userAnswer,
       correctAnswer,
@@ -732,7 +741,7 @@ export class AIService {
     }
 
     return await generateStudyPlan({
-      apiKey: this.settings.apiKey,
+      apiKey: this.getCleanedApiKey(),
       stats,
       weakAreas,
       goals,
@@ -762,7 +771,7 @@ export class AIService {
     }
 
     const result = await generateMemoryHooks({
-      apiKey: this.settings.apiKey,
+      apiKey: this.getCleanedApiKey(),
       word,
       userLevel: this.settings.aiUserLevel,
       ...options
@@ -794,7 +803,7 @@ export class AIService {
     }
 
     const result = await generateWordNetwork({
-      apiKey: this.settings.apiKey,
+      apiKey: this.getCleanedApiKey(),
       word,
       userLevel: this.settings.aiUserLevel,
       ...options
@@ -826,7 +835,7 @@ export class AIService {
     }
 
     const result = await generateScenarioExamples({
-      apiKey: this.settings.apiKey,
+      apiKey: this.getCleanedApiKey(),
       word,
       scenarios,
       userLevel: this.settings.aiUserLevel,
@@ -852,7 +861,7 @@ export class AIService {
     }
 
     return await generateLearningPath({
-      apiKey: this.settings.apiKey,
+      apiKey: this.getCleanedApiKey(),
       words,
       goal,
       userLevel: this.settings.aiUserLevel,
