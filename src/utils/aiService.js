@@ -27,6 +27,13 @@ const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24小时缓存
  * @returns {Promise<{sentence: string, translation: string}>} AI生成的例句
  */
 export async function generateAIExample({ apiKey, word, meaning, purpose }) {
+  // 清理 API key，移除非 ASCII 字符和多余空格
+  const cleanedApiKey = String(apiKey || '').trim().replace(/[^\x00-\x7F]/g, '');
+
+  if (!cleanedApiKey) {
+    throw new Error('API密钥无效');
+  }
+
   // 检查缓存
   const cacheKey = getCacheKey(word, purpose);
   const cached = getFromCache(cacheKey);
@@ -36,7 +43,7 @@ export async function generateAIExample({ apiKey, word, meaning, purpose }) {
   }
 
   // 调用API生成
-  const result = await generateAIExampleWithoutCache({ apiKey, word, meaning, purpose });
+  const result = await generateAIExampleWithoutCache({ apiKey: cleanedApiKey, word, meaning, purpose });
 
   // 存入缓存
   saveToCache(cacheKey, { ...result, purpose, generatedAt: Date.now() });
