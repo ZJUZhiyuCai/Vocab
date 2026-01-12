@@ -249,6 +249,9 @@ const completeOnboarding = () => {
 .modal-content {
   @apply bg-white rounded-2xl shadow-xl max-w-lg w-full p-8;
   border: 1px solid rgba(141, 168, 146, 0.1);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* 进度条 */
@@ -270,7 +273,10 @@ const completeOnboarding = () => {
 
 /* 问题区域 */
 .question-area {
-  @apply min-h-[320px] flex items-center justify-center py-4;
+  @apply flex items-center justify-center py-4 overflow-y-auto;
+  flex: 1;
+  min-height: 200px;
+  max-height: calc(90vh - 200px);
 }
 
 .step-content {
@@ -433,15 +439,56 @@ const completeOnboarding = () => {
 /* 移动端优化 */
 @media (max-width: 640px) {
   .modal-content {
-    @apply p-6;
+    @apply p-5;
+    max-height: 85vh;
+  }
+
+  .question-area {
+    @apply py-2;
+    min-height: auto;
   }
 
   .step-title {
-    @apply text-xl;
+    @apply text-xl mb-2;
+  }
+
+  .step-desc {
+    @apply text-sm mb-2;
   }
 
   .options-grid {
-    @apply grid-cols-1;
+    @apply grid-cols-1 gap-2;
+  }
+
+  .option-card {
+    @apply p-4;
+  }
+
+  .option-icon {
+    @apply text-3xl mb-1;
+  }
+
+  .option-title {
+    @apply text-base mb-1;
+  }
+
+  .option-desc {
+    @apply text-xs;
+  }
+
+  .action-buttons {
+    @apply mt-4 pt-4 gap-2;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    @apply px-5 py-2.5 text-sm;
+  }
+
+  .welcome-icon,
+  .summary-icon,
+  .test-intro-icon {
+    @apply text-4xl mb-3;
   }
 }
 </style>
