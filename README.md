@@ -22,13 +22,13 @@
 - **前端**: Vue 3 + Vite + Tailwind CSS
 - **AI服务**: 硅基流动 API (Qwen2.5-72B-Instruct)
 - **存储**: LocalStorage + GitHub Gist
-- **部署**: Vercel (推荐) / Netlify
+- **部署**: Netlify
 
 ## 快速开始
 
 ### 在线使用
 
-部署到 Vercel 后更新链接
+部署到 Netlify 后更新链接
 
 ### 本地开发
 
@@ -81,43 +81,28 @@ npm run build
 
 ## 部署
 
-### Vercel 部署（推荐）
+### Netlify 部署
 
 **一键部署**：
-点击下方按钮一键部署到 Vercel：
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ZJUZhiyuCai/vocab)
+点击下方按钮一键部署到 Netlify：
+[![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ZJUZhiyuCai/vocab)
 
 **手动部署**：
-1. 访问 [Vercel Dashboard](https://vercel.com/dashboard)
-2. 点击 "Add New Project"
+1. 访问 [Netlify Dashboard](https://app.netlify.com/start)
+2. 点击 "Add new site" → "Import an existing project"
 3. 导入 GitHub 仓库
 4. 配置项目：
-   - **Framework Preset**: Vite
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-   - **Install Command**: `npm install`
-5. 点击 "Deploy"
+   - **Build command**: `npm run build`
+   - **Publish directory**: `dist`
+5. 点击 "Deploy site"
 
-**为什么选择 Vercel？**
+**为什么选择 Netlify？**
 - ✅ 自动从 GitHub 部署，无需手动配置
-- ✅ 全球 CDN，访问速度更快
+- ✅ 全球 CDN，访问速度快
 - ✅ 每次推送自动重新构建，确保代码最新
 - ✅ 免费 SSL 证书
 - ✅ 预览部署功能（每个 PR 自动生成预览链接）
-
-### Netlify 部署
-
-如果使用 Netlify：
-```bash
-# 推送到 GitHub
-git push origin master
-
-# 在 Netlify 导入项目
-# 构建命令: npm run build
-# 发布目录: dist
-```
-
-**注意**：Netlify 可能存在缓存问题，需要在部署后手动清除缓存。
+- ✅ 表单处理、无服务器函数等额外功能
 
 ## 项目结构
 
