@@ -2,6 +2,73 @@
   command = "npm run build"
   publish = "dist"
 
+# 静态资源不重定向
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+  force = false
+
+# 数据文件不重定向
+[[redirects]]
+  from = "/data/*"
+  to = "/data/:splat"
+  status = 200
+  force = false
+
+# manifest.json 不重定向
+[[redirects]]
+  from = "/manifest.json"
+  to = "/manifest.json"
+  status = 200
+  force = false
+
+# sw.js 不重定向
+[[redirects]]
+  from = "/sw.js"
+  to = "/sw.js"
+  status = 200
+  force = false
+
+# 图标文件不重定向
+[[redirects]]
+  from = "/*.png"
+  to = "/:splat"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/*.jpg"
+  to = "/:splat"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/*.svg"
+  to = "/:splat"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/*.ico"
+  to = "/:splat"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/*.webp"
+  to = "/:splat"
+  status = 200
+  force = false
+
+# SPA fallback - 其他所有请求重定向到 index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+# 安全头
 [[headers]]
   for = "/*"
   [headers.values]
@@ -10,8 +77,14 @@
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# 缓存控制
 [[headers]]
   for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
@@ -45,9 +118,3 @@
   for = "/*.ico"
   [headers.values]
     Cache-Control = "public, max-age=2592000"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = false
