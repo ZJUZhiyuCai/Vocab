@@ -60,6 +60,11 @@
         ⌨️ 按 Enter 键快速提交
       </span>
     </div>
+    <div v-else class="hint-area">
+      <span class="text-sm text-sage-600 font-medium">
+        ⌨️ 按 Space 或 Enter 键继续下一个
+      </span>
+    </div>
   </div>
 </template>
 

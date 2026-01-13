@@ -59,7 +59,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import FlashcardView from './FlashcardView.vue'
 import SpellingQuestion from './SpellingQuestion.vue'
 
@@ -139,6 +139,35 @@ const handleComplete = () => {
     reviewed: props.words.length
   })
 }
+
+// 🔥 键盘快捷键支持
+const handleKeydown = (event) => {
+  // 如果在输入框中,不触发快捷键(让输入框自己处理)
+  if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
+    // 特殊处理:如果已回答,输入框已禁用,此时允许Space/Enter进入下一个
+    if (answered.value && (event.key === ' ' || event.key === 'Space' || event.key === 'Enter')) {
+      event.preventDefault()
+      next()
+    }
+    return
+  }
+
+  // 拼写模式已回答状态下,按Space或Enter进入下一个
+  if (props.mode === 'spelling' && answered.value) {
+    if (event.key === ' ' || event.key === 'Space' || event.key === 'Enter') {
+      event.preventDefault()
+      next()
+    }
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeydown)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown)
+})
 </script>
 
 <style scoped>

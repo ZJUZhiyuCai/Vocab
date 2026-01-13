@@ -36,6 +36,7 @@
         <div class="answer-buttons">
           <button
             @click="answerWord(false)"
+            @touchstart.passive="() => {}"
             class="answer-btn btn-error"
           >
             <div class="text-2xl mb-1">✗</div>
@@ -43,6 +44,7 @@
           </button>
           <button
             @click="answerWord(true)"
+            @touchstart.passive="() => {}"
             class="answer-btn btn-success"
           >
             <div class="text-2xl mb-1">✓</div>
@@ -72,6 +74,21 @@
           <div class="result-item">
             <span class="result-label">雅思水平</span>
             <span class="result-value">{{ ieltsLevel }}</span>
+          </div>
+        </div>
+
+        <!-- 🔥 添加详细统计信息 -->
+        <div class="result-stats">
+          <div class="text-sm text-gray-600 mb-2">📊 详细统计</div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="stat-item">
+              <div class="stat-label">答对题数</div>
+              <div class="stat-number">{{ userAnswers.filter(a => a.known).length }} / {{ totalQuestions }}</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">正确率</div>
+              <div class="stat-number">{{ ((userAnswers.filter(a => a.known).length / totalQuestions) * 100).toFixed(0) }}%</div>
+            </div>
           </div>
         </div>
 
@@ -166,21 +183,16 @@ const startTest = () => {
 
 // 加载测试单词（包含不同难度级别）
 const loadTestWords = () => {
-  // 测试单词池，按难度排序（从简单到困难）
+  // 🔥 改进的测试单词池：增加更多题目，覆盖更广的难度范围
   const wordPool = [
-    // A1 级别（基础）
+    // A1 级别（基础）- 5个
     { word: 'hello', ipa: '/həˈləʊ/', cefr: 'A1', ielts: '基础', difficulty: 1 },
     { word: 'book', ipa: '/bʊk/', cefr: 'A1', ielts: '基础', difficulty: 1 },
     { word: 'happy', ipa: '/ˈhæpi/', cefr: 'A1', ielts: '基础', difficulty: 1 },
     { word: 'time', ipa: '/taɪm/', cefr: 'A1', ielts: '基础', difficulty: 1 },
     { word: 'family', ipa: '/ˈfæməli/', cefr: 'A1', ielts: '基础', difficulty: 1 },
-    { word: 'water', ipa: '/ˈwɔːtə/', cefr: 'A1', ielts: '基础', difficulty: 1 },
-    { word: 'friend', ipa: '/frend/', cefr: 'A1', ielts: '基础', difficulty: 1 },
-    { word: 'school', ipa: '/skuːl/', cefr: 'A1', ielts: '基础', difficulty: 1 },
-    { word: 'house', ipa: '/haʊs/', cefr: 'A1', ielts: '基础', difficulty: 1 },
-    { word: 'people', ipa: '/ˈpiːpl/', cefr: 'A1', ielts: '基础', difficulty: 1 },
 
-    // A2 级别（初级）
+    // A2 级别（初级）- 8个
     { word: 'adventure', ipa: '/ədˈventʃə/', cefr: 'A2', ielts: '基础', difficulty: 2 },
     { word: 'brilliant', ipa: '/ˈbrɪliənt/', cefr: 'A2', ielts: '基础', difficulty: 2 },
     { word: 'concentrate', ipa: '/ˈkɒnsəntreɪt/', cefr: 'A2', ielts: '基础', difficulty: 2 },
@@ -192,7 +204,7 @@ const loadTestWords = () => {
     { word: 'society', ipa: '/səˈsaɪəti/', cefr: 'A2', ielts: '基础', difficulty: 2 },
     { word: 'technology', ipa: '/tekˈnɒlədʒi/', cefr: 'A2', ielts: '基础', difficulty: 2 },
 
-    // B1 级别（中级）
+    // B1 级别（中级）- 12个
     { word: 'abandon', ipa: '/əˈbændən/', cefr: 'B1', ielts: '5分', difficulty: 3 },
     { word: 'benefit', ipa: '/ˈbenɪfɪt/', cefr: 'B1', ielts: '5分', difficulty: 3 },
     { word: 'component', ipa: '/kəmˈpəʊnənt/', cefr: 'B1', ielts: '5分', difficulty: 3 },
@@ -203,8 +215,10 @@ const loadTestWords = () => {
     { word: 'legislation', ipa: '/ˌledʒɪsˈleɪʃn/', cefr: 'B1', ielts: '5分', difficulty: 3 },
     { word: 'significant', ipa: '/sɪɡˈnɪfɪkənt/', cefr: 'B1', ielts: '5分', difficulty: 3 },
     { word: 'undergo', ipa: '/ˌʌndəˈɡəʊ/', cefr: 'B1', ielts: '5分', difficulty: 3 },
+    { word: 'accumulate', ipa: '/əˈkjuːmjəleɪt/', cefr: 'B1', ielts: '5分', difficulty: 3 },
+    { word: 'demonstrate', ipa: '/ˈdemənstreɪt/', cefr: 'B1', ielts: '5分', difficulty: 3 },
 
-    // B2 级别（中高级）
+    // B2 级别（中高级）- 15个
     { word: 'ambiguous', ipa: '/æmˈbɪɡjuəs/', cefr: 'B2', ielts: '6分', difficulty: 4 },
     { word: 'comprehensive', ipa: '/ˌkɒmprɪˈhensɪv/', cefr: 'B2', ielts: '6分', difficulty: 4 },
     { word: 'deteriorate', ipa: '/dɪˈtɪəriəreɪt/', cefr: 'B2', ielts: '6分', difficulty: 4 },
@@ -215,8 +229,13 @@ const loadTestWords = () => {
     { word: 'precedent', ipa: '/ˈpresɪdənt/', cefr: 'B2', ielts: '6分', difficulty: 4 },
     { word: 'speculate', ipa: '/ˈspekjʊleɪt/', cefr: 'B2', ielts: '6分', difficulty: 4 },
     { word: 'underlying', ipa: '/ˌʌndəˈlaɪɪŋ/', cefr: 'B2', ielts: '6分', difficulty: 4 },
+    { word: 'hierarchy', ipa: '/ˈhaɪərɑːki/', cefr: 'B2', ielts: '6分', difficulty: 4 },
+    { word: 'implement', ipa: '/ˈɪmplɪment/', cefr: 'B2', ielts: '6分', difficulty: 4 },
+    { word: 'integrate', ipa: '/ˈɪntɪɡreɪt/', cefr: 'B2', ielts: '6分', difficulty: 4 },
+    { word: 'methodology', ipa: '/ˌmeθəˈdɒlədʒi/', cefr: 'B2', ielts: '6分', difficulty: 4 },
+    { word: 'perspective', ipa: '/pəˈspektɪv/', cefr: 'B2', ielts: '6分', difficulty: 4 },
 
-    // C1 级别（高级）
+    // C1 级别（高级）- 12个
     { word: 'ameliorate', ipa: '/əˈmiːliəreɪt/', cefr: 'C1', ielts: '7分', difficulty: 5 },
     { word: 'conundrum', ipa: '/kəˈnʌndrəm/', cefr: 'C1', ielts: '7分', difficulty: 5 },
     { word: 'ephemeral', ipa: '/ɪˈfemərəl/', cefr: 'C1', ielts: '7分', difficulty: 5 },
@@ -227,18 +246,18 @@ const loadTestWords = () => {
     { word: 'exacerbate', ipa: '/ɪɡˈzæsəbeɪt/', cefr: 'C1', ielts: '7分', difficulty: 5 },
     { word: 'idiosyncrasy', ipa: '/ˌɪdiəˈsɪŋkrəsi/', cefr: 'C1', ielts: '7分', difficulty: 5 },
     { word: 'pragmatic', ipa: '/præɡˈmætɪk/', cefr: 'C1', ielts: '7分', difficulty: 5 },
+    { word: 'heterogeneous', ipa: '/ˌhetərəˈdʒiːniəs/', cefr: 'C1', ielts: '7分', difficulty: 5 },
+    { word: 'imperative', ipa: '/ɪmˈperətɪv/', cefr: 'C1', ielts: '7分', difficulty: 5 },
 
-    // C2 级别（精通）
-    { word: 'obfuscate', ipa: '/ˈɒbfʌskeɪt/', cefr: 'C2', ielts: '7.5分+', difficulty: 6 },
-    { word: 'perspicacious', ipa: '/ˌpɜːspɪˈkeɪʃəs/', cefr: 'C2', ielts: '7.5分+', difficulty: 6 },
-    { word: 'recalcitrant', ipa: '/rɪˈkælsɪtrənt/', cefr: 'C2', ielts: '7.5分+', difficulty: 6 },
-    { word: 'sesquipedalian', ipa: '/ˌseskwɪpɪˈdeɪliən/', cefr: 'C2', ielts: '7.5分+', difficulty: 6 },
-    { word: 'obfuscate', ipa: '/ˈɒbfʌskeɪt/', cefr: 'C2', ielts: '7.5分+', difficulty: 6 },
-    { word: 'acrimonious', ipa: '/ˌækrɪˈməʊniəs/', cefr: 'C2', ielts: '7.5分+', difficulty: 6 },
-    { word: 'obsequious', ipa: '/əbˈsiːkwiəs/', cefr: 'C2', ielts: '7.5分+', difficulty: 6 },
-    { word: 'pusillanimous', ipa: '/ˌpjuːsɪˈlænɪməs/', cefr: 'C2', ielts: '7.5分+', difficulty: 6 },
-    { word: 'trianthology', ipa: '/traɪˈænθələdʒi/', cefr: 'C2', ielts: '7.5分+', difficulty: 6 },
-    { word: 'vicissitude', ipa: '/vɪˈsɪsɪtjuːd/', cefr: 'C2', ielts: '7.5分+', difficulty: 6 }
+    // C2 级别（精通）- 8个
+    { word: 'obfuscate', ipa: '/ˈɒbfʌskeɪt/', cefr: 'C2', ielts: '8分', difficulty: 6 },
+    { word: 'perspicacious', ipa: '/ˌpɜːspɪˈkeɪʃəs/', cefr: 'C2', ielts: '8分', difficulty: 6 },
+    { word: 'recalcitrant', ipa: '/rɪˈkælsɪtrənt/', cefr: 'C2', ielts: '8分', difficulty: 6 },
+    { word: 'sesquipedalian', ipa: '/ˌseskwɪpɪˈdeɪliən/', cefr: 'C2', ielts: '8分', difficulty: 6 },
+    { word: 'acrimonious', ipa: '/ˌækrɪˈməʊniəs/', cefr: 'C2', ielts: '8分', difficulty: 6 },
+    { word: 'obsequious', ipa: '/əbˈsiːkwiəs/', cefr: 'C2', ielts: '8分', difficulty: 6 },
+    { word: 'pusillanimous', ipa: '/ˌpjuːsɪˈlænɪməs/', cefr: 'C2', ielts: '8分', difficulty: 6 },
+    { word: 'vicissitude', ipa: '/vɪˈsɪsɪtjuːd/', cefr: 'C2', ielts: '8分', difficulty: 6 }
   ]
 
   // 生成测试题目：从单词池中随机选择50个不重复的单词
@@ -287,43 +306,69 @@ const answerWord = (known) => {
   }
 }
 
-// 计算测试结果
+// 计算测试结果（🔥 改进版算法）
 const calculateResult = () => {
   const correctCount = userAnswers.value.filter(a => a.known).length
   const correctRate = correctCount / totalQuestions
 
-  // 根据正确率和平均难度计算词汇量
-  const avgDifficulty = userAnswers.value.reduce((sum, a) => sum + a.difficulty, 0) / totalQuestions
+  // 计算加权难度分数（正确率高的单词权重更高）
+  let weightedDifficultySum = 0
+  let totalWeight = 0
 
-  // 估算词汇量（简化算法）
+  userAnswers.value.forEach(answer => {
+    // 如果答对，权重更高；答对越难的题，分数越高
+    const weight = answer.known ? 1.5 : 0.5
+    weightedDifficultySum += answer.difficulty * weight
+    totalWeight += weight
+  })
+
+  const avgDifficulty = totalWeight > 0 ? weightedDifficultySum / totalWeight : 0
+
+  // 🔥 改进的评估算法：同时考虑正确率和难度
+  // 计算能力分数 (0-100)
+  const abilityScore = (avgDifficulty / 6) * 40 + correctRate * 60
+
+  console.log('📊 测试分析:', {
+    correctCount,
+    totalQuestions,
+    correctRate: (correctRate * 100).toFixed(1) + '%',
+    avgDifficulty: avgDifficulty.toFixed(2),
+    abilityScore: abilityScore.toFixed(1)
+  })
+
+  // 根据能力分数估算词汇量和等级
   let vocabRange = ''
   let cefr = ''
   let ielts = ''
 
-  if (avgDifficulty < 1.5) {
-    vocabRange = '500-1000'
+  if (abilityScore < 25) {
+    vocabRange = '500-1500'
     cefr = 'A1'
-    ielts = '基础'
-  } else if (avgDifficulty < 2.5) {
-    vocabRange = '1000-2000'
+    ielts = '基础-4.0'
+  } else if (abilityScore < 40) {
+    vocabRange = '1500-3000'
     cefr = 'A2'
-    ielts = '基础'
-  } else if (avgDifficulty < 3.5) {
-    vocabRange = '2000-4000'
+    ielts = '4.0-5.0'
+  } else if (abilityScore < 55) {
+    vocabRange = '3000-5000'
     cefr = 'B1'
-    ielts = '5分'
-  } else if (avgDifficulty < 4.5) {
-    vocabRange = '4000-6000'
+    ielts = '5.0-6.0'
+  } else if (abilityScore < 70) {
+    vocabRange = '5000-7000'
     cefr = 'B2'
-    ielts = '6分'
-  } else if (avgDifficulty < 5.5) {
-    vocabRange = '6000-8000'
+    ielts = '6.0-6.5'
+  } else if (abilityScore < 82) {
+    vocabRange = '7000-9000'
     cefr = 'C1'
-    ielts = '7分'
+    ielts = '6.5-7.0'
+  } else if (abilityScore < 92) {
+    vocabRange = '9000-11000'
+    cefr = 'C1+'
+    ielts = '7.0-7.5'
   } else {
-    vocabRange = '8000+'
+    vocabRange = '11000-13000+'
     cefr = 'C2'
-    ielts = '7.5分+'
+    ielts = '7.5-8.5+'
   }
 
   estimatedVocab.value = vocabRange
@@ -529,10 +574,30 @@ const confirmSelection = () => {
   align-items: center;
   gap: 0.25rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🔥 移动端触摸反馈增强 */
+.answer-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transition: opacity 150ms;
 }
 
 .answer-btn:active {
-  transform: scale(0.97);
+  transform: scale(0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.answer-btn:active::after {
+  opacity: 1;
 }
 
 .answer-btn.btn-success {
@@ -544,6 +609,10 @@ const confirmSelection = () => {
   transform: translateY(-1px);
 }
 
+.answer-btn.btn-success:active {
+  transform: scale(0.95);
+}
+
 .answer-btn.btn-error {
   background: linear-gradient(135deg, #b86c6c 0%, #a35a5a 100%);
 }
@@ -551,6 +620,10 @@ const confirmSelection = () => {
 .answer-btn.btn-error:hover {
   box-shadow: 0 4px 12px rgba(184, 108, 108, 0.25);
   transform: translateY(-1px);
+}
+
+.answer-btn.btn-error:active {
+  transform: scale(0.95);
 }
 
 .test-tip {
@@ -610,6 +683,31 @@ const confirmSelection = () => {
   font-size: 1rem;
   font-weight: 700;
   color: #3d473d;
+}
+
+/* ===== 详细统计信息 ===== */
+.result-stats {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #fafafa;
+  border: 1px solid #e8e0d8;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.stat-number {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #5c6b5c;
 }
 
 /* ===== 推荐词库区域 ===== */

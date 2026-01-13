@@ -42,6 +42,10 @@
             <span v-if="item.word.ipa" class="word-ipa">{{ item.word.ipa }}</span>
           </div>
           <p class="word-meaning">{{ item.word.meaning }}</p>
+          <!-- 🔥 添加英文例句作为英文参考 -->
+          <div v-if="item.word.examples && item.word.examples.length > 0" class="word-example">
+            <span class="example-text">{{ item.word.examples[0].sentence }}</span>
+          </div>
         </div>
 
         <div class="word-meta">
@@ -272,6 +276,22 @@ const handleReviewComplete = (result) => {
   @apply text-sm;
   color: #6b7280;
   line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+/* 🔥 英文例句样式 */
+.word-example {
+  @apply mt-2 pt-2 border-t border-gray-100;
+}
+
+.example-text {
+  @apply text-sm italic;
+  color: #5c6b5c;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .word-meta {

@@ -153,6 +153,21 @@
               <p class="text-gray-700 leading-relaxed">{{ currentWord.meaning }}</p>
             </div>
 
+            <!-- 英文释义区域 -->
+            <div v-if="currentWord.englishDefinition" class="mb-4 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+              <div class="text-xs text-blue-600 mb-1">📖 English Definition</div>
+              <p class="text-sm text-blue-900 leading-relaxed italic">{{ currentWord.englishDefinition }}</p>
+            </div>
+            <div v-else-if="userSettings.apiKey" class="mb-4">
+              <button
+                @click="loadEnglishDefinition(currentWord)"
+                class="w-full py-2 px-4 rounded border border-dashed border-blue-300 text-blue-500 hover:bg-blue-50 text-sm transition-colors"
+                :disabled="loadingEnglishDefinition === currentWord.id"
+              >
+                {{ loadingEnglishDefinition === currentWord.id ? '⏳ 获取中...' : '📖 AI生成英文释义' }}
+              </button>
+            </div>
+
             <!-- 词根词缀区域 -->
             <div v-if="currentWord.etymology" class="mb-4 p-3 bg-purple-50 rounded-lg border-l-4 border-purple-400">
               <div class="text-xs text-purple-600 mb-1">🔤 词根词缀</div>
@@ -268,7 +283,7 @@
             <div class="mt-4 pt-4 border-t border-gray-100">
               <div class="text-xs text-gray-400 text-center space-y-1">
                 <div>快捷键：<kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">空格</kbd> 认识 · <kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">回车</kbd> 不认识 · <kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">←</kbd> 上一个 · <kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">→</kbd> 下一个</div>
-                <div><kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">A</kbd> AI例句 <span class="hidden lg:inline">· <kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">S</kbd> 设置</span></div>
+                <div><kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">A</kbd> AI例句 · <kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">E</kbd> 英文释义 <span class="hidden lg:inline">· <kbd class="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600">S</kbd> 设置</span></div>
                 <div class="mt-2">
                   <button @click="restart" class="text-sage-500 hover:text-sage-700 underline">🔄 重新开始</button>
                 </div>
@@ -602,6 +617,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { generateAIExample } from './utils/aiService.js'
 import { getEtymology } from './utils/etymologyService.js'
+import { getEnglishDefinition } from './utils/englishDefinitionService.js'
 import { loadSettings, saveSettings as saveSettingsToStorage, loadWordbook, saveWordbook, loadUserProfile, saveUserProfile, shouldShowOnboarding } from './utils/storage.js'
 import { useConfetti } from './composables/useConfetti.js'
 import Sidebar from './components/Sidebar.vue'
@@ -691,6 +707,7 @@ const showSettings = ref(false)
 const newInterest = ref('')
 const generatingWordId = ref(null)
 const loadingEtymology = ref(null)
+const loadingEnglishDefinition = ref(null)
 const error = ref(null)
 
 // 同步状态
@@ -1471,6 +1488,40 @@ const loadEtymology = async (word) => {
   }
 };
 
+// ===== 英文释义获取 =====
+const loadEnglishDefinition = async (word) => {
+  if (!userSettings.value.apiKey) {
+    error.value = '请先配置API密钥';
+    setTimeout(() => { error.value = null; }, 3000);
+    return;
+  }
+
+  loadingEnglishDefinition.value = word.id;
+  error.value = null;
+
+  try {
+    const definition = await getEnglishDefinition({
+      apiKey: userSettings.value.apiKey,
+      word: word.word,
+      meaning: word.meaning
+    });
+
+    if (definition) {
+      const wordIndex = words.value.findIndex(w => w.id === word.id);
+      if (wordIndex !== -1) {
+        words.value[wordIndex].englishDefinition = definition;
+      }
+      triggerConfetti({ particleCount: 15, spread: 30, origin: { y: 0.7 } });
+    }
+  } catch (err) {
+    console.error('获取英文释义失败:', err);
+    error.value = err.message || '获取失败，请重试';
+    setTimeout(() => { error.value = null; }, 3000);
+  } finally {
+    loadingEnglishDefinition.value = null;
+  }
+};
+
 // ===== 导航处理 =====
 const handleNavigate = (page) => {
   currentPage.value = page;
@@ -1583,6 +1634,25 @@ const handleTouchEnd = (event) => {
       // 向左滑动 ← 认识
       handleKnow();
     }
+
+    // 🔥 关键修复：确保卡片样式在动画完成后重置
+    // 延迟执行,确保操作完成后再重置
+    setTimeout(() => {
+      if (wordCard.value) {
+        wordCard.value.style.transition = 'transform 0.2s ease-out, opacity 0.2s ease-out';
+        wordCard.value.style.transform = 'translateX(0) rotate(0deg)';
+        wordCard.value.style.opacity = '1';
+
+        // 清除transition和行内样式
+        setTimeout(() => {
+          if (wordCard.value) {
+            wordCard.value.style.transition = '';
+            wordCard.value.style.transform = '';
+            wordCard.value.style.opacity = '';
+          }
+        }, 200);
+      }
+    }, 50);
   } else {
     // 滑动无效 - 回弹效果
     wordCard.value.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
@@ -1646,6 +1716,13 @@ const handleKeydown = (event) => {
       event.preventDefault();
       if (userSettings.value.apiKey) {
         generateExample(currentWord.value);
+      }
+      break;
+    case 'e':
+    case 'E':
+      event.preventDefault();
+      if (userSettings.value.apiKey) {
+        loadEnglishDefinition(currentWord.value);
       }
       break;
   }
