@@ -170,7 +170,7 @@ async function generateAIExampleWithoutCache({ apiKey, word, meaning, purpose })
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'Qwen/Qwen2.5-72B-Instruct',
+      model: 'deepseek-ai/DeepSeek-V3',
       messages: [
         {
           role: 'user',
@@ -463,7 +463,7 @@ export async function validateApiKey(apiKey) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'Qwen/Qwen2.5-72B-Instruct',
+        model: 'deepseek-ai/DeepSeek-V3',
         messages: [{ role: 'user', content: 'Hello' }],
         max_tokens: 10
       })

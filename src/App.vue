@@ -120,9 +120,16 @@
               <div class="flex-1">
                 <h2 class="word-display mb-2">{{ currentWord.word }}</h2>
                 <div class="flex flex-wrap gap-3 text-sm text-gray-600">
-                  <span v-if="currentWord.ipa" class="flex items-center gap-1">
-                    <span>🔊</span>{{ currentWord.ipa }}
-                  </span>
+                  <button
+                    v-if="currentWord.ipa"
+                    @click="playWordAudio(currentWord.word)"
+                    class="flex items-center gap-1 px-2 py-1 rounded hover:bg-gray-100 transition-colors"
+                    :disabled="isPlayingWord"
+                    title="点击朗读单词"
+                  >
+                    <span class="text-base">🔊</span>
+                    <span>{{ currentWord.ipa }}</span>
+                  </button>
                   <span v-if="currentWord.partOfSpeech" class="tag">{{ currentWord.partOfSpeech }}</span>
                   <!-- 难度星级 -->
                   <div class="flex items-center gap-1">
@@ -463,7 +470,15 @@
 
           <!-- API密钥输入 -->
           <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-2">硅基流动API密钥</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Google Cloud TTS API密钥</label>
+            <input type="password" v-model="settingsForm.googleApiKey" placeholder="AIza..." class="input w-full">
+            <p class="text-xs text-gray-500 mt-1">
+              在<a href="https://console.cloud.google.com/apis/credentials" target="_blank" class="text-sage-500 underline">Google Cloud Console</a>创建API密钥，启用Text-to-Speech API
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">硅基流动API密钥（备选）</label>
             <input type="password" v-model="settingsForm.apiKey" placeholder="sk-..." class="input w-full">
             <p class="text-xs text-gray-500 mt-1">
               在<a href="https://docs.siliconflow.cn/cn/userguide/quickstart" target="_blank" class="text-sage-500 underline">硅基流动官网</a>获取免费API密钥
@@ -649,6 +664,9 @@ import { checkAchievements } from './utils/achievements.js'
 import AchievementsPanel from './components/AchievementsPanel.vue'
 import AchievementNotification from './components/AchievementNotification.vue'
 import StudyHeatmap from './components/StudyHeatmap.vue'
+import { getTTS } from './utils/text-to-speech.js'
+import { getSiliconFlowTTS } from './utils/siliconFlowTTS.js'
+import { getGoogleTTS } from './utils/googleTTS.js'
 import {
   saveGistConfig,
   loadGistConfig,
@@ -689,6 +707,7 @@ const isSwiping = ref(false)
 // AI相关状态
 const userSettings = ref({
   apiKey: '',
+  googleApiKey: '',
   interests: [],
   dailyGoal: 20,
   studyMode: 'random',
@@ -697,6 +716,7 @@ const userSettings = ref({
 })
 const settingsForm = ref({
   apiKey: '',
+  googleApiKey: '',
   interests: [],
   dailyGoal: 20,
   studyMode: 'random',
@@ -778,6 +798,64 @@ const todayStats = computed(() => ({
 const sessionStartTime = ref(Date.now())
 const totalStudyTime = ref(0) // 从localStorage加载的总时长（秒）
 const isPageVisible = ref(true)
+
+// TTS 语音朗读
+const tts = getTTS()
+const siliconTTS = getSiliconFlowTTS()
+const googleTTS = getGoogleTTS()
+const isPlayingWord = ref(false)
+
+// 朗读单词（优先级：Google TTS > 硅基流动 TTS > 浏览器 TTS）
+async function playWordAudio(word) {
+  isPlayingWord.value = true
+
+  try {
+    // 优先使用 Google TTS
+    if (googleTTS.isAvailable()) {
+      try {
+        console.log('🔊 使用 Google TTS 朗读:', word)
+        await googleTTS.play(word)
+        return
+      } catch (error) {
+        console.error('❌ Google TTS 失败，尝试硅基流动 TTS:', error)
+      }
+    }
+
+    // 降级到硅基流动 TTS
+    if (siliconTTS.isAvailable()) {
+      try {
+        console.log('🔊 使用硅基流动 TTS 朗读:', word)
+        await siliconTTS.play(word)
+        return
+      } catch (error) {
+        console.error('❌ 硅基流动 TTS 失败，尝试浏览器 TTS:', error)
+      }
+    }
+
+    // 最后降级到浏览器 TTS
+    await fallbackBrowserTTS(word)
+  } finally {
+    isPlayingWord.value = false
+  }
+}
+
+// 浏览器 TTS 作为备选方案
+async function fallbackBrowserTTS(word) {
+  if (!tts.isSupported()) {
+    alert('请先配置 API 密钥或使用支持语音的浏览器')
+    return
+  }
+
+  isPlayingWord.value = true
+  try {
+    await tts.speakWord(word)
+  } catch (error) {
+    console.error('语音朗读失败:', error)
+    alert('语音朗读失败: ' + error.message)
+  } finally {
+    isPlayingWord.value = false
+  }
+}
 
 // 获取当前会话时长（秒）
 const getSessionTime = () => {
@@ -1266,6 +1344,7 @@ const testGistConnection = async () => {
 const openSettings = () => {
   settingsForm.value = {
     apiKey: userSettings.value.apiKey,
+    googleApiKey: userSettings.value.googleApiKey || '',
     interests: [...userSettings.value.interests],
     dailyGoal: userSettings.value.dailyGoal || 20,
     studyMode: userSettings.value.studyMode || 'random',
@@ -1292,6 +1371,7 @@ const closeSettings = () => {
 const saveSettings = () => {
   userSettings.value = {
     apiKey: settingsForm.value.apiKey.trim(),
+    googleApiKey: settingsForm.value.googleApiKey.trim(),
     interests: [...settingsForm.value.interests],
     dailyGoal: settingsForm.value.dailyGoal,
     studyMode: settingsForm.value.studyMode
@@ -1317,6 +1397,10 @@ const saveSettings = () => {
     await loadData();
     console.log('✅ 设置已保存，数据已重新加载');
   }, 100);
+
+  // 重新加载 TTS API 密钥
+  googleTTS.reloadApiKey();
+  siliconTTS.reloadApiKey();
 
   // 更新同步统计
   updateGistSyncStats();
