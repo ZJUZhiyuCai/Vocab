@@ -470,18 +470,10 @@
 
           <!-- API密钥输入 -->
           <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-2">Google Cloud TTS API密钥</label>
-            <input type="password" v-model="settingsForm.googleApiKey" placeholder="AIza..." class="input w-full">
-            <p class="text-xs text-gray-500 mt-1">
-              在<a href="https://console.cloud.google.com/apis/credentials" target="_blank" class="text-sage-500 underline">Google Cloud Console</a>创建API密钥，启用Text-to-Speech API
-            </p>
-          </div>
-
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-2">硅基流动API密钥（备选）</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">硅基流动 API 密钥</label>
             <input type="password" v-model="settingsForm.apiKey" placeholder="sk-..." class="input w-full">
             <p class="text-xs text-gray-500 mt-1">
-              在<a href="https://docs.siliconflow.cn/cn/userguide/quickstart" target="_blank" class="text-sage-500 underline">硅基流动官网</a>获取免费API密钥
+              在<a href="https://docs.siliconflow.cn/cn/userguide/quickstart" target="_blank" class="text-sage-500 underline">硅基流动官网</a>获取免费 API 密钥
             </p>
           </div>
 
@@ -665,8 +657,6 @@ import AchievementsPanel from './components/AchievementsPanel.vue'
 import AchievementNotification from './components/AchievementNotification.vue'
 import StudyHeatmap from './components/StudyHeatmap.vue'
 import { getTTS } from './utils/text-to-speech.js'
-import { getSiliconFlowTTS } from './utils/siliconFlowTTS.js'
-import { getGoogleTTS } from './utils/googleTTS.js'
 import { getFreeDictionaryTTS } from './utils/freeDictionaryTTS.js'
 import {
   saveGistConfig,
@@ -708,7 +698,6 @@ const isSwiping = ref(false)
 // AI相关状态
 const userSettings = ref({
   apiKey: '',
-  googleApiKey: '',
   interests: [],
   dailyGoal: 20,
   studyMode: 'random',
@@ -717,7 +706,6 @@ const userSettings = ref({
 })
 const settingsForm = ref({
   apiKey: '',
-  googleApiKey: '',
   interests: [],
   dailyGoal: 20,
   studyMode: 'random',
@@ -802,12 +790,10 @@ const isPageVisible = ref(true)
 
 // TTS 语音朗读
 const tts = getTTS()
-const siliconTTS = getSiliconFlowTTS()
-const googleTTS = getGoogleTTS()
 const freeDictTTS = getFreeDictionaryTTS()
 const isPlayingWord = ref(false)
 
-// 朗读单词（优先级：Free Dictionary API > Google TTS > 硅基流动 TTS > 浏览器 TTS）
+// 朗读单词（优先级：Free Dictionary API > 浏览器 TTS）
 async function playWordAudio(word) {
   isPlayingWord.value = true
 
@@ -822,28 +808,6 @@ async function playWordAudio(word) {
       }
     } catch (error) {
       console.warn('⚠️ Free Dictionary API 失败:', error)
-    }
-
-    // 降级到 Google TTS
-    if (googleTTS.isAvailable()) {
-      try {
-        console.log('🔊 使用 Google TTS 朗读:', word)
-        await googleTTS.play(word)
-        return
-      } catch (error) {
-        console.error('❌ Google TTS 失败:', error)
-      }
-    }
-
-    // 降级到硅基流动 TTS
-    if (siliconTTS.isAvailable()) {
-      try {
-        console.log('🔊 使用硅基流动 TTS 朗读:', word)
-        await siliconTTS.play(word)
-        return
-      } catch (error) {
-        console.error('❌ 硅基流动 TTS 失败:', error)
-      }
     }
 
     // 最后降级到浏览器 TTS
@@ -1358,7 +1322,6 @@ const testGistConnection = async () => {
 const openSettings = () => {
   settingsForm.value = {
     apiKey: userSettings.value.apiKey,
-    googleApiKey: userSettings.value.googleApiKey || '',
     interests: [...userSettings.value.interests],
     dailyGoal: userSettings.value.dailyGoal || 20,
     studyMode: userSettings.value.studyMode || 'random',
@@ -1385,7 +1348,6 @@ const closeSettings = () => {
 const saveSettings = () => {
   userSettings.value = {
     apiKey: settingsForm.value.apiKey.trim(),
-    googleApiKey: settingsForm.value.googleApiKey.trim(),
     interests: [...settingsForm.value.interests],
     dailyGoal: settingsForm.value.dailyGoal,
     studyMode: settingsForm.value.studyMode
@@ -1413,8 +1375,8 @@ const saveSettings = () => {
   }, 100);
 
   // 重新加载 TTS API 密钥
-  googleTTS.reloadApiKey();
-  siliconTTS.reloadApiKey();
+  // 重新加载 API 密钥 (如有)
+
 
   // 更新同步统计
   updateGistSyncStats();
