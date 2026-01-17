@@ -667,6 +667,7 @@ import StudyHeatmap from './components/StudyHeatmap.vue'
 import { getTTS } from './utils/text-to-speech.js'
 import { getSiliconFlowTTS } from './utils/siliconFlowTTS.js'
 import { getGoogleTTS } from './utils/googleTTS.js'
+import { getFreeDictionaryTTS } from './utils/freeDictionaryTTS.js'
 import {
   saveGistConfig,
   loadGistConfig,
@@ -803,21 +804,34 @@ const isPageVisible = ref(true)
 const tts = getTTS()
 const siliconTTS = getSiliconFlowTTS()
 const googleTTS = getGoogleTTS()
+const freeDictTTS = getFreeDictionaryTTS()
 const isPlayingWord = ref(false)
 
-// 朗读单词（优先级：Google TTS > 硅基流动 TTS > 浏览器 TTS）
+// 朗读单词（优先级：Free Dictionary API > Google TTS > 硅基流动 TTS > 浏览器 TTS）
 async function playWordAudio(word) {
   isPlayingWord.value = true
 
   try {
-    // 优先使用 Google TTS
+    // 优先使用 Free Dictionary API（免费真人发音）
+    try {
+      console.log('🔊 尝试 Free Dictionary API:', word)
+      const success = await freeDictTTS.play(word)
+      if (success) {
+        console.log('✅ Free Dictionary 发音成功')
+        return
+      }
+    } catch (error) {
+      console.warn('⚠️ Free Dictionary API 失败:', error)
+    }
+
+    // 降级到 Google TTS
     if (googleTTS.isAvailable()) {
       try {
         console.log('🔊 使用 Google TTS 朗读:', word)
         await googleTTS.play(word)
         return
       } catch (error) {
-        console.error('❌ Google TTS 失败，尝试硅基流动 TTS:', error)
+        console.error('❌ Google TTS 失败:', error)
       }
     }
 
@@ -828,7 +842,7 @@ async function playWordAudio(word) {
         await siliconTTS.play(word)
         return
       } catch (error) {
-        console.error('❌ 硅基流动 TTS 失败，尝试浏览器 TTS:', error)
+        console.error('❌ 硅基流动 TTS 失败:', error)
       }
     }
 

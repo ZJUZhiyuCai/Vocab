@@ -38,7 +38,7 @@ headers: {
 |---------|--------|---------|------|
 | Qwen2.5-7B | Qwen/Qwen2.5-7B-Instruct | 例句生成（推荐） | 低 |
 | Qwen2.5-14B | Qwen/Qwen2.5-14B-Instruct | 更复杂的例句 | 中 |
-| deepseek-llm | deepseek-ai/DeepSeek-V2.5 | 通用能力强 | 中 |
+| deepseek-llm | deepseek-ai/DeepSeek-V3.2 | 通用能力强 | 中 |
 | Yi-1.5-9B | 01-ai/Yi-1.5-9B-Chat | 英文能力强 | 低 |
 
 **推荐配置**：

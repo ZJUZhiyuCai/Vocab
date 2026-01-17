@@ -1,4 +1,4 @@
-/**
+﻿/**
  * AI服务工具
  * 封装硅基流动API调用，提供多种AI功能
  * - AI个性化例句生成
@@ -170,7 +170,7 @@ async function generateAIExampleWithoutCache({ apiKey, word, meaning, purpose })
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'deepseek-ai/DeepSeek-V3',
+      model: 'deepseek-ai/DeepSeek-V3.2',
       messages: [
         {
           role: 'user',
@@ -463,7 +463,7 @@ export async function validateApiKey(apiKey) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'deepseek-ai/DeepSeek-V3',
+        model: 'deepseek-ai/DeepSeek-V3.2',
         messages: [{ role: 'user', content: 'Hello' }],
         max_tokens: 10
       })
