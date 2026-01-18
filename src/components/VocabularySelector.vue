@@ -1,23 +1,26 @@
 <template>
   <div class="vocabulary-selector">
     <!-- 词库卡片网格 - 改为2列确保一屏显示 -->
-    <div class="grid grid-cols-2 gap-3 mb-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
       <div
         v-for="vocab in vocabularies"
         :key="vocab.id"
-        class="vocab-card"
-        :class="{ 'active': vocab.id === currentVocabId }"
+        :class="['vocab-card group', { 'active': vocab.id === currentVocabId }, isDark ? 'dark' : 'light']"
         @click="selectVocabulary(vocab)"
       >
         <!-- 词库图标 -->
-        <div class="vocab-icon" :style="{ backgroundColor: vocab.color + '20' }">
-          <span class="text-2xl">{{ vocab.icon }}</span>
+        <div class="vocab-icon" :style="{ backgroundColor: vocab.color + '15', color: vocab.color, border: '1px solid ' + vocab.color + '30' }">
+          <svg v-if="vocab.id.includes('cet4')" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.168.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.168.477-4.5 1.253" /></svg>
+          <svg v-else-if="vocab.id.includes('cet6')" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
+          <svg v-else-if="vocab.id.includes('ielts6')" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <svg v-else-if="vocab.id.includes('ielts7')" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-7.714 2.143L11 21l-2.143-7.714L1 12l7.714-2.143L11 3z" /></svg>
+          <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>
         </div>
 
         <!-- 词库信息 -->
         <div class="vocab-info">
           <div class="flex items-center justify-between mb-1">
-            <h3 class="vocab-title">{{ vocab.name }}</h3>
+            <h3 :class="['vocab-title transition-colors', isDark ? 'group-hover:text-white' : 'group-hover:text-emerald-600']">{{ vocab.name }}</h3>
             <div v-if="vocab.id === currentVocabId" class="check-badge">✓</div>
           </div>
 
@@ -30,9 +33,9 @@
           <!-- 学习进度 -->
           <div v-if="getProgress(vocab.id)" class="vocab-progress">
             <div class="flex justify-between text-xs text-gray-500 mb-1">
-              <span>{{ getProgressPercent(vocab.id) }}%</span>
+              <span>进度 {{ getProgressPercent(vocab.id) }}%</span>
             </div>
-            <div class="progress-bar">
+            <div :class="['progress-bar', isDark ? 'dark' : 'light']">
               <div
                 class="progress-fill"
                 :style="{
@@ -47,20 +50,23 @@
     </div>
 
     <!-- 精简提示 -->
-    <div class="text-xs text-gray-500 text-center">
+    <div class="text-xs text-gray-500 text-center mt-4">
       切换词典会自动保存当前进度
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import {
   VOCABULARIES,
   getCurrentVocabulary,
   setCurrentVocabulary,
   getVocabularyProgress
 } from '../utils/vocabularyManager.js'
+import { useTheme } from '../composables/useTheme.js'
+
+const { isDark } = useTheme()
 
 const emit = defineEmits(['select'])
 
@@ -108,17 +114,26 @@ onMounted(() => {
 
 <style scoped>
 .vocab-card {
-  @apply bg-white rounded-lg shadow-sm p-3 cursor-pointer border-2 border-transparent;
+  @apply backdrop-blur-sm rounded-xl p-4 cursor-pointer border;
   @apply transition-all duration-200;
-  @apply hover:shadow-md hover:border-sage-200;
+}
+
+.vocab-card.dark {
+  @apply bg-slate-800/50 border-white/5;
+  @apply hover:bg-slate-800 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/10;
+}
+
+.vocab-card.light {
+  @apply bg-white border-gray-200;
+  @apply hover:bg-gray-50 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10;
 }
 
 .vocab-card.active {
-  @apply border-sage-500 shadow-md;
+  @apply border-emerald-500/50 bg-emerald-500/10 shadow-md shadow-emerald-500/10;
 }
 
 .vocab-icon {
-  @apply w-12 h-12 rounded-lg flex items-center justify-center mb-2;
+  @apply w-12 h-12 rounded-xl flex items-center justify-center mb-3;
 }
 
 .vocab-info {
@@ -126,31 +141,63 @@ onMounted(() => {
 }
 
 .vocab-title {
-  @apply text-sm font-bold text-sage-600;
+  @apply text-sm font-bold;
+}
+
+.vocab-card.dark .vocab-title {
+  @apply text-gray-200;
+}
+
+.vocab-card.light .vocab-title {
+  @apply text-gray-800;
 }
 
 .vocab-stats {
-  @apply flex gap-1 mb-2;
+  @apply flex gap-2 mb-3;
 }
 
 .vocab-badge {
-  @apply text-xs px-2 py-0.5 rounded-full;
-  @apply bg-sage-100 text-sage-700;
+  @apply text-xs px-2 py-0.5 rounded-md border;
+}
+
+.vocab-card.dark .vocab-badge {
+  @apply bg-white/5 text-gray-400 border-white/5;
+}
+
+.vocab-card.light .vocab-badge {
+  @apply bg-gray-100 text-gray-600 border-gray-200;
 }
 
 .vocab-progress {
-  @apply mt-auto pt-2 border-t border-gray-100;
+  @apply mt-auto pt-3 border-t;
+}
+
+.vocab-card.dark .vocab-progress {
+  @apply border-white/5;
+}
+
+.vocab-card.light .vocab-progress {
+  @apply border-gray-200;
 }
 
 .check-badge {
-  @apply text-sage-500 font-bold text-lg flex-shrink-0;
+  @apply text-emerald-400 font-bold text-lg flex-shrink-0;
 }
 
 .progress-bar {
-  @apply w-full h-1.5 bg-gray-200 rounded-full overflow-hidden;
+  @apply w-full h-1.5 rounded-full overflow-hidden;
+}
+
+.progress-bar.dark {
+  @apply bg-slate-700;
+}
+
+.progress-bar.light {
+  @apply bg-gray-200;
 }
 
 .progress-fill {
   @apply h-full transition-all duration-300 ease-out;
+  box-shadow: 0 0 8px currentColor;
 }
 </style>

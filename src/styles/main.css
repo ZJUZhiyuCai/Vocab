@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './theme.css';
 
 /* 基础样式重置 */
 @layer base {
@@ -22,6 +23,7 @@
 
 /* 组件样式 */
 @layer components {
+
   /* 卡片样式 */
   .card {
     @apply bg-white rounded-lg shadow-sm p-6;
@@ -49,8 +51,8 @@
 
   /* 主按钮 */
   .btn-primary {
-    @apply bg-sage-500 text-white hover:bg-sage-600;
-    @apply focus:ring-sage-500;
+    @apply bg-emerald-600 text-white hover:bg-emerald-700;
+    @apply focus:ring-emerald-500;
   }
 
   /* 输入框 */
@@ -158,6 +160,7 @@
 
 /* 工具类 */
 @layer utilities {
+
   /* 文本高亮 */
   .text-highlight {
     @apply font-bold text-sage-500;
@@ -201,6 +204,7 @@
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -211,6 +215,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -222,6 +227,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -233,6 +239,7 @@
     opacity: 1;
     transform: translateX(0);
   }
+
   to {
     opacity: 0;
     transform: translateX(-100%) rotate(-10deg);
@@ -244,6 +251,7 @@
     opacity: 1;
     transform: translateX(0);
   }
+
   to {
     opacity: 0;
     transform: translateX(100%) rotate(10deg);
@@ -255,6 +263,7 @@
     opacity: 1;
     transform: scale(1);
   }
+
   to {
     opacity: 0;
     transform: scale(0.8);
@@ -262,9 +271,12 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.05);
   }

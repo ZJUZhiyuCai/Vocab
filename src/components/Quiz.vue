@@ -1,66 +1,88 @@
 <template>
-  <div class="quiz-page">
+  <div class="quiz-page animate-slide-right">
     <!-- 主页面：选择学习模式 -->
     <div v-if="!currentMode" class="mode-selection">
       <!-- 统计概览 -->
       <div class="stats-overview">
-        <div class="stat-card">
+      <div :class="['stat-card', isDark ? 'dark' : 'light']">
           <div class="stat-value">{{ learnedCount }}</div>
-          <div class="stat-label">📚 学习过</div>
+          <div class="stat-label">学习过</div>
         </div>
-        <div class="stat-card">
+        <div :class="['stat-card', isDark ? 'dark' : 'light']">
           <div class="stat-value">{{ reviewAccuracy }}%</div>
-          <div class="stat-label">🎯 正确率</div>
+          <div class="stat-label">正确率</div>
         </div>
-        <div class="stat-card">
+        <div :class="['stat-card', isDark ? 'dark' : 'light']">
           <div class="stat-value">{{ totalReviewed }}</div>
-          <div class="stat-label">🔄 复习次数</div>
+          <div class="stat-label">复习次数</div>
         </div>
       </div>
 
       <!-- 学习模式 -->
-      <div class="mode-section">
-        <h2 class="section-title">✨ 学习模式</h2>
+      <div :class="['mode-section', isDark ? 'dark' : 'light']">
+        <div class="flex items-center gap-2 mb-1">
+          <div class="w-1 h-5 rounded-full bg-emerald-500"></div>
+          <h2 class="section-title">学习模式</h2>
+        </div>
         <p class="section-description">选择你的学习方式</p>
 
         <div v-if="learnedCount > 0" class="mode-options">
-          <button @click="startSession('flashcard')" class="mode-card">
-            <div class="mode-emoji">🎴</div>
+          <button @click="startSession('flashcard')" :class="['mode-card group', isDark ? 'dark' : 'light']">
+            <div class="mode-icon-wrapper group-hover:scale-110 transition-transform">
+              <svg class="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            </div>
             <h3 class="mode-title">闪卡学习</h3>
-            <p class="mode-desc">快速浏览单词，点击翻转查看释义</p>
+            <p class="mode-desc">快速浏览单词，翻转查看详细释义</p>
           </button>
-          <button @click="startSession('spelling')" class="mode-card">
-            <div class="mode-emoji">✍️</div>
+          <button @click="startSession('spelling')" :class="['mode-card group', isDark ? 'dark' : 'light']">
+            <div class="mode-icon-wrapper group-hover:scale-110 transition-transform">
+              <svg class="w-10 h-10 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </div>
             <h3 class="mode-title">拼写练习</h3>
-            <p class="mode-desc">根据释义拼写单词，强化记忆</p>
+            <p class="mode-desc">根据释义拼写单词，强化拼写记忆</p>
           </button>
         </div>
 
         <!-- 空状态 -->
         <div v-else class="empty-state">
-          <div class="empty-icon">📝</div>
-          <h3 class="empty-title">还没有学习过的单词</h3>
-          <p class="empty-desc">先去今日学习页面学习一些新单词</p>
-          <button @click="$emit('navigate', 'today')" class="btn-primary">🚀 开始学习</button>
+          <div class="flex justify-center mb-6 text-slate-700/50">
+            <svg class="w-20 h-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.168.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.168.477-4.5 1.253" />
+            </svg>
+          </div>
+          <h3 class="empty-title text-xl font-bold text-slate-200">还没有学习过的单词</h3>
+          <p class="empty-desc text-slate-500 mb-8">先去今日学习页面学习一些新单词</p>
+          <button @click="$emit('navigate', 'today')" class="premium-btn px-8 py-3">🚀 开始学习</button>
         </div>
       </div>
 
       <!-- 单词列表 -->
-      <div class="list-section">
+      <div :class="['list-section', isDark ? 'dark' : 'light']">
         <div class="list-header">
           <div>
-            <h2 class="section-title">📖 单词列表</h2>
+            <div class="flex items-center gap-2 mb-1">
+              <div class="w-1 h-5 rounded-full bg-cyan-500"></div>
+              <h2 class="section-title">单词列表</h2>
+            </div>
             <p class="section-description">查看所有学习过的单词</p>
           </div>
-          <button @click="openWordList" class="btn-secondary">
-            👁️ 查看列表
+          <button @click="openWordList" class="btn-secondary flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+            查看列表
           </button>
         </div>
       </div>
     </div>
 
     <!-- 学习进行中 -->
-    <div v-if="currentMode === 'session'" class="session-container">
+    <div v-if="currentMode === 'session'" :class="['session-container', isDark ? 'dark' : 'light']">
       <ReviewSession
         :words="learnedWords"
         :mode="sessionMode"
@@ -72,7 +94,7 @@
 
     <!-- 单词列表弹窗 -->
     <div v-if="showWordList" class="modal-overlay" @click.self="showWordList = false">
-      <div class="modal-container">
+      <div :class="['modal-container', isDark ? 'dark' : 'light']">
         <ReviewQueuePreview
           :words="wordListData"
           @close="showWordList = false"
@@ -88,6 +110,9 @@
 import { ref, computed, onMounted } from 'vue'
 import ReviewSession from './quiz/ReviewSession.vue'
 import ReviewQueuePreview from './ReviewQueuePreview.vue'
+import { useTheme } from '../composables/useTheme.js'
+
+const { isDark } = useTheme()
 
 const props = defineProps({
   words: {
@@ -172,11 +197,6 @@ const learnedWords = computed(() => {
 
 // 获取单词列表详细数据
 const wordListData = computed(() => {
-  console.log('计算wordListData:', {
-    learnedWordsCount: learnedWords.value.length,
-    firstWord: learnedWords.value[0]
-  })
-
   return learnedWords.value.map(word => {
     const reviewState = props.reviewStates[word.id]
     return { word, reviewState }
@@ -185,7 +205,6 @@ const wordListData = computed(() => {
 
 // 打开单词列表
 const openWordList = () => {
-  console.log('打开单词列表，数据:', wordListData.value)
   showWordList.value = true
 }
 
@@ -214,7 +233,6 @@ const startSessionFromIndex = (index) => {
 
 // 学习完成
 const handleSessionComplete = (result) => {
-  console.log('学习完成:', result)
   currentMode.value = null
 }
 
@@ -226,7 +244,7 @@ const exitSession = () => {
 
 <style scoped>
 .quiz-page {
-  @apply max-w-5xl mx-auto p-8;
+  @apply max-w-5xl mx-auto p-4 md:p-8;
 }
 
 .mode-selection {
@@ -239,38 +257,68 @@ const exitSession = () => {
 }
 
 .stat-card {
-  @apply bg-white rounded-lg p-5;
-  @apply border border-gray-200;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  @apply backdrop-blur-sm rounded-2xl p-5 border;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card.dark {
+  @apply bg-slate-800/50 border-white/10;
+}
+
+.stat-card.light {
+  @apply bg-white border-gray-200;
 }
 
 .stat-value {
-  @apply text-3xl font-semibold;
-  color: #3d4a3d;
+  @apply text-3xl font-bold;
+}
+
+.stat-card.dark .stat-value {
+  @apply text-white;
+}
+
+.stat-card.light .stat-value {
+  @apply text-slate-900;
 }
 
 .stat-label {
-  @apply text-sm mt-1;
-  color: #6b7280;
+  @apply text-sm mt-1 text-gray-500;
 }
 
 /* 区块 */
 .mode-section,
 .list-section {
-  @apply bg-white rounded-lg p-6;
-  @apply border border-gray-200;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  @apply backdrop-blur-sm rounded-2xl p-6 border;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.mode-section.dark,
+.list-section.dark {
+  @apply bg-slate-800/50 border-white/10;
+}
+
+.mode-section.light,
+.list-section.light {
+  @apply bg-white border-gray-200;
 }
 
 .section-title {
-  @apply text-xl font-semibold;
-  color: #3d4a3d;
+  @apply text-xl font-bold;
   margin-bottom: 0.25rem;
 }
 
+.mode-section.dark .section-title,
+.list-section.dark .section-title {
+  @apply text-white;
+}
+
+.mode-section.light .section-title,
+.list-section.light .section-title {
+  @apply text-slate-900;
+}
+
 .section-description {
-  @apply text-sm;
-  color: #6b7280;
+  @apply text-sm text-gray-400;
   margin-bottom: 1.5rem;
 }
 
@@ -280,31 +328,55 @@ const exitSession = () => {
 }
 
 .mode-card {
-  @apply p-6 rounded-lg border-2 border-gray-200;
-  @apply transition-all duration-200;
-  background-color: #fafafa;
-  @apply flex flex-col items-center text-center;
+  @apply p-6 rounded-xl border-2;
+  @apply transition-all duration-300;
+  @apply flex flex-col items-center text-center cursor-pointer;
 }
 
-.mode-card:hover {
-  border-color: #5c6b5c;
-  background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(92, 107, 92, 0.15);
+.mode-card.dark {
+  @apply border-white/5 bg-slate-900/50;
 }
 
-.mode-emoji {
-  @apply text-5xl mb-3;
+.mode-card.light {
+  @apply border-gray-200 bg-gray-50;
+}
+
+.mode-card.dark:hover {
+  @apply border-emerald-500/50 bg-slate-800;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+}
+
+.mode-card.light:hover {
+  @apply border-emerald-500/50 bg-white;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+}
+
+.mode-icon-wrapper {
+  @apply mb-4 flex items-center justify-center p-4 rounded-2xl;
+}
+
+.mode-card.dark .mode-icon-wrapper {
+  @apply bg-white/5;
+}
+
+.mode-card.light .mode-icon-wrapper {
+  @apply bg-emerald-50;
 }
 
 .mode-title {
-  @apply text-lg font-semibold mb-2;
-  color: #3d4a3d;
+  @apply text-lg font-bold mb-2;
+}
+
+.mode-card.dark .mode-title {
+  @apply text-white;
+}
+
+.mode-card.light .mode-title {
+  @apply text-slate-900;
 }
 
 .mode-desc {
-  @apply text-sm;
-  color: #6b7280;
-  line-height: 1.5;
+  @apply text-sm text-gray-500;
 }
 
 /* 空状态 */
@@ -313,44 +385,46 @@ const exitSession = () => {
 }
 
 .empty-icon {
-  @apply text-6xl text-gray-300 mb-4;
+  @apply text-6xl text-slate-700 mb-4;
 }
 
 .empty-title {
-  @apply text-lg font-semibold mb-2;
-  color: #3d4a3d;
+  @apply text-lg font-bold text-white mb-2;
 }
 
 .empty-desc {
-  @apply text-sm mb-6;
-  color: #6b7280;
+  @apply text-sm mb-6 text-gray-500;
 }
 
 /* 按钮 */
 .btn-primary {
-  @apply px-6 py-2.5 rounded-lg font-medium;
-  background-color: #5c6b5c;
-  color: white;
+  @apply px-6 py-2.5 rounded-xl font-bold;
+  @apply bg-gradient-to-r from-emerald-500 to-teal-500 text-white;
+  @apply shadow-lg shadow-emerald-500/20;
   @apply transition-all duration-200;
 }
 
 .btn-primary:hover {
-  background-color: #4a5a4a;
-  box-shadow: 0 2px 8px rgba(92, 107, 92, 0.3);
+  @apply shadow-emerald-500/40 scale-105;
 }
 
 .btn-secondary {
-  @apply px-5 py-2 rounded-lg font-medium border;
-  background-color: white;
-  border-color: #d1d5db;
-  color: #374151;
+  @apply px-5 py-2 rounded-xl font-medium border;
   @apply transition-all duration-200;
 }
 
+.mode-section.dark .btn-secondary,
+.list-section.dark .btn-secondary {
+  @apply bg-white/5 border-white/10 text-gray-300;
+}
+
+.mode-section.light .btn-secondary,
+.list-section.light .btn-secondary {
+  @apply bg-gray-100 border-gray-200 text-gray-700;
+}
+
 .btn-secondary:hover {
-  border-color: #5c6b5c;
-  color: #5c6b5c;
-  background-color: #fafafa;
+  @apply border-emerald-500/30 text-emerald-400 bg-emerald-500/5;
 }
 
 /* 列表区块 */
@@ -360,18 +434,32 @@ const exitSession = () => {
 
 /* 会话容器 */
 .session-container {
-  @apply bg-white rounded-lg;
-  @apply border border-gray-200;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  @apply rounded-3xl overflow-hidden border;
+}
+
+.session-container.dark {
+  @apply bg-slate-900 border-white/10;
+}
+
+.session-container.light {
+  @apply bg-white border-gray-200;
 }
 
 /* 弹窗 */
 .modal-overlay {
-  @apply fixed inset-0 bg-black bg-opacity-50;
+  @apply fixed inset-0 bg-black/80 backdrop-blur-sm;
   @apply flex items-center justify-center z-50 p-4;
 }
 
 .modal-container {
-  @apply w-full max-w-4xl;
+  @apply w-full max-w-4xl rounded-3xl overflow-hidden border;
+}
+
+.modal-container.dark {
+  @apply bg-slate-900 border-white/10;
+}
+
+.modal-container.light {
+  @apply bg-white border-gray-200;
 }
 </style>

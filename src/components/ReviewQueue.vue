@@ -1,5 +1,5 @@
 <template>
-  <div class="review-queue-page">
+  <div class="review-queue-page animate-slide-right" :class="isDark ? 'dark' : 'light'">
     <!-- 头部 -->
     <div class="page-header">
       <div>
@@ -32,13 +32,13 @@
       <div
         v-for="(item, index) in reviewData"
         :key="item.word.id"
-        class="word-card"
+        class="word-card group"
         :class="{ 'word-card-forgotten': item.type === 'forgotten' }"
         @click="selectWord(item)"
       >
         <div class="word-main">
           <div class="word-header">
-            <h3 class="word-text">{{ item.word.word }}</h3>
+            <h3 class="word-text group-hover:text-emerald-400 transition-colors">{{ item.word.word }}</h3>
             <span v-if="item.word.ipa" class="word-ipa">{{ item.word.ipa }}</span>
           </div>
           <p class="word-meaning">{{ item.word.meaning }}</p>
@@ -105,6 +105,9 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import ReviewSession from './quiz/ReviewSession.vue'
+import { useTheme } from '../composables/useTheme.js'
+
+const { isDark } = useTheme()
 
 const props = defineProps({
   reviewData: {
@@ -163,7 +166,7 @@ const getAccuracyClass = (reviewState) => {
   return 'accuracy-low'
 }
 
-// 是否已到期复习
+// Is overdue
 const isOverdue = (reviewState) => {
   return reviewState && reviewState.nextReview && Date.now() >= reviewState.nextReview
 }
@@ -196,7 +199,7 @@ const handleReviewComplete = (result) => {
 
 <style scoped>
 .review-queue-page {
-  @apply max-w-4xl mx-auto p-8;
+  @apply max-w-4xl mx-auto p-4 md:p-8;
 }
 
 /* 头部 */
@@ -205,14 +208,28 @@ const handleReviewComplete = (result) => {
 }
 
 .page-title {
-  @apply text-2xl font-semibold;
-  color: #3d4a3d;
+  @apply text-2xl font-bold;
   margin-bottom: 0.25rem;
+}
+
+.dark .page-title {
+  @apply text-white;
+}
+
+.light .page-title {
+  @apply text-gray-800;
 }
 
 .page-desc {
   @apply text-sm;
-  color: #6b7280;
+}
+
+.dark .page-desc {
+  @apply text-gray-400;
+}
+
+.light .page-desc {
+  @apply text-gray-600;
 }
 
 /* 统计卡片 */
@@ -221,20 +238,32 @@ const handleReviewComplete = (result) => {
 }
 
 .stat-box {
-  @apply bg-white rounded-lg p-5;
-  @apply border border-gray-200;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  @apply backdrop-blur-sm rounded-2xl p-5;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dark .stat-box {
+  @apply bg-slate-800/50 border border-white/10;
+}
+
+.light .stat-box {
+  @apply bg-white border border-gray-200;
 }
 
 .stat-label {
-  @apply text-sm;
-  color: #6b7280;
-  margin-bottom: 0.5rem;
+  @apply text-sm text-gray-500 mb-2;
 }
 
 .stat-value {
-  @apply text-2xl font-semibold;
-  color: #3d4a3d;
+  @apply text-2xl font-bold;
+}
+
+.dark .stat-value {
+  @apply text-white;
+}
+
+.light .stat-value {
+  @apply text-gray-800;
 }
 
 /* 单词列表 */
@@ -243,15 +272,28 @@ const handleReviewComplete = (result) => {
 }
 
 .word-card {
-  @apply bg-white rounded-lg p-5;
-  @apply border border-gray-200 cursor-pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  @apply backdrop-blur-sm rounded-2xl p-5;
+  @apply cursor-pointer;
   @apply transition-all duration-200;
 }
 
-.word-card:hover {
-  border-color: #5c6b5c;
-  box-shadow: 0 4px 12px rgba(92, 107, 92, 0.15);
+.dark .word-card {
+  @apply bg-slate-800/80 border border-white/5;
+}
+
+.light .word-card {
+  @apply bg-white border border-gray-200 shadow-sm;
+}
+
+.dark .word-card:hover {
+  @apply border-emerald-500/30 bg-slate-800;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
+  transform: translateY(-2px);
+}
+
+.light .word-card:hover {
+  @apply border-emerald-400 shadow-lg;
+  transform: translateY(-2px);
 }
 
 .word-main {
@@ -263,30 +305,40 @@ const handleReviewComplete = (result) => {
 }
 
 .word-text {
-  @apply text-lg font-semibold;
-  color: #3d4a3d;
+  @apply text-lg font-bold;
+}
+
+.dark .word-text {
+  @apply text-gray-200;
+}
+
+.light .word-text {
+  @apply text-gray-800;
 }
 
 .word-ipa {
-  @apply text-sm;
-  color: #6b7280;
+  @apply text-sm text-gray-500 font-mono;
 }
 
 .word-meaning {
-  @apply text-sm;
-  color: #6b7280;
-  line-height: 1.5;
-  margin-bottom: 0.5rem;
+  @apply text-sm leading-relaxed mb-2;
+}
+
+.dark .word-meaning {
+  @apply text-gray-300;
+}
+
+.light .word-meaning {
+  @apply text-gray-600;
 }
 
 /* 🔥 英文例句样式 */
 .word-example {
-  @apply mt-2 pt-2 border-t border-gray-100;
+  @apply mt-2 pt-2 border-t border-white/5;
 }
 
 .example-text {
-  @apply text-sm italic;
-  color: #5c6b5c;
+  @apply text-sm italic text-emerald-400/80;
   line-height: 1.6;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -296,7 +348,7 @@ const handleReviewComplete = (result) => {
 
 .word-meta {
   @apply flex items-center gap-4;
-  @apply pt-3 border-t border-gray-100;
+  @apply pt-3 border-t border-white/10;
 }
 
 .meta-item {
@@ -304,91 +356,120 @@ const handleReviewComplete = (result) => {
 }
 
 .meta-label {
-  @apply text-xs;
-  color: #6b7280;
+  @apply text-xs text-gray-500;
 }
 
 .meta-value {
-  @apply text-sm font-medium;
-  color: #3d4a3d;
+  @apply text-sm font-medium text-gray-300;
 }
 
 .meta-value.text-green-600 {
-  color: #059669;
+  @apply text-emerald-400;
 }
 
 .meta-value.text-yellow-600 {
-  color: #d97706;
+  @apply text-amber-400;
 }
 
 .meta-value.text-red-600 {
-  color: #dc2626;
-}
-
-.meta-label.overdue {
-  @apply px-2 py-0.5 rounded-full;
-  background-color: #fef2f2;
-  color: #dc2626;
+  @apply text-rose-400;
 }
 
 /* 空状态 */
 .empty-state {
-  @apply text-center py-20;
+  @apply text-center py-20 rounded-3xl;
+}
+
+.dark .empty-state {
+  @apply bg-slate-800/30 border border-white/5;
+}
+
+.light .empty-state {
+  @apply bg-gray-50 border border-gray-200;
+}
+
+.dark .empty-icon {
+  @apply text-slate-700;
+}
+
+.light .empty-icon {
+  @apply text-gray-400;
 }
 
 .empty-icon {
-  @apply text-6xl text-gray-300 mb-4;
+  @apply text-6xl mb-4 font-thin;
 }
 
 .empty-title {
-  @apply text-lg font-semibold mb-2;
-  color: #3d4a3d;
+  @apply text-lg font-bold mb-2;
+}
+
+.dark .empty-title {
+  @apply text-white;
+}
+
+.light .empty-title {
+  @apply text-gray-800;
 }
 
 .empty-desc {
   @apply text-sm mb-6;
-  color: #6b7280;
+}
+
+.dark .empty-desc {
+  @apply text-gray-500;
+}
+
+.light .empty-desc {
+  @apply text-gray-600;
 }
 
 /* 按钮 */
 .btn-primary {
-  @apply px-6 py-2.5 rounded-lg font-medium;
-  background-color: #5c6b5c;
-  color: white;
+  @apply px-6 py-2.5 rounded-xl font-bold;
+  @apply bg-gradient-to-r from-emerald-500 to-teal-500 text-white;
+  @apply shadow-lg shadow-emerald-500/20;
   @apply transition-all duration-200;
 }
 
 .btn-primary:hover {
-  background-color: #4a5a4a;
-  box-shadow: 0 2px 8px rgba(92, 107, 92, 0.3);
+  @apply shadow-emerald-500/40 scale-[1.02];
 }
 
 /* 弹窗 */
 .modal-overlay {
-  @apply fixed inset-0 bg-black bg-opacity-50;
+  @apply fixed inset-0 bg-black/80 backdrop-blur-sm;
   @apply flex items-center justify-center z-50 p-4;
 }
 
 .modal-container {
-  @apply w-full max-w-4xl;
+  @apply w-full max-w-4xl rounded-3xl overflow-hidden;
+}
+
+.dark .modal-container {
+  @apply bg-slate-900 border border-white/10;
+}
+
+.light .modal-container {
+  @apply bg-white border border-gray-200 shadow-2xl;
 }
 
 /* 不认识单词特殊样式 */
 .word-card-forgotten {
-  @apply border-red-200 bg-red-50;
+  @apply border-rose-500/20 bg-rose-500/5;
 }
 
 .word-card-forgotten:hover {
-  border-color: #ef4444;
+  @apply border-rose-500/40;
 }
 
 /* 警告统计框 */
 .stat-box-warning {
-  @apply bg-orange-50 border-orange-200;
+  @apply bg-rose-500/10 border-rose-500/20;
 }
 
 .stat-box-warning .stat-value {
-  color: #ea580c;
+  @apply text-rose-400;
 }
 
 /* 标签样式 */
@@ -398,9 +479,7 @@ const handleReviewComplete = (result) => {
 }
 
 .meta-tag-forgotten {
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #dc2626;
+  @apply bg-rose-500/10 border border-rose-500/30 text-rose-400;
 }
 
 .tag-icon {
@@ -417,33 +496,27 @@ const handleReviewComplete = (result) => {
 }
 
 .priority-high {
-  background-color: #fef2f2;
-  color: #dc2626;
-  border: 1px solid #fecaca;
+  @apply bg-rose-500/10 text-rose-400 border border-rose-500/30;
 }
 
 .priority-medium {
-  background-color: #fef3c7;
-  color: #d97706;
-  border: 1px solid #fde68a;
+  @apply bg-amber-500/10 text-amber-400 border border-amber-500/30;
 }
 
 .priority-low {
-  background-color: #f3f4f6;
-  color: #6b7280;
-  border: 1px solid #e5e7eb;
+  @apply bg-slate-700 text-gray-400 border border-slate-600;
 }
 
 /* 正确率样式 */
 .accuracy-high {
-  color: #059669;
+  @apply text-emerald-400;
 }
 
 .accuracy-medium {
-  color: #d97706;
+  @apply text-amber-400;
 }
 
 .accuracy-low {
-  color: #dc2626;
+  @apply text-rose-400;
 }
 </style>

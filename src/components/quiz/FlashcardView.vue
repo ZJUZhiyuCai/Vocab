@@ -8,7 +8,7 @@
         @click="$emit('toggle')"
       >
         <!-- 正面 -->
-        <div class="flashcard-front">
+        <div :class="['flashcard-front', isDark ? 'dark' : 'light']">
           <h2 class="word-text">{{ word.word }}</h2>
           <div v-if="word.phonetic" class="phonetic-text">
             {{ word.phonetic }}
@@ -22,7 +22,7 @@
         </div>
 
         <!-- 背面 -->
-        <div class="flashcard-back">
+        <div :class="['flashcard-back', isDark ? 'dark' : 'light']">
           <h3 class="meaning-text">{{ word.meaning }}</h3>
           <div v-if="word.example" class="example-text">
             {{ word.example }}
@@ -37,28 +37,28 @@
     <!-- 难度按钮 -->
     <div v-if="showAnswer" class="difficulty-buttons">
       <button @click.stop="$emit('rate', 'easy')" class="difficulty-button easy">
-        😊 简单
+        简单
       </button>
       <button @click.stop="$emit('rate', 'medium')" class="difficulty-button medium">
-        🤔 一般
+        一般
       </button>
       <button @click.stop="$emit('rate', 'hard')" class="difficulty-button hard">
-        😓 困难
+        困难
       </button>
     </div>
 
     <!-- 导航按钮 -->
     <div class="navigation-buttons">
-      <button @click.stop="$emit('previous')" class="nav-button" :disabled="!hasPrevious">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+      <button @click.stop="$emit('previous')" :class="['nav-button', isDark ? 'dark' : 'light']" :disabled="!hasPrevious">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
-        ⬅️ 上一个
+        上一个
       </button>
-      <button @click.stop="$emit('next')" class="nav-button" :disabled="!hasNext">
-        下一个 ➡️
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+      <button @click.stop="$emit('next')" :class="['nav-button', isDark ? 'dark' : 'light']" :disabled="!hasNext">
+        下一个
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </button>
     </div>
@@ -86,6 +86,9 @@ const props = defineProps({
 })
 
 defineEmits(['toggle', 'previous', 'next', 'rate'])
+
+import { useTheme } from '../../composables/useTheme.js'
+const { isDark } = useTheme()
 </script>
 
 <style scoped>
@@ -123,15 +126,25 @@ defineEmits(['toggle', 'previous', 'next', 'rate'])
 .flashcard-front,
 .flashcard-back {
   @apply absolute w-full h-full;
-  @apply bg-white rounded-lg shadow-lg p-8;
+  @apply rounded-3xl shadow-2xl p-8;
   @apply flex flex-col items-center justify-center;
-  @apply border-2 border-sage-200;
+  @apply border-2;
   /* 隐藏背面，启用GPU加速 */
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   /* 提升到独立的合成层 */
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
+}
+
+.flashcard-front.dark,
+.flashcard-back.dark {
+  @apply bg-slate-900 border-white/5;
+}
+
+.flashcard-front.light,
+.flashcard-back.light {
+  @apply bg-white border-gray-200;
 }
 
 /* 正面 - 初始显示 */
@@ -141,45 +154,60 @@ defineEmits(['toggle', 'previous', 'next', 'rate'])
 
 /* 背面 - 初始隐藏（旋转180度） */
 .flashcard-back {
-  @apply bg-sage-50;
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
   z-index: 1;
 }
 
+.flashcard-back.dark {
+  @apply bg-slate-800/80 backdrop-blur-xl border-emerald-500/20;
+}
+
+.flashcard-back.light {
+  @apply bg-emerald-50 border-emerald-200;
+}
+
 .word-text {
-  @apply text-5xl font-bold text-sage-600 mb-3;
+  @apply text-6xl font-black mb-4 tracking-tight;
   /* 优化文本渲染 */
-  transform: translateZ(20px);
-  -webkit-transform: translateZ(20px);
+  transform: translateZ(30px);
+  -webkit-transform: translateZ(30px);
+}
+
+.flashcard-front.dark .word-text {
+  @apply text-white;
+}
+
+.flashcard-front.light .word-text {
+  @apply text-slate-900;
 }
 
 .phonetic-text {
-  @apply text-2xl text-gray-500 mb-6;
+  @apply text-2xl font-mono text-emerald-400/80 mb-8;
   transform: translateZ(10px);
   -webkit-transform: translateZ(10px);
 }
 
 .tap-hint {
-  @apply flex items-center text-sage-500 mt-4;
+  @apply flex items-center text-slate-500 mt-6;
   transform: translateZ(15px);
   -webkit-transform: translateZ(15px);
 }
 
 .meaning-text {
-  @apply text-2xl font-bold text-sage-700 mb-4;
-  transform: translateZ(20px);
-  -webkit-transform: translateZ(20px);
+  @apply text-3xl font-bold text-emerald-400 mb-6;
+  transform: translateZ(30px);
+  -webkit-transform: translateZ(30px);
 }
 
 .example-text {
-  @apply text-lg text-gray-700 mb-2 italic;
+  @apply text-xl text-slate-200 mb-3 italic leading-relaxed;
   transform: translateZ(10px);
   -webkit-transform: translateZ(10px);
 }
 
 .example-translation {
-  @apply text-base text-gray-600;
+  @apply text-lg text-slate-500;
   transform: translateZ(10px);
   -webkit-transform: translateZ(10px);
 }
@@ -203,15 +231,15 @@ defineEmits(['toggle', 'previous', 'next', 'rate'])
 }
 
 .difficulty-button.easy {
-  @apply bg-green-100 text-green-700 hover:bg-green-200;
+  @apply bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20;
 }
 
 .difficulty-button.medium {
-  @apply bg-yellow-100 text-yellow-700 hover:bg-yellow-200;
+  @apply bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20;
 }
 
 .difficulty-button.hard {
-  @apply bg-red-100 text-red-700 hover:bg-red-200;
+  @apply bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/20;
 }
 
 .navigation-buttons {
@@ -220,14 +248,23 @@ defineEmits(['toggle', 'previous', 'next', 'rate'])
 
 .nav-button {
   @apply flex-1 flex items-center justify-center gap-2;
-  @apply py-3 px-4 bg-white border-2 border-sage-200 rounded-lg;
-  @apply text-sage-600 font-medium;
-  @apply hover:bg-sage-50 hover:border-sage-300;
-  @apply disabled:opacity-40 disabled:cursor-not-allowed;
-  @apply transition-all duration-200;
+  @apply py-3 px-4 border-2 rounded-2xl;
+  @apply font-bold uppercase tracking-wider;
+  @apply disabled:opacity-20 disabled:cursor-not-allowed;
+  @apply transition-all duration-300;
   /* 启用GPU加速 */
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
+}
+
+.nav-button.dark {
+  @apply bg-slate-800 border-white/5 text-slate-300;
+  @apply hover:bg-slate-700 hover:border-emerald-500/30 hover:text-emerald-400;
+}
+
+.nav-button.light {
+  @apply bg-gray-100 border-gray-200 text-gray-700;
+  @apply hover:bg-white hover:border-emerald-500/50 hover:text-emerald-600;
 }
 
 @keyframes bounce {

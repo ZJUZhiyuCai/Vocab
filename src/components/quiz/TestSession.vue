@@ -10,12 +10,12 @@
       </div>
       <div class="flex items-center gap-4">
         <span class="score-badge">得分: {{ score }}/{{ totalAnswered }}</span>
-        <button @click="showExitConfirm = true" class="exit-button">退出</button>
+        <button @click="showExitConfirm = true" :class="['exit-button', isDark ? 'dark' : 'light']">退出</button>
       </div>
     </div>
 
     <!-- 进度条 -->
-    <div class="progress-bar">
+    <div :class="['progress-bar', isDark ? 'dark' : 'light']">
       <div class="progress-fill" :style="{ width: progressPercent + '%' }"></div>
     </div>
 
@@ -81,6 +81,9 @@ import { ref, computed } from 'vue'
 import SpellingQuestion from './SpellingQuestion.vue'
 import FlashcardView from './FlashcardView.vue'
 import QuizResults from './QuizResults.vue'
+import { useTheme } from '../../composables/useTheme.js'
+
+const { isDark } = useTheme()
 
 const props = defineProps({
   words: {
@@ -224,13 +227,31 @@ const handleExit = () => {
 }
 
 .exit-button {
-  @apply px-4 py-2 text-gray-600 hover:text-gray-800;
-  @apply border border-gray-300 rounded-lg;
-  @apply hover:bg-gray-50;
+  @apply px-4 py-2 rounded-lg transition-colors;
+}
+
+.exit-button.dark {
+  @apply text-gray-400 hover:text-white;
+  @apply border border-white/10;
+  @apply hover:bg-white/5 hover:border-white/20;
+}
+
+.exit-button.light {
+  @apply text-gray-600 hover:text-gray-800;
+  @apply border border-gray-300;
+  @apply hover:bg-gray-100;
 }
 
 .progress-bar {
-  @apply w-full h-2 bg-gray-200 rounded-full mb-6;
+  @apply w-full h-2 rounded-full mb-6;
+}
+
+.progress-bar.dark {
+  @apply bg-slate-700;
+}
+
+.progress-bar.light {
+  @apply bg-gray-200;
 }
 
 .progress-fill {

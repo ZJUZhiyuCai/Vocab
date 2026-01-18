@@ -1,0 +1,92 @@
+/* Theme Variables - Light and Dark Modes */
+:root {
+    /* Dark theme (default) */
+    --color-bg-primary: 15 23 42;
+    /* slate-900 */
+    --color-bg-secondary: 30 41 59;
+    /* slate-800 */
+    --color-bg-tertiary: 51 65 85;
+    /* slate-700 */
+    --color-text-primary: 241 245 249;
+    /* slate-100 */
+    --color-text-secondary: 148 163 184;
+    /* slate-400 */
+    --color-text-muted: 100 116 139;
+    /* slate-500 */
+    --color-border: 255 255 255 / 0.1;
+    --color-glass-bg: 255 255 255 / 0.05;
+    --color-glass-border: 255 255 255 / 0.1;
+    --color-card-bg: 30 41 59;
+    /* slate-800 */
+    --color-shadow: 0 0 0 / 0.3;
+
+    /* Accent colors (shared) */
+    --color-accent-primary: 16 185 129;
+    /* emerald-500 */
+    --color-accent-secondary: 20 184 166;
+    /* teal-500 */
+}
+
+/* Light theme overrides */
+:root.light,
+.light {
+    --color-bg-primary: 248 250 252;
+    /* slate-50 */
+    --color-bg-secondary: 241 245 249;
+    /* slate-100 */
+    --color-bg-tertiary: 226 232 240;
+    /* slate-200 */
+    --color-text-primary: 15 23 42;
+    /* slate-900 */
+    --color-text-secondary: 71 85 105;
+    /* slate-600 */
+    --color-text-muted: 100 116 139;
+    /* slate-500 */
+    --color-border: 0 0 0 / 0.1;
+    --color-glass-bg: 255 255 255 / 0.7;
+    --color-glass-border: 0 0 0 / 0.1;
+    --color-card-bg: 255 255 255;
+    --color-shadow: 0 0 0 / 0.1;
+}
+
+/* Utility classes for theme-aware backgrounds */
+.theme-bg-primary {
+    background-color: rgb(var(--color-bg-primary));
+}
+
+.theme-bg-secondary {
+    background-color: rgb(var(--color-bg-secondary));
+}
+
+.theme-bg-card {
+    background-color: rgb(var(--color-card-bg));
+}
+
+.theme-text-primary {
+    color: rgb(var(--color-text-primary));
+}
+
+.theme-text-secondary {
+    color: rgb(var(--color-text-secondary));
+}
+
+.theme-text-muted {
+    color: rgb(var(--color-text-muted));
+}
+
+.theme-border {
+    border-color: rgb(var(--color-border));
+}
+
+/* Glassmorphism for both themes */
+.theme-glass {
+    background: rgb(var(--color-glass-bg));
+    border: 1px solid rgb(var(--color-glass-border));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Light mode specific adjustments */
+.light .theme-light-shadow {
+    box-shadow: 0 4px 6px -1px rgb(var(--color-shadow)), 0 2px 4px -2px rgb(var(--color-shadow));
+}

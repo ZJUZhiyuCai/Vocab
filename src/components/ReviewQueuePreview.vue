@@ -1,8 +1,11 @@
 <template>
-  <div class="review-queue-preview">
+  <div class="review-queue-preview animate-fade-in">
     <!-- 头部 -->
     <div class="preview-header">
-      <h2 class="text-xl font-bold text-sage-600">📚 复习队列</h2>
+      <div class="flex items-center gap-2 mb-1">
+        <div class="w-1.5 h-6 rounded-full bg-emerald-500"></div>
+        <h2 class="text-xl font-bold text-white uppercase tracking-tight">复习队列</h2>
+      </div>
       <div class="header-stats">
         <span class="stat-badge">
           {{ words.length }} 个学习过的单词
@@ -14,17 +17,17 @@
     </div>
 
     <!-- 单词列表 -->
-    <div class="word-list">
+    <div class="word-list custom-scrollbar">
       <div
         v-for="(item, index) in sortedWords"
         :key="item.word.id"
-        class="word-item"
+        class="word-item group"
         :class="{ 'overdue': isOverdue(item.reviewState) }"
       >
         <!-- 单词信息 -->
         <div class="word-info" @click="selectWord(index)">
           <div class="word-header">
-            <h3 class="word-text">{{ item.word.word }}</h3>
+            <h3 class="word-text group-hover:text-emerald-400 transition-colors">{{ item.word.word }}</h3>
             <div class="word-meta">
               <span v-if="item.word.ipa" class="ipa">{{ item.word.ipa }}</span>
               <span class="review-count">已复习 {{ item.reviewState.reviewCount || 0 }} 次</span>
@@ -44,7 +47,7 @@
             </div>
             <div v-if="isOverdue(item.reviewState)" class="stat-item overdue">
               <span class="stat-label">超时</span>
-              <span class="stat-value text-red-600">{{ getOverdueText(item.reviewState) }}</span>
+              <span class="stat-value text-rose-400">{{ getOverdueText(item.reviewState) }}</span>
             </div>
           </div>
 
@@ -70,9 +73,13 @@
 
       <!-- 空状态 -->
       <div v-if="words.length === 0" class="empty-state">
-        <div class="text-6xl mb-4">📖</div>
-        <h3 class="text-xl font-bold text-sage-600 mb-2">还没有学习过的单词</h3>
-        <p class="text-gray-600">先去学习一些新单词吧</p>
+        <div class="flex justify-center mb-6 text-slate-700/50">
+          <svg class="w-20 h-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.168.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.168.477-4.5 1.253" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-slate-200 mb-2">还没有学习过的单词</h3>
+        <p class="text-slate-500">先去学习一些新单词吧</p>
       </div>
     </div>
 
@@ -149,9 +156,9 @@ const getAccuracy = (reviewState) => {
 // 获取正确率样式类
 const getAccuracyClass = (reviewState) => {
   const accuracy = getAccuracy(reviewState)
-  if (accuracy >= 80) return 'text-green-600'
-  if (accuracy >= 60) return 'text-yellow-600'
-  return 'text-red-600'
+  if (accuracy >= 80) return 'text-emerald-400'
+  if (accuracy >= 60) return 'text-amber-400'
+  return 'text-rose-400'
 }
 
 // 时间格式化
@@ -199,11 +206,11 @@ const startReview = () => {
 
 <style scoped>
 .review-queue-preview {
-  @apply bg-white rounded-lg shadow-sm p-6 max-h-[80vh] flex flex-col;
+  @apply bg-slate-900 rounded-2xl shadow-2xl p-6 max-h-[80vh] flex flex-col border border-white/10;
 }
 
 .preview-header {
-  @apply pb-4 border-b border-gray-200;
+  @apply pb-4 border-b border-white/10;
 }
 
 .header-stats {
@@ -212,11 +219,11 @@ const startReview = () => {
 
 .stat-badge {
   @apply px-3 py-1 rounded-full text-sm font-medium;
-  @apply bg-sage-100 text-sage-700;
+  @apply bg-slate-800 text-gray-300 border border-white/5;
 }
 
 .stat-badge.warning {
-  @apply bg-yellow-100 text-yellow-700;
+  @apply bg-rose-500/10 text-rose-400 border-rose-500/30;
 }
 
 .word-list {
@@ -224,13 +231,13 @@ const startReview = () => {
 }
 
 .word-item {
-  @apply bg-gray-50 rounded-lg p-4 border-2 border-transparent;
+  @apply bg-slate-800/50 rounded-xl p-4 border border-white/5;
   @apply transition-all duration-200;
-  @apply hover:shadow-md hover:border-sage-200;
+  @apply hover:bg-slate-800 hover:border-emerald-500/30;
 }
 
 .word-item.overdue {
-  @apply bg-red-50 border-red-200;
+  @apply bg-rose-500/5 border-rose-500/10;
 }
 
 .word-info {
@@ -242,7 +249,7 @@ const startReview = () => {
 }
 
 .word-text {
-  @apply text-lg font-bold text-sage-600;
+  @apply text-lg font-bold text-gray-200;
 }
 
 .word-meta {
@@ -262,19 +269,19 @@ const startReview = () => {
 }
 
 .stat-value {
-  @apply font-medium text-gray-700;
+  @apply font-medium text-gray-300;
 }
 
 .word-meaning {
-  @apply text-sm text-gray-600 pt-2 border-t border-gray-200;
+  @apply text-sm text-gray-400 pt-2 border-t border-white/5;
 }
 
 .word-actions {
-  @apply flex gap-2 mt-3 pt-3 border-t border-gray-200;
+  @apply flex gap-2 mt-3 pt-3 border-t border-white/5;
 }
 
-.action-info {
-  @apply flex-1 text-center;
+.action-btn {
+  @apply flex items-center text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 px-3 py-1.5 rounded-lg text-sm transition-colors;
 }
 
 .empty-state {
@@ -282,19 +289,30 @@ const startReview = () => {
 }
 
 .preview-footer {
-  @apply flex gap-3 pt-4 border-t border-gray-200;
+  @apply flex gap-3 pt-4 border-t border-white/10;
 }
 
 .footer-btn {
-  @apply flex-1 py-3 px-6 rounded-lg font-medium;
+  @apply flex-1 py-3 px-6 rounded-xl font-bold;
   @apply transition-all duration-200;
 }
 
 .footer-btn.primary {
-  @apply bg-sage-600 text-white hover:bg-sage-700;
+  @apply bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40;
 }
 
 .footer-btn.secondary {
-  @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
+  @apply bg-slate-800 text-gray-300 border border-white/10 hover:bg-slate-700;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-slate-800 rounded;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded hover:bg-slate-600;
 }
 </style>

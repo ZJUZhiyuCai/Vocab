@@ -1,11 +1,11 @@
 <template>
-  <div class="vocab-test-modal">
+  <div class="vocab-test-modal" :class="isDark ? 'dark' : 'light'">
     <div class="modal-content">
       <!-- 进度指示 -->
       <div class="progress-header">
         <div class="progress-info">
-          <span class="text-sm text-gray-600">词汇量测试</span>
-          <span class="text-sm font-medium text-sage-600">{{ currentQuestion + 1 }} / {{ totalQuestions }}</span>
+          <span class="text-sm text-slate-400">词汇量测试</span>
+          <span class="text-sm font-medium text-emerald-400">{{ currentQuestion + 1 }} / {{ totalQuestions }}</span>
         </div>
         <div class="progress-bar">
           <div class="progress-fill" :style="{ width: progressPercentage + '%' }"></div>
@@ -13,87 +13,96 @@
       </div>
 
       <!-- 测试说明 -->
-      <div v-if="currentQuestion === -1" class="intro-section">
-        <div class="intro-icon">📊</div>
-        <h2 class="text-2xl font-bold text-sage-500 mb-4">词汇量水平测试</h2>
-        <div class="text-left space-y-3 text-gray-600 mb-6">
-          <p>✓ 共 <strong>50 道题</strong>，大约需要 <strong>5-8 分钟</strong></p>
-          <p>✓ 自适应测试，题目难度会根据你的回答调整</p>
-          <p>✓ 测试完成后会为你推荐合适的词库</p>
-          <p class="text-sm text-gray-500 mt-4">请根据你是否认识这个单词的<strong>主要含义</strong>来回答</p>
+      <div v-if="currentQuestion === -1" class="intro-section text-center">
+        <h2 class="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent mb-6">词汇量水平测试</h2>
+        <div class="text-left space-y-4 bg-white/5 p-6 rounded-2xl border border-white/5 text-slate-300 mb-8">
+          <p class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>共 <strong>50 道题</strong>，大约需要 <strong>5-8 分钟</strong></p>
+          <p class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>自适应测试，题目难度会根据你的回答调整</p>
+          <p class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>测试完成后会为你推荐合适的词库</p>
+          <p class="text-sm text-slate-500 mt-6 pt-4 border-t border-white/5">请根据你是否认识这个单词的<strong>主要含义</strong>来回答</p>
         </div>
-        <button @click="startTest" class="btn btn-primary w-full">开始测试</button>
+        <button @click="startTest" class="premium-btn w-full py-4 text-lg">开始测试</button>
       </div>
 
       <!-- 测试题目 -->
-      <div v-else-if="currentQuestion < totalQuestions && !testCompleted" class="question-section">
-        <div class="word-display">
-          <h2 class="text-4xl font-bold text-sage-600 mb-2">{{ currentTestWord.word }}</h2>
-          <p v-if="currentTestWord.ipa" class="text-gray-500 mb-4">{{ currentTestWord.ipa }}</p>
-          <p class="text-sm text-gray-400">难度：{{ currentTestWord.cefr }} · {{ currentTestWord.ielts }}</p>
+      <div v-else-if="currentQuestion < totalQuestions && !testCompleted" class="question-section py-8 text-center">
+        <div class="word-display mb-12">
+          <h2 class="text-5xl font-black text-white mb-4 tracking-tight">{{ currentTestWord.word }}</h2>
+          <p v-if="currentTestWord.ipa" class="text-xl font-mono text-emerald-400/80 mb-6">{{ currentTestWord.ipa }}</p>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-slate-400 font-medium">
+            <span>难度: {{ currentTestWord.cefr }}</span>
+            <span class="w-1 h-1 rounded-full bg-slate-600"></span>
+            <span>{{ currentTestWord.ielts }}</span>
+          </div>
         </div>
 
-        <div class="answer-buttons">
+        <div class="answer-buttons grid grid-cols-2 gap-6 mb-8">
           <button
             @click="answerWord(false)"
             @touchstart.passive="() => {}"
-            class="answer-btn btn-error"
+            class="answer-btn btn-forget group"
           >
-            <div class="text-2xl mb-1">✗</div>
-            <div>不认识</div>
+            <span class="text-3xl mb-2 group-hover:scale-110 transition-transform">✕</span>
+            <span class="font-bold">不认识</span>
           </button>
           <button
             @click="answerWord(true)"
             @touchstart.passive="() => {}"
-            class="answer-btn btn-success"
+            class="answer-btn btn-know group"
           >
-            <div class="text-2xl mb-1">✓</div>
-            <div>认识</div>
+            <span class="text-3xl mb-2 group-hover:scale-110 transition-transform">✓</span>
+            <span class="font-bold">认识</span>
           </button>
         </div>
 
         <div class="test-tip">
-          <p class="text-xs text-gray-400">提示：选择后自动进入下一题，无法返回修改</p>
+          <p class="text-xs text-slate-500">提示：选择后自动进入下一题，不能返回</p>
         </div>
       </div>
 
       <!-- 测试结果 -->
-      <div v-else-if="testCompleted" class="result-section" @click="selectedVocab = null">
-        <div class="result-icon">🎯</div>
-        <h2 class="text-xl font-bold text-sage-500 mb-3">测试完成</h2>
+      <div v-else-if="testCompleted" class="result-section text-center" @click="selectedVocab = null">
+        <h2 class="text-2xl font-bold text-emerald-400 mb-6">测试完成</h2>
 
-        <div class="result-card">
-          <div class="result-item">
+        <div class="grid grid-cols-3 gap-4 mb-8">
+          <div class="result-box">
             <span class="result-label">词汇量估算</span>
-            <span class="result-value">{{ estimatedVocab }}</span>
+            <span class="result-value text-emerald-400">{{ estimatedVocab }}</span>
           </div>
-          <div class="result-item">
+          <div class="result-box">
             <span class="result-label">CEFR等级</span>
-            <span class="result-value">{{ cefrLevel }}</span>
+            <span class="result-value text-blue-400">{{ cefrLevel }}</span>
           </div>
-          <div class="result-item">
+          <div class="result-box">
             <span class="result-label">雅思水平</span>
-            <span class="result-value">{{ ieltsLevel }}</span>
+            <span class="result-value text-purple-400">{{ ieltsLevel }}</span>
           </div>
         </div>
 
-        <!-- 🔥 添加详细统计信息 -->
-        <div class="result-stats">
-          <div class="text-sm text-gray-600 mb-2">📊 详细统计</div>
-          <div class="grid grid-cols-2 gap-3">
-            <div class="stat-item">
-              <div class="stat-label">答对题数</div>
-              <div class="stat-number">{{ userAnswers.filter(a => a.known).length }} / {{ totalQuestions }}</div>
+        <!-- 添加详细统计信息 -->
+        <div class="result-stats mb-8">
+          <div class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2 justify-center">
+            <span class="w-8 h-[1px] bg-slate-800"></span>
+            <span>详细统计</span>
+            <span class="w-8 h-[1px] bg-slate-800"></span>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white/5 rounded-xl p-4 border border-white/5">
+              <div class="text-xs text-slate-500 mb-1">答对题数</div>
+              <div class="text-xl font-bold text-slate-200">{{ userAnswers.filter(a => a.known).length }} / {{ totalQuestions }}</div>
             </div>
-            <div class="stat-item">
-              <div class="stat-label">正确率</div>
-              <div class="stat-number">{{ ((userAnswers.filter(a => a.known).length / totalQuestions) * 100).toFixed(0) }}%</div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/5">
+              <div class="text-xs text-slate-500 mb-1">正确率</div>
+              <div class="text-xl font-bold text-slate-200">{{ ((userAnswers.filter(a => a.known).length / totalQuestions) * 100).toFixed(0) }}%</div>
             </div>
           </div>
         </div>
 
-        <div class="recommended-section" @click.stop>
-          <h3 class="text-lg font-semibold text-sage-500 mb-3">📚 推荐词库</h3>
+        <div class="recommended-section text-left" @click.stop>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-1 h-5 rounded-full bg-emerald-500"></div>
+            <h3 class="text-lg font-bold text-slate-200">推荐词库</h3>
+          </div>
           <div class="vocab-list">
             <div
               v-for="vocab in recommendedVocabs"
@@ -106,8 +115,8 @@
               <div class="vocab-info">
                 <div class="vocab-name">{{ vocab.name }}</div>
                 <div class="vocab-meta">
-                  <span class="text-xs text-gray-500">{{ vocab.level }}</span>
-                  <span class="text-xs text-gray-400">{{ vocab.wordCount }}词</span>
+                  <span class="px-1.5 py-0.5 rounded bg-white/5 text-[10px] text-slate-400">{{ vocab.level }}</span>
+                  <span class="text-[10px] text-slate-500">{{ vocab.wordCount }}词</span>
                 </div>
               </div>
               <div class="vocab-recommend">
@@ -117,16 +126,16 @@
           </div>
         </div>
 
-        <div class="action-buttons">
+        <div class="action-buttons flex gap-4 mt-8">
           <button
             @click="skipSelection"
-            class="btn bg-gray-200 text-gray-700 hover:bg-gray-300"
+            class="px-6 py-3 rounded-xl font-bold bg-slate-700/50 text-slate-400 hover:bg-slate-700 hover:text-slate-200 transition-all border border-white/5"
           >
-            跳过，稍后选择
+            稍后选择
           </button>
           <button
             @click="confirmSelection"
-            class="btn btn-primary flex-1"
+            class="premium-btn flex-1 py-3 text-base"
             :disabled="!selectedVocab"
           >
             开始学习
@@ -140,7 +149,9 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { getRecommendedVocabularies } from '../utils/vocabularyManager.js'
+import { useTheme } from '../composables/useTheme.js'
 
+const { isDark } = useTheme()
 const emit = defineEmits(['complete'])
 
 // 测试配置
@@ -435,460 +446,220 @@ const confirmSelection = () => {
 </script>
 
 <style scoped>
-/* 模态框 - 毛玻璃效果 */
+/* 模态框 - 固定铺满 */
 .vocab-test-modal {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 50;
-  padding: 1rem;
-  backdrop-filter: blur(4px);
+  z-index: 100;
+  padding: 1.5rem;
+}
+
+.vocab-test-modal.dark {
+  background-color: rgba(2, 6, 23, 0.9);
+}
+
+.vocab-test-modal.light {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   max-width: 42rem;
   width: 100%;
-  padding: 1.5rem;
+  padding: 2.5rem;
   max-height: 90vh;
   overflow-y: auto;
-  border: 1px solid #e8e0d8;
+  position: relative;
+}
+
+.dark .modal-content {
+  background-color: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light .modal-content {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* 隐藏滚动条 */
+.modal-content::-webkit-scrollbar {
+  display: none;
 }
 
 /* ===== 进度条 ===== */
 .progress-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .progress-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.progress-info span:first-child {
-  font-size: 0.875rem;
-  color: #6b7280;
-}
-
-.progress-info span:last-child {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #5c6b5c;
+  margin-bottom: 0.75rem;
 }
 
 .progress-bar {
   width: 100%;
   height: 0.5rem;
-  border-radius: 0.5rem;
+  border-radius: 999px;
   overflow: hidden;
-  background-color: #e8e0d8;
+}
+
+.dark .progress-bar {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.light .progress-bar {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .progress-fill {
   height: 100%;
-  transition: all 300ms ease-out;
-  background: linear-gradient(90deg, #7d8f7d 0%, #5c6b5c 100%);
+  background: linear-gradient(90deg, #10b981 0%, #14b8a6 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ===== 介绍部分 ===== */
-.intro-section {
-  text-align: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+/* ===== 按钮样式 ===== */
+.premium-btn {
+  @apply rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold shadow-lg transition-all;
+  box-shadow: 0 8px 20px -6px rgba(16, 185, 129, 0.4);
 }
 
-.intro-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+.premium-btn:hover:not(:disabled) {
+  @apply brightness-110 -translate-y-0.5;
+  box-shadow: 0 12px 24px -8px rgba(16, 185, 129, 0.5);
 }
 
-.intro-section h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #3d473d;
+.premium-btn:active:not(:disabled) {
+  @apply scale-95;
 }
 
-.intro-list {
-  text-align: left;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.intro-list p {
-  margin-bottom: 0.75rem;
-  color: #374151;
-  font-size: 1rem;
-  line-height: 1.625;
-}
-
-/* ===== 题目部分 ===== */
-.question-section {
-  text-align: center;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
-.word-display {
-  margin-bottom: 2rem;
-}
-
-.word-display h2 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #5c6b5c;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.5rem;
-}
-
-.word-display p {
-  color: #6b7280;
-  font-size: 15px;
+.premium-btn:disabled {
+  @apply opacity-40 cursor-not-allowed grayscale;
 }
 
 /* ===== 答题按钮 ===== */
-.answer-buttons {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
 .answer-btn {
-  padding: 1.25rem 2.5rem;
-  border-radius: 0.5rem;
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  min-width: 140px;
-  transition: all 150ms ease-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-  position: relative;
-  overflow: hidden;
+  @apply py-6 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 border;
 }
 
-/* 🔥 移动端触摸反馈增强 */
-.answer-btn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.3);
-  opacity: 0;
-  transition: opacity 150ms;
+.btn-forget {
+  @apply border-white/5 text-gray-400;
 }
 
-.answer-btn:active {
-  transform: scale(0.95);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+.dark .btn-forget {
+  @apply bg-slate-800/50;
 }
 
-.answer-btn:active::after {
-  opacity: 1;
+.light .btn-forget {
+  @apply bg-gray-100;
 }
 
-.answer-btn.btn-success {
-  background: linear-gradient(135deg, #5c7d5c 0%, #4a634a 100%);
+.btn-forget:hover {
+  @apply bg-rose-500/10 border-rose-500/30 text-rose-400;
 }
 
-.answer-btn.btn-success:hover {
-  box-shadow: 0 4px 12px rgba(92, 125, 92, 0.25);
-  transform: translateY(-1px);
+.btn-know {
+  @apply border-white/5 text-gray-400;
 }
 
-.answer-btn.btn-success:active {
-  transform: scale(0.95);
+.dark .btn-know {
+  @apply bg-slate-800/50;
 }
 
-.answer-btn.btn-error {
-  background: linear-gradient(135deg, #b86c6c 0%, #a35a5a 100%);
+.light .btn-know {
+  @apply bg-gray-100;
 }
 
-.answer-btn.btn-error:hover {
-  box-shadow: 0 4px 12px rgba(184, 108, 108, 0.25);
-  transform: translateY(-1px);
+.btn-know:hover {
+  @apply bg-emerald-500/10 border-emerald-500/30 text-emerald-400;
 }
 
-.answer-btn.btn-error:active {
-  transform: scale(0.95);
+/* ===== 结果展示 ===== */
+.result-box {
+  @apply flex flex-col items-center p-4 rounded-2xl;
 }
 
-.test-tip {
-  text-align: center;
+.dark .result-box {
+  @apply bg-black/20 border border-white/5;
 }
 
-.test-tip p {
-  font-size: 0.75rem;
-  color: #9ca3af;
-}
-
-/* ===== 结果部分 ===== */
-.result-section {
-  text-align: center;
-}
-
-.result-icon {
-  font-size: 2.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.result-section h2 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  color: #3d473d;
-}
-
-.result-card {
-  border-radius: 0.5rem;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #f0f4f0 0%, #dce8dc 100%);
-  border: 1px solid #c0d5c0;
-}
-
-.result-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #dce8dc;
-}
-
-.result-item:last-child {
-  border-bottom: none;
+.light .result-box {
+  @apply bg-gray-50 border border-gray-200;
 }
 
 .result-label {
-  color: #374151;
-  font-size: 0.875rem;
-  font-weight: 500;
+  @apply text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1;
 }
 
 .result-value {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #3d473d;
+  @apply text-xl font-black;
 }
 
-/* ===== 详细统计信息 ===== */
-.result-stats {
-  border-radius: 0.5rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background: #fafafa;
-  border: 1px solid #e8e0d8;
-}
-
-.stat-item {
-  text-align: center;
-}
-
-.stat-label {
-  font-size: 0.75rem;
-  color: #6b7280;
-  margin-bottom: 0.25rem;
-}
-
-.stat-number {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #5c6b5c;
-}
-
-/* ===== 推荐词库区域 ===== */
-.recommended-section {
-  text-align: left;
-  margin-bottom: 1rem;
-}
-
-.recommended-section h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #3d473d;
-  margin-bottom: 0.75rem;
-}
-
-.vocab-list {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-}
-
-@media (min-width: 640px) {
-  .vocab-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
+/* ===== 词库列表 ===== */
 .vocab-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all 150ms ease-out;
-  position: relative;
-  overflow: hidden;
-  background-color: #faf8f6;
-  border: 2px solid #e8e0d8;
+  @apply flex items-center gap-3 p-3 rounded-xl border border-transparent cursor-pointer transition-all;
 }
 
-.vocab-item::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom right, #f5f7f5, transparent);
-  opacity: 0;
-  transition: opacity 150ms;
+.dark .vocab-item {
+  @apply bg-white/5;
 }
 
-.vocab-item:hover {
-  border-color: #9caf9c;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transform: translateY(-1px);
+.light .vocab-item {
+  @apply bg-gray-50;
 }
 
-.vocab-item:hover::before {
-  opacity: 1;
+.dark .vocab-item:hover {
+  @apply bg-white/10 border-white/10;
+}
+
+.light .vocab-item:hover {
+  @apply bg-gray-100 border-gray-200;
 }
 
 .vocab-item.selected {
-  border-color: #5c6b5c;
-  background: linear-gradient(135deg, #f0f4f0 0%, #e8f0e8 100%);
-  box-shadow: 0 0 0 3px rgba(92, 107, 92, 0.1);
+  @apply bg-emerald-500/10 border-emerald-500/40;
 }
 
 .vocab-icon {
-  font-size: 1.5rem;
-  flex-shrink: 0;
-}
-
-.vocab-info {
-  flex: 1;
-  min-width: 0;
+  @apply text-xl;
 }
 
 .vocab-name {
-  font-weight: 600;
-  color: #1f2937;
-  font-size: 0.875rem;
+  @apply text-sm font-bold;
+}
+
+.dark .vocab-name {
+  @apply text-gray-200;
+}
+
+.light .vocab-name {
+  @apply text-gray-800;
 }
 
 .vocab-meta {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.125rem;
+  @apply text-[10px] text-gray-500 flex gap-2;
 }
 
-.vocab-meta span {
-  font-size: 0.75rem;
+.vocab-badge {
+  @apply ml-auto px-1.5 py-0.5 rounded-md bg-emerald-500/20 text-emerald-400 text-[9px] font-bold;
 }
 
-.vocab-meta span:first-child {
-  color: #5c6b5c;
+/* Animations */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.vocab-meta span:last-child {
-  color: #9ca3af;
-}
-
-.vocab-recommend {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.recommend-badge {
-  padding: 0.125rem 0.5rem;
-  background-color: #dce8dc;
-  color: #5c6b5c;
-  font-size: 0.75rem;
-  border-radius: 9999px;
-  font-weight: 600;
-}
-
-/* ===== 操作按钮 ===== */
-.action-buttons {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.action-buttons button {
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  transition: all 150ms ease-out;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-}
-
-.action-buttons button:active {
-  transform: scale(0.98);
-}
-
-.action-buttons button[class*="btn-primary"] {
-  background: linear-gradient(135deg, #5c6b5c 0%, #4a5a4a 100%);
-  color: white;
-}
-
-.action-buttons button[class*="btn-primary"]:hover:not(:disabled) {
-  box-shadow: 0 4px 12px rgba(92, 107, 92, 0.2);
-  transform: translateY(-1px);
-}
-
-.action-buttons button[class*="btn-primary"]:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-.action-buttons button.bg-gray-200 {
-  background-color: #e8e0d8;
-  color: #374151;
-}
-
-.action-buttons button.bg-gray-200:hover {
-  background-color: #d4c8b9;
-}
-
-/* ===== 移动端优化 ===== */
-@media (max-width: 640px) {
-  .modal-content {
-    padding: 1.25rem;
-  }
-
-  .word-display h2 {
-    font-size: 24px;
-  }
-
-  .answer-buttons {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .answer-btn {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  .vocab-list {
-    grid-template-columns: repeat(1, 1fr);
-  }
+.animate-slide-up {
+  animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 </style>
