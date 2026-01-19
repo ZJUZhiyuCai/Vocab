@@ -179,13 +179,22 @@ export function getVocabularyProgress(vocabId) {
   };
 }
 
+
+import { syncService } from './syncService'
+
 /**
- * 保存词库学习进度
+ * 保存词库学习进度并同步到云端
  */
 export function saveVocabularyProgress(vocabId, progress) {
   try {
     const key = `vocabcontext_progress_${vocabId}`;
     localStorage.setItem(key, JSON.stringify(progress));
+
+    // 异步同步到云端
+    syncService.syncVocabularyProgress(vocabId, progress).catch(err => {
+      console.warn('⚠️ 自动同步进度失败:', err);
+    });
+
     return true;
   } catch (error) {
     console.error('保存词库进度失败:', error);

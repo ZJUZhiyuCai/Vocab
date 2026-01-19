@@ -3,6 +3,9 @@
  * 用于保存和加载用户设置
  */
 
+
+import { syncService } from './syncService'
+
 const SETTINGS_KEY = 'vocabcontext_settings';
 const USER_PROFILE_KEY = 'vocabcontext_user_profile';
 
@@ -21,7 +24,7 @@ export function loadSettings() {
 }
 
 /**
- * 保存用户设置到localStorage
+ * 保存用户设置到localStorage并同步到云端
  * @param {Object} settings - 用户设置对象
  * @returns {boolean} 保存是否成功
  */
@@ -29,6 +32,12 @@ export function saveSettings(settings) {
   try {
     const data = JSON.stringify(settings);
     localStorage.setItem(SETTINGS_KEY, data);
+
+    // 异步同步到云端
+    syncService.syncSettings(settings).catch(err => {
+      console.warn('⚠️ 自动同步设置失败（可能未登录或断网）:', err);
+    });
+
     console.log('✅ 设置保存成功');
     return true;
   } catch (error) {
@@ -37,8 +46,6 @@ export function saveSettings(settings) {
     // 如果是容量错误，尝试清理缓存后重试
     if (error.name === 'QuotaExceededError') {
       console.warn('⚠️ localStorage已满，尝试清理缓存...');
-
-      // 清理AI例句缓存（占用空间最大）
       cleanOldCache().then(() => {
         try {
           localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));

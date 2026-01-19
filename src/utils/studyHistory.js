@@ -33,9 +33,11 @@ export function saveStudyHistory(history) {
   }
 }
 
+
+import { syncService } from './syncService'
+
 /**
- * 记录今日学习的单词数量
- * @param {number} count - 今天学习的单词数量
+ * 记录今日学习的单词数量并同步到云端
  */
 export function recordTodayStudy(count) {
   const history = getStudyHistory()
@@ -45,6 +47,11 @@ export function recordTodayStudy(count) {
   history[today] = (history[today] || 0) + count
 
   saveStudyHistory(history)
+
+  // 异步同步到云端
+  syncService.syncStudyHistory(today, history[today], 0).catch(err => {
+    console.warn('⚠️ 同步学习历史失败:', err);
+  });
 }
 
 /**

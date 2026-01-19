@@ -297,7 +297,9 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { user } from './utils/authService.js'
+import { syncService } from './utils/syncService.js'
 import PremiumLayout from './layouts/PremiumLayout.vue'
 import PremiumWordCard from './components/PremiumWordCard.vue'
 import PremiumStats from './components/PremiumStats.vue'
@@ -315,12 +317,15 @@ import VocabularySelector from './components/VocabularySelector.vue'
 import Quiz from './components/Quiz.vue'
 import OnboardingQuiz from './components/OnboardingQuiz.vue'
 import VocabLevelTest from './components/VocabLevelTest.vue'
+
 import {
   getCurrentVocabulary,
   loadCurrentVocabulary,
   getVocabularyProgress,
   saveVocabularyProgress
 } from './utils/vocabularyManager.js'
+import { getStudyHistory, saveStudyHistory } from './utils/studyHistory.js'
+import { getUnlockedAchievements, saveUnlockedAchievements } from './utils/achievements.js'
 import { getVocabularyLoader } from './utils/vocabularyLoader.js'
 import {
   createWordReviewState,
@@ -664,6 +669,9 @@ const checkAndUnlockAchievements = () => {
   const newAchievements = checkAchievements(achievementStats)
   if (newAchievements.length > 0) {
     newAchievements.forEach((achievement, index) => {
+      // 同步成就到云端
+      syncService.syncAchievement(achievement.id).catch(() => {});
+      
       setTimeout(() => {
         showAchievementNotification(achievement)
         triggerConfetti()
@@ -681,16 +689,36 @@ const onAchievementClose = () => {
 }
 
 const isWordbooked = (wordId) => wordbook.value.has(wordId);
+
 const addToWordbook = (wordId) => {
   wordbook.value.add(wordId);
   saveWordbook(wordbook.value);
+  
+  // 同步到云端
+  if (currentVocab.value) {
+    syncService.syncWordbook(wordId, currentVocab.value.id, true).catch(err => {
+      console.warn('⚠️ 同步到单词本失败:', err);
+    });
+  }
 };
 const removeFromWordbook = (wordId) => {
   wordbook.value.delete(wordId);
   saveWordbook(wordbook.value);
+  
+  // 同步到云端
+  if (currentVocab.value) {
+    syncService.syncWordbook(wordId, currentVocab.value.id, false).catch(err => {
+      console.warn('⚠️ 从云端单词本删除失败:', err);
+    });
+  }
 };
 const handleBatchRemoveFromWordbook = (wordIds) => {
-  wordIds.forEach(wordId => wordbook.value.delete(wordId));
+  wordIds.forEach(wordId => {
+    wordbook.value.delete(wordId);
+    if (currentVocab.value) {
+      syncService.syncWordbook(wordId, currentVocab.value.id, false).catch(() => {});
+    }
+  });
   saveWordbook(wordbook.value);
 };
 const toggleWordbook = (wordId) => {
@@ -757,10 +785,20 @@ const loadReviewStates = () => {
   }
 };
 
+
 const saveReviewStates = () => {
   try {
     const key = `vocabcontext_review_${currentVocab.value.id}`;
     localStorage.setItem(key, JSON.stringify(reviewStates.value));
+    
+    // 同步当前单词的状态到云端
+    if (currentWord.value && reviewStates.value[currentWord.value.id]) {
+      syncService.syncReviewState(
+        currentVocab.value.id, 
+        currentWord.value.id, 
+        reviewStates.value[currentWord.value.id]
+      ).catch(err => console.warn('⚠️ 同步复习状态失败:', err));
+    }
   } catch (error) {
     console.error('保存复习状态失败:', error);
   }
@@ -987,6 +1025,7 @@ const handleOffline = () => {
   setTimeout(() => { error.value = null; }, 3000);
 };
 
+
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown);
   document.removeEventListener('visibilitychange', handleVisibilityChange);
@@ -994,6 +1033,90 @@ onUnmounted(() => {
   window.removeEventListener('offline', handleOffline);
   saveStudyTime();
 });
+
+// 监听登录状态，自动执行全量同步
+watch(user, async (newUser, oldUser) => {
+  if (newUser && !oldUser) {
+    console.log('🔄 检测到用户登录，开始同步云端数据...');
+    try {
+      const syncResult = await syncService.fullSync();
+      if (!syncResult) return;
+
+      const { cloudSettings, cloudProgress, cloudWordbook } = syncResult;
+
+      // 1. 同步设置
+      if (cloudSettings) {
+        // 合并设置，保留本地 API Key 如果云端没有
+        userSettings.value = { 
+          ...userSettings.value, 
+          ...cloudSettings,
+          apiKey: cloudSettings.api_key || userSettings.value.apiKey 
+        };
+        saveSettingsToStorage(userSettings.value);
+      }
+
+      // 2. 同步词库进度
+      if (cloudProgress && cloudProgress.length > 0) {
+         // 只加载当前词库的进度
+         const currentCloudProgress = cloudProgress.find(p => p.vocab_id === currentVocab.value?.id);
+         if (currentCloudProgress) {
+           learned.value = new Set(currentCloudProgress.learned_words);
+           forgotten.value = new Set(currentCloudProgress.forgotten_words);
+           currentIndex.value = currentCloudProgress.current_index;
+           saveCurrentProgress();
+         }
+      }
+
+      // 3. 同步生词本
+      if (cloudWordbook && cloudWordbook.length > 0) {
+        cloudWordbook.forEach(item => wordbook.value.add(item.word_id));
+        saveWordbook(wordbook.value);
+      }
+
+      // 4. 同步SRS复习状态
+      if (cloudSRS && cloudSRS.length > 0) {
+        cloudSRS.forEach(item => {
+          if (!reviewStates.value[item.word_id]) {
+            reviewStates.value[item.word_id] = {
+              intervalLevel: item.interval_level,
+              easeFactor: item.ease_factor,
+              nextReview: item.next_review ? new Date(item.next_review).getTime() : null,
+              lastReview: item.last_review ? new Date(item.last_review).getTime() : null,
+              reviewCount: item.review_count,
+              correctCount: item.correct_count,
+              incorrectCount: item.incorrect_count
+            };
+          }
+        });
+        saveReviewStates();
+      }
+
+      // 5. 同步学习历史
+      if (cloudHistory && cloudHistory.length > 0) {
+        const localHistory = getStudyHistory();
+        cloudHistory.forEach(item => {
+          localHistory[item.date] = Math.max(localHistory[item.date] || 0, item.words_learned);
+        });
+        saveStudyHistory(localHistory);
+      }
+
+      // 6. 同步成就
+      if (cloudAchievements && cloudAchievements.length > 0) {
+        const localAchievements = getUnlockedAchievements();
+        cloudAchievements.forEach(item => {
+          localAchievements.add(item.achievement_id);
+        });
+        saveUnlockedAchievements(localAchievements);
+      }
+
+      console.log('✅ 云端数据同步完成');
+      error.value = '已恢复云端数据';
+      setTimeout(() => { error.value = null; }, 3000);
+    } catch (err) {
+      console.error('❌ 全量同步失败:', err);
+    }
+  }
+}, { immediate: true });
 </script>
 
 <style>

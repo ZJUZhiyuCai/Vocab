@@ -71,7 +71,36 @@
           </button>
         </div>
 
-        <div class="flex items-center gap-3">
+<div class="flex items-center gap-3">
+           <!-- Login/User Button -->
+           <button 
+             v-if="!isLoggedIn"
+             @click="showAuth = true" 
+             :class="[
+               'px-4 py-2 text-sm font-bold rounded-xl transition-all active:scale-95',
+               isDark 
+                 ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/20 hover:bg-emerald-500' 
+                 : 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/10 hover:bg-emerald-500'
+             ]"
+           >
+             登录
+           </button>
+           
+           <button 
+             v-else
+             @click="toggleUserMenu"
+             :class="[
+               'w-10 h-10 rounded-xl overflow-hidden border transition-all hover:scale-105 active:scale-95',
+               isDark ? 'border-white/10' : 'border-black/10'
+             ]"
+           >
+             <img 
+               :src="user.user_metadata.avatar_url || 'https://api.dicebear.com/7.x/avataaars/svg?seed=' + user.id" 
+               class="w-full h-full object-cover"
+               :alt="user.email"
+             >
+           </button>
+
            <button @click="$emit('open-settings')" :class="[
              'p-2.5 rounded-xl backdrop-blur-sm border transition-all',
              isDark 
@@ -82,6 +111,32 @@
           </button>
         </div>
       </nav>
+
+      <!-- User Menu Dropdown -->
+      <div 
+        v-if="showUserMenu && isLoggedIn" 
+        class="absolute top-20 right-6 w-64 bg-slate-900 border border-white/10 rounded-2xl p-2 shadow-2xl z-50 animate-dropdown"
+      >
+        <div class="p-4 border-b border-white/5 mb-2">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">已登录为</p>
+          <p class="text-sm font-bold truncate text-white">{{ user.email }}</p>
+        </div>
+        <button 
+          @click="handleLogout"
+          class="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 rounded-xl transition-all"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          退出登录
+        </button>
+      </div>
+
+      <!-- Auth Overlay -->
+      <AuthOverlay 
+        v-if="showAuth && !isLoggedIn" 
+        @close="showAuth = false" 
+      />
 
       <!-- Main Layout -->
       <slot />
@@ -115,9 +170,16 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useTheme } from '../composables/useTheme.js'
+import { useAuth } from '../composables/useAuth.js'
+import AuthOverlay from '../components/AuthOverlay.vue'
 
 const { isDark } = useTheme()
+const { isLoggedIn, user, logout } = useAuth()
+
+const showAuth = ref(false)
+const showUserMenu = ref(false)
 
 defineProps({
   currentPage: {
@@ -127,6 +189,15 @@ defineProps({
 })
 
 defineEmits(['navigate', 'open-settings', 'open-vocab-selector'])
+
+function toggleUserMenu() {
+  showUserMenu.value = !showUserMenu.value
+}
+
+async function handleLogout() {
+  showUserMenu.value = false
+  await logout()
+}
 </script>
 
 <style scoped>
