@@ -19,10 +19,13 @@ export const authService = {
      * OAuth Login (Google/GitHub)
      */
     async signInWithOAuth(provider) {
+        const redirectUrl = import.meta.env.VITE_REDIRECT_URL || window.location.origin
+        console.log('🔐 Redirect URL (OAuth):', redirectUrl)
+        
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider,
             options: {
-                redirectTo: window.location.origin
+                redirectTo: redirectUrl
             }
         })
         return { data, error }
@@ -32,10 +35,13 @@ export const authService = {
      * Email Magic Link Login
      */
     async signInWithMagicLink(email) {
+        const redirectUrl = import.meta.env.VITE_REDIRECT_URL || window.location.origin
+        console.log('🔐 Redirect URL (Magic Link):', redirectUrl)
+
         const { data, error } = await supabase.auth.signInWithOtp({
             email,
             options: {
-                emailRedirectTo: window.location.origin
+                emailRedirectTo: redirectUrl
             }
         })
         return { data, error }
